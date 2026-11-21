@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>組合唔同嘅流水線 · 建立你嘅一人公司軍團</title>
+<style>
+@font-face{
+  font-family:"NotoTC Black";
+  font-style:normal;
+  font-weight:900;
+  font-display:block;
+  src:url(data:font/woff2;base64,d09GMgABAAAAABxMABEAAAAALlQAABvrAAIBBgAAAAAAAAAAAAAAAAAAAAAAAAAAGYIKG4FIHEIGYD9TVEFUKgCDDBEICslkunEBNgIkA3YLYgAEIAWEHAcgFyQYYhtUJTOjwcYBCEF2F5r/S4K2YChe40VrrcUdUNgCMlADlSxcRTbFu/DeaFx7PD3u7S7uVjZj1177Hm38e8inrvtY8dVEMyYj/G139kMjJJkdnt/m/7lEmoFRWJgYOSkVUWlFG5RUQDHQxgBzOmtlbrrnoktf9fb+m6v6i/femihdbPb6gqSGIAzO1GgMAsjjEfaDVGiBhK8f86dHvO8IzTA23cRG8WEHbz8VFbLmD+WVSetJwfVBOUmTHOhu+d39HpE9idlM/cXjV+c/MIBVVy5v19TUGkf0ejuPvSIBPL0f8z4WsAAFirXRMC7bLPli80C0JEMyNa3Ct/Za6IakveSlqisTxzhSVoAabAtCbmQ6b6YVfNv935ppd7I5glzZHaDrq5CsSZh7NWb2B97+mWx62aOd7MHe8SaFQ3Q5cAW2ZFyaK1NkVYUiFq6uRlcIx0r01YuaWVMDheVsbgyo/MrPbrbVqnRFkS7NUKGeAP97XhBA7lkwUwGAx1gZBNRIyxIC4rWpRg3ibjWyShB3l2hVgLhKtBJAfErqtCAOCgAAwCC48xVksYjAEzdjw8kEwefp9OAtEbSCZl8IDhCPcnkZouv+acKprqnSaFusHCRGQr4TXwE1oouxw1e3gx8EYtBLhkZutpIcYIqUWA1g1Sa4J16fjZOEpZRMXD8xjwjhI88Kq6xGCzAcumkIYMQkPIG3d5YyaHBO/TtYy5clvx7yS9c5z8znHlXhCh/RQBgLkamJgf3kmAcDUL4/byEsyhDBajBDtl6FIofL4XK4HJ4cHhW7PqL9vhghAdi78gAAmS/loAuITGoXrMPAtAZ+mKZZ6UEdNA6gmAtOs2b1l74AYounVQoA7Ay7RRsExSFDTADsHqMIYC+Fsg4qvAaEAXSCG1+8xgKvBm/yZiDSCAAoQIHkgipNhixsXAJHh2NsjN3Z5uwTnGTOBW7nKXlqwX8QIzTLsbNIkVNw2eOUtJe8T98tnZJ7KGfUVrdUvbH5qG20/d4XJLs5fDJ6slbunkWaqVLBN8zfApWPY6ctWTBvziwI/9p4wOwA7AC0P2cf/WfK2Yfec2XPtl1uuyx24Xcidthth22FFpY3z232naqZ0mz8a71p/MXYSv9mU2HXShe74VZ9qa5EW1oxD/kACLD+AdAXmP2V/+bSP/W5kuofWU1YEn1RqT2j2DMnT44jOqjG0sHFJQpCuwFG1YFaKSjIiCKoXeV1HqDpGE+FMJRDKq6Fb98AiO6q6LpMrM4iffnRpwizUBCMng20bcU1Zx0cUBcMf+llz0GTXEeUN3Yfd0KRArU7K7rVWsSNtV/ppacWGhOutffBb37wt1bzXL0ytcnZWG19LoUKiYjG3MWtcKRCQbdE9E3do/0KYWb73CLc2WIGQ215k08+OzQegFpp/EbvBorU7hJqPRIDn4/x6gFVgX7ztZtqtPcxCWfct9IEnVCPzsVX4nafJDGBPtSG07l1g0KLAwlOPBziFmIGL7H1l6ipxLIswFGT6wLvFMAVk4ZssfanUTEpMkVohUF695wtkvQRcdowRITrhBeLAgMX7MCBNXW8uVV2lcmZFqn28wk50XvN8AF+XUYb2PVjMBBv4p3/s7jE4Bu9jvFBEtNQ6kNHCQqjDwuMWLJUAQ6/VR5aFwpr4RsPlIVqBzTNo3oWUV8IOF0k/bGcW/NaJdeC0dx5bKP6xUVyy+IM6ZCy0etnwaRECjlRl/GkiTcYKnDWiDiMdUNCT23qaoViCsKG3aRoBBTWwTPgZmozjp2EYtNq5/Ut6TacIVPqWzYojJj+fgwnrbEj4FdPQw7ryLEPke1JloUXwkiiNAobtqfzTAxKZKx4DbCj5PVc7GaeUjWk58Y5h1vdeoMcOWR6SL3oShRkQ/rPnyEWAgtryqumA74BLO0H3cOupulpKKT24bFeNx0vbTQMY7jHeSFWv07JszHVzW5S1LdmqA23LKOX9P759KI2WDIpWCS4+qwLVqM3gG9HDRHrGSmwm2fpoXcPKXbm7HepJ4hkSsHChNToVU2Jmm96mRj0jforqTMkoFAzevfH1rOE0s3rVBBvzSiJ9Uap9oLgJmyCh8r+cpRH1abJsADhOy5CEtARWMrZOsagDKrTjTSxdLAGMGpzQ2siRHvqMfzFfnpMruIhPA+W4HkdUYdSkN/wfLo9qnULOq2soFW7lgFjH4xPvPp2/CCbzo1bIYvl/hcc3axGeQ1TeCVnc/EuEyy0LHF8o4GnEE7+4kJfHN2U+9KHoPRrM9tgssWrC+E+RyUR4SmbumCQLFYeC/X6cUFX4TrOUVmK6EQHrotPTYWoU75cWIJQ3fEbfyUai6+94/pwUl61SWE5p98Or4TwQleJSaGCoxL6HkOcgXqGX/NiJXBUTPXgUU3L53BylWaGoUdPrcek/FfSZYjBeYfawIkOi30wIGr7GCOFLLuSVTLjNJKqtRmMYlBjT2Fi8FyWnS/p6OpZzU7UMMRvGENq1D44YaPsjJM4N2wE09MMQ01WNwwZNqCpCYTVEBu7wmstU/j7Rm5tXB/Lc54CshHOKCrLtPaFPAosBczZVnuvQ01UYT6lcQjp1g6PC8Bep0dxYvWtiVs6jZZ4IH30mO+Xmm2WCsDkToRYsq3XQAxZFWQq7EHXSoLQfgqiRb7fkBvMaTC1MElC5tkPOROnxREJRcW0GT57xmH3gsVxrtpn/XwYKMmZK85c1kzna1BkaEa1tt+73xPL4Bg80THoY28ZhTHhpdieyXj1hhpXzKncWkMZf1rSmTkXbIqjM0GhABGTWzaCyzXA2GaX1iVRbhjCoL1srKbl4sqEoMtp340+v81ci0wxsLoZUVqhN2klzsz/zwzE30pVi2HEYh5UscAX3SqTl1zlPtjVLy7yllCK8LpY4BTIr1wAncxzlOYYEMJn5GGVsz35RciaqAXiLnusC4wFtfww7OiTCgzbHSCi6SwoPPBMSgpwhjRZlZz5WtPAYWY6hYsaYy76VRJ7obO0r49ZGd5SjSmK8Jjf1CVEI1haMYfL/eBJUd+SYcMWkXOnuNKSbAV2GJgAMsf9xFN6Tfv23j5jKYZgeN+Kkdk0cwYfD8BZg1Y8CzLrVxd73FqN0KadlBh4sNzRhgacd3oaB29hRO8NWmzgsDRHeqNyemVFGy1E6hVQXWuhTnGtdEvqZ2d57PhxTWtU1DckbhhDSC39fMNud1QjBNumjsG0dF7NGph1COeA7rDwS1FIt+hBU0H4yJQuogJ6w7yD781ZgLKGn8HShWk57kp29M5ki/5Q6V89hgWner654vPNLYBSqFTeAG5anNEsaSs5zBklMc4m05CBn2Sn78iXH3vmKC2dgMwQCsVyXXGxGuVZ6JFxhq+tIIdk3Dmt+py9oxrtyBueQGROCzKGoiqUaqY3rLFAExIDTrLuBISCFvqryJ2rrulPR4UCboNkEuiAJYFmUll0ejPIO5xC1HFG2HbNl+SS8dGKbyTn9xlTwEJ7GxfEvw8gJtmU3EHS1atA5BwvvgKa/bLQWQk6zq8IiFLI4EhXpeUjhOcyaZT/ubDoiWXv3P/OPWMuxz9/k7x6eOO6ystfsjsQfLLssePR+zod2a/6X+1m9X7Upzq9nv91/yVSn/px1yOnS2LOzn9aS5lbkBVWE/R/d+hzHJUz55HFViOMf7t3juL3kLiqojxutSmaI/rXyKa+j41jkKgZ9iW05nYHsuUFIramO5JbghrnUmgxUdE0fwr3dsEmcmPdi20gyTxjLHpC1iwRB5Ii77g7TN77WOJfxYgO4sSkMGRNiRyqIRzkVWWmE0iBL9zsb9qbFfl+R431zopeRVO1U8DluYOrGLqK+OBcUSl7eRk0UYPLy9asoh+cbQSv0f73SvyJpffwF9S3pUT/krfA+8ctc1sA3MfCNG4qxs3cmeE9Ka8rK4woiuZFHVWberPi8uMLYwF8xUG7Vnv7e11JcUFqIYuTvru1qo3FEnHyMwu583FxqqkbF3fUJi6Ec75wtIaU+tZCI/Ha3Bz07SbgbCva5ogec9wetb9oz/CsIoVEpTClsaZB/lTQjOUErG060w5bQmiPHS5aPdgiCXaOY3xWREwMlc0nbvEYM9cmANeDwmFP++xVGzKMHUtbDuCU1Cpyp5VxNWE5oDmicuvNW0/QuvjJPI2x58Roxkh4xKq/v83CR6YQhB/PxeFw9bjZoM7groAagrZoMDzRWedXn6mzFcitDY49e1rsEzEsNNe27HhfkIdQtFs+peJtf7x/J7eWYaL/1t8PuQ6AAJux+6G5n5+xkZFJDmknxCMYXD3mUlnw9SdVMOvkh2fSKD/UJOiN5a9ggHWOhgEFl6yQyj22+XAdkoJAmf8UfO1J1ZYCRREntixbWXynJLu87NGiLhkO+r+8w8Ak6QE77ZwBDa5Hz+OU6AfEndNiHctpd+ABDwE+1ol2mGv2lc+6ANycPrYwjBpA2dG+aqMvjZTqZVZJPZlIi6I+qcu4EcaIT7P82RToJszZUz6dz5u8sX8qu45qirs1OAjchhCJpgC/UE54RiuPEqBWBVN9GcDeJ7CsfQAS4owTU2QFmdf2U9tPe89XMaqGsyhZX0lsLG1IPxsDCLm8A5K5Qqr69HxrRn1yT+Ktvj7gMgA8yDGz47MPWucwqFK7q8TLyYcLJ6nxX6+763KePxC94L7P4hC6Yiu+JvAx5ffikxR6RlmMJyW76EryX/6P8ToXkI4bpvTy25iNhnVcTpqBbxLoFqJ8edKvtKPCb1+4hyRKG3MGUN1UTpz6q6MH/7KMZ6bJU/WndqWHCeo3tw1fR4CX29/jES3F5CgixY6r7MVftR7Cl2CPKZ0Ptu6wo6QZyjR3v3ylPEKP0vRzJ5zT3ETsm+tuAsSC28rAygKrnbWYuO7rBCeGt00ZlgHsf40f7+Sdw1psN28SDW8d7ljUlepa7yjugA/2b0xvMPR3Pe9SejZsnQ5QkNbaCU500lIK5jccbS4O8YhnPSnwOSSd6tTAqlQ/1kg9jsVm3En1GOZuaBTmgXfql00vb5omTcyNgkJBw7J2OfiBV/8EGAoh9695GG14+f+AXWV7lzzvlQHMz200A5hx5H3xfZMkV5Jt7D7cfdyG38pHva4lNhHRgNXKSnytHnr5vzc9GHrZKH61vcmhac+I0arASmoh7eQYmgzpjRZSJRIwcN2iQUwsKhfOxgPiSgC/mf84cqt6K/+2wuuNe44Tt6TKn23Pd82Tedz6+laN5rFmXY4KpKAX3E5QzmtP5vCeD1TwWZU7k/cTdqI3JHr8UIFAoCFfNAwJh/Ng1kEogi305zsiAplG6Shdf9QC74qzdT11ujZkiORYe/+UPD1QTPUXRN2RQRd9Kg/mNBbWj/Xd+tXv9/xD+w4Zs7ZmJRkVQYrSvyqxO1yNhJblsm+cDY69nhf5dXzwN+OW5WbOicuMExIKAmEpnaUhElhglKOdo22Gg51DR8zrb1778fRjXjh57veBkXfbXxLRaCE69lryNNgD8oKFsG2ISTgF1GekhV5Y+zoj+u3Giw317XVw7Qfx9EC4ILw7ZXJJvQQeh4g5O8+XechFXxiKTd+4yoqjwwrHV5+Q/5Sms5/0ZRKVFpfit/HbNd70CFu+nk86O+3FLbg5OBg7gkl9L3IZYMizMTIld2ZBDqry/ue/oe+2m0kcTqoe2XSu4iHFaN3qk+3UiPshYqegudVDaGeb1JiU8vuMj0jxdG4xqfqx0xOF++bs+gKAWgkbH0xGDzoMkzqoSy/cHM38Kq3rEHXRioElr6XmsJCwkCtnm87apg7ph5o4Y2/GUC+HtoeZF/nnZrE+rnHO+2B34PG0Rwi+lzhSWTUcHJ4sjJj2OUxOjVV7j68yB84LoiGo0fFR2BJ9SiAKt/Q8lSA7stEs1Z/5KDKnW1lyLOmFm8WbWBZ9+bEXh/n/5ZX3eYJT3+utSwr/Zl4hHy/1YPqIaTKfSI/y/VbGABKzu3ZWKCAMOaX/wbcbp9UWjG9b37D+Hk/sfzSidEJB6g4p1z9fAyHZ/rOCrjTfaV/eb79TJM5Nm1kpSd3ztN2qbzyp8zLfxUy1HwxsXsRBmX92IBakXOsfL9nhplwOXS1+9SDyzwQqo2BOTorONA39Hw5GFnEw/l9/2PhdpAgwcrNtV71aUrLq5mv3Dtj7MX+W+T0VNKhgYP8RHJS51IEYr6NY//gjAjMjrjLsgfefiY5NjheO8H+4bfgFcHukFVLiblupLTdXk7v8az++f/Yq0ohVD+zqyWq903Ynf66vrU/Y6lzDtba+V0uUZswIOx+Wrip/ZXY6e4QgLtQ3JY3b59gx+HzABNWzqyByzLvKA25r+OpJv9YdSXF5Q4jed5uChOE6F5RNTrx/ufgYiQ4Dp4VHQMyCMF15fcBiDDuGTHUINtKh1ah+XIvZb2+KNEV3vbqOd8XVetYeO6rz3Foh0PsxkjVpzW7BPvxPFYS1aQHvD2t951g5BfTon0NotwVh9KTOXcFzpkj/GEO5lVgi9hdLxRdGdn8VwXN2MGS6bCIzHJA/kU3k4gSTZ5jzSEcaLtLFjr1Uva8DK8Mhplic9ZKkguTr3IKNuVQJFVhokoaCmPYOhn9MIQfNTkEmSJTYGkhyMBgY2LBAW+aJ6hCMlfXFXr86v31c2+PWksgce1urMq8D/x5wLbJAK7jW815086fVpTY77YrWZFqnt6hPpd+vuM/afUt/y4LUYIfj+k5H9ZFbL/9zYijk2CG+tQ/XttS6zL7gQrFHuzkXJyJe1mr/0ThCC6lV7pW0ZrbmWBJJPfNUaJwesmCGDlEb+koTHrzKWB21aJOPGGqOIGO7PEaTx8l0z/czn+O6CG0YTbCDc1Ter5SE/n9jpe+0n8GuQFQbyiktzhCHILeTf5Cu0a9pCRg2RqgsLYXomGSX7D9e0gEeb8KRGxspDsf0lwwZW5jTqUbUSVSn4bgBve54+/HMtT1OPcDHJ9/g7SXUraeFD/3ndLO7qDpQrz6eHnBeXTzDkFosPTrZKXecL6ypN78Z3axvRq6YmfxdRZzDJQtJ1NbT85q0hoT+hD9MpgiHgYzxl60vyS0+HZlizonmvgcsSlY4UhUp3xqzriqx13lwt2fvrV78QXKvV1BeX/eeAhlBe/LJcrHtLL1WCiIUuHFcU+cUlOTEsLWRmKcQcQWHO5nA0ny7+YKV24TY226Ad796d2r0vqlfXGihsjX04xbq6EgnAWujrLtLwfW2mOMfFgR3tklnWMcJClZWT8n6fL6IWSjnZvO52bmAvaLt1D4B7Wvbt8x1lQRhi93FifnEWbLuXSO52LI0MCJInTKcnBnPdK1nfYzKTOBU7oDJ0gO32LvgaamNmEV8JeafWKqKXfE+3YvqRxXWez1MI6ahWZr3GR40Xy630YtCTPez2buFIqXX/lYhHo+vSFD8nXTW5ORMxiKwOAT++3Gn5JhDr6xQFpbo2A7b1FiVa8gXLR1jVf6pE9G8qFLuULQfo9Akrn8OBzP268Dag9G7ow0H9h0QtHW/6eY8f9P2JtZ31t7OV7ZS61SAo2JohlaCkfCouwc4uWPgi9hH5htsc9+InZA/is6ZufCSX/MhO0v/jaesuLgxzJ+wdS/3DXraMuPGqJ0eN/d9jcEkVIV1ePfoUiRR3PCsZ82sr0mcCCEQbqWOU0NOTU1MzbuP+RA8e1w7aqcD6E7d7v37Cxc8P/u0EuuJCpc13sG+Gu8G18b/9KM+b93yOzYE8VxLQG9Ealfq9kaoE2qCDFBZ7fmYgYMHDxr3XFR4nXfMsmWyqvwTrVh27Or7GvtxiwZSraM7ioXhGCPrbGB0O9OnK3O7VnCWzRCF9MSiGnHibfM3PjTvrKvtUb4c2VwgHKh/lGLh4rpduHw0FWHMQF9d95L02UYn5AzcMk/MSZDW6LN8KUWd8voUBGhbqccipT0QIQ5JQ+Tg1VZ/YO85Kby+dxRoNcQUxxxApOctulaEZgc1u/3lyHWK9vjT448O9z/dJRUv9C+ORQy0hcaeO8tChSXZZd4Qe3ZgZZg/7A11hpJaR4GQYMGO6WZLaVc+RDQkcwLFXUpqReE5PtUvi0m1XBGZhyU1CEuLn8Z+mO8XtiRusBOuK5QTNtllWaYHabyDzTKs2SUPyq11uDq8yhaP0etpait4mt3gl1lNyw9mVp0QnfQRVL/e+NOMb0Zg2fddUbRYVbL4ZzjQrMiwcEndLlwGhorsgjsN+eyty+EMLj+Pz42XCpqyvKkFXdIGT5H6Wl8gq3/mEv/9YeOklpOPrjoXue22ZWSIveKtmYAg8Hww8ODBobUzsWu4KeVoSopTzu0OXgjWYj3O+nzQQNBzWLuBmDNW9Vt/FJGu7K9pUs+FlT73lorztQjbwXhuiVSeb91x6o/ljTlMFhs4X7TxknkNvCl9M02VU39aHGoeOpHZWxtMWT6ViQLxnK3VXBxWjnF9xC/ie+IJZ5V0HSSb6/2rVNNCyS/fuXBQfCJnb5Iq6fInsppM3fUq9pVOn6NPrW4ubIY9qr5qrkaVTiV50uzzwj2zxRBYROAA+A/h2ofjWo529SMnv3m/ze2+875BkpPKk+ahI3Ej5//FK/E7d9Z21oLp9br1yIf91f30ZrwaH7F57NOY44I8pSoTv9fqOO4EUoQJM4mgI6j9+M2WJz67zrtu1l6eeFjRZcZlgFh/W3f72rv6d04fDBcMp061XHbGMwhZEWn5d8TFoiCGVarThS9PjiffFYo/1P47a15EZX/3Nw87YnsRMXruHB7fj6t/mqBNkB9YOHBeKruxeEMu1F0aHhsGu+362/oj87wMXhPxeZ15oi+TVyfNbdOkPdJvTLNPc0UVnGYq1eE5x3pLQdBCXY8xguJjn61i0uVyfUkrd+lxBF1/pYVeIywpAjMjvqUv6RRfoIoVX/9gE0iNCgulRIcmJnNTRdrecgKWbpi5xTcCLCivM2//y5ZJbwmHPwQA8Oe4zrsHAB5ojd5+bH940jVocwAACgwAAEAAYtv/B+A/P+SnRWgAhF0O3x4irYn5Uz3IrSKkpiStcslHspdcEgbgv5hYQJTARyRXdpDgUOyYY3HAkBhHpwllxZnNsbSlOBhmXND4FyyN4ylZkAzmaVKkKLx2E+0HwkZj1YCDFqySpr0fJRBv0yUwFs6UwFEsRSO4SpAqYlaM4h79IAgCZpmY3qsNwGWTAOUCeYoULkKUkBUFRjRHU0lVKSPTdgClulhQLUGY3NAcSsJFFZY71AxFIBLH1UCFSoX8MdZC1NArlLYwbVVo1akIm4SmDeFP0Mb6NVJe4C8U21WnighcWrWmEP0RUVLRQqOCVVFNokYkhsdLR0lExUDDkQjjW8EqOcTLixxvpspV0qylUi/aE9AOwRSpuRKMl3Og3ssRFBjhME7315CoJONDeYKN8ABhNFwxok8mHFkpISJLuMLmnGZcv3KV4NhOv3QXqS90BND3s4z7NfvD/3c+sOZQ/szXe0m0OXBICU0pU8AZgTlXCUgEbKVJQgGZPSq6SOHICS5n1ojzaO+pRkpTTebpYQMAAAA=) format("woff2");
+}
+:root{--gold:#B4552F;--ink:#16130F;--cream:#FBF7F1;
+ --cn:"NotoTC Black","PingFang HK","PingFang TC","Microsoft JhengHei","Heiti TC",sans-serif;}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#000;overflow:hidden;cursor:pointer}
+body{font-family:var(--cn);-webkit-font-smoothing:antialiased}
+#wrap{position:fixed;inset:0;overflow:hidden;background:#000}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;
+ transform-origin:0 0;background:#0B0806}
+#dark{position:absolute;inset:0;background:radial-gradient(120% 96% at 50% 50%,#1B120E,#08060A 80%)}
+.pre{position:absolute;left:0;right:0;top:352px;text-align:center;z-index:3;
+ font-size:46px;letter-spacing:.26em;font-weight:900;color:#E8CFC2}
+.liquid{position:absolute;left:0;right:0;top:440px;text-align:center;z-index:3;
+ font-size:158px;font-weight:900;letter-spacing:.01em;line-height:1.1;
+ background:linear-gradient(100deg,#FF0033,#FF6B35,#FFC93C,#D9A96A,#B4552F,#FF8FA3,#FF0033);
+ background-size:320% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+ will-change:background-position,filter}
+#white{position:absolute;inset:0;background:#fff;opacity:0;z-index:6;transition:opacity .28s ease-in}
+#flat{position:absolute;inset:0;z-index:7;opacity:0;transition:opacity .35s ease-out;
+ display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+ background:#fff}
+#flat .fpre{font-size:44px;letter-spacing:.28em;font-weight:900;color:#8C7B70}
+#flat .fmix{font-size:104px;font-weight:900;letter-spacing:.01em;line-height:1.06;color:#16130F;text-align:center}
+#flat .fmix i{font-style:normal;color:#B4552F}
+#flat .lines{display:grid;grid-template-columns:1fr 1fr;gap:14px 60px;margin-top:40px;width:1360px}
+#flat .lines span{display:flex;align-items:center;gap:14px;font-size:27px;font-weight:900;color:#3A2F28}
+#flat .lines span i{font-style:normal;flex:1;height:3px;border-radius:2px;
+  background:linear-gradient(90deg,rgba(180,85,47,.85),rgba(180,85,47,.15))}
+#pageB{position:absolute;inset:0;z-index:8;opacity:0;transition:opacity .3s ease-out;background:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+#pageB .bpre{font-size:56px;letter-spacing:.30em;font-weight:900;color:#8C7B70}
+#pageB .bmain{font-size:176px;font-weight:900;line-height:1.05;color:#16130F;letter-spacing:.01em}
+#pageB .bmain i{font-style:normal;color:#B4552F}
+#pageB .brule{width:260px;height:6px;border-radius:3px;background:#B4552F;margin:26px 0 10px}
+#pageB .b1{font-size:96px;font-weight:900;color:#B4552F;letter-spacing:.02em}
+#pageB .b2{font-size:56px;font-weight:900;color:#5E5148;letter-spacing:.01em}
+
+
+/* ── 最後一版：彈出式服務卡 ── */
+#pageC{position:absolute;inset:0;z-index:9;opacity:0;pointer-events:none;background:#fff;
+ display:flex;align-items:center;justify-content:center;perspective:1600px}
+#pageC.on{opacity:1;pointer-events:auto}
+.pcard{width:1320px;background:linear-gradient(160deg,#191410,#0E0B09 70%);border-radius:34px;
+ padding:62px 72px 58px;box-shadow:0 50px 140px rgba(0,0,0,.5),0 0 0 1px rgba(217,169,106,.22);
+ transform:rotateX(12deg) translateY(90px) scale(.9);opacity:0;
+ transition:transform .62s cubic-bezier(.18,.9,.2,1),opacity .4s ease-out}
+#pageC.on .pcard{transform:rotateX(0) translateY(0) scale(1);opacity:1}
+.phead{display:flex;align-items:center;justify-content:space-between;gap:30px;
+ border-bottom:1px solid rgba(217,169,106,.22);padding-bottom:26px;margin-bottom:34px}
+.phead .ptag{font-size:26px;letter-spacing:.30em;color:#C9A780;font-weight:900}
+.phead .ptitle{font-size:64px;color:#FBF7F1;font-weight:900;letter-spacing:.02em;line-height:1.12;text-align:right}
+.phead .ptitle i{font-style:normal;color:#D9A96A}
+.plist{display:grid;grid-template-columns:1fr 1fr;gap:20px 54px}
+.pitem{display:flex;align-items:center;gap:20px;opacity:0;transform:translateY(22px);
+ transition:opacity .32s ease-out,transform .38s cubic-bezier(.18,.9,.2,1)}
+.pitem.on{opacity:1;transform:none}
+.pdot{width:18px;height:18px;border-radius:50%;flex:none;box-shadow:0 0 18px currentColor}
+.pitem .pn{font-size:44px;font-weight:900;color:#F3EADF;letter-spacing:.01em;line-height:1.15}
+.pitem .pe{font-size:22px;color:#A08D7C;letter-spacing:.06em;margin-top:2px}
+.pfoot{display:flex;align-items:center;justify-content:space-between;margin-top:44px;
+ padding-top:30px;border-top:1px solid rgba(217,169,106,.22);opacity:0;transform:translateY(16px);
+ transition:opacity .4s ease-out,transform .4s ease-out}
+.pfoot.on{opacity:1;transform:none}
+.pbtn{background:linear-gradient(100deg,#D9A96A,#B4552F);color:#1A120C;font-size:38px;font-weight:900;
+ padding:20px 44px;border-radius:999px;letter-spacing:.02em;box-shadow:0 14px 40px rgba(180,85,47,.42)}
+.pnote{font-size:26px;color:#B9A695;letter-spacing:.04em}
+
+#hint{position:fixed;right:18px;bottom:14px;font-family:"PingFang HK",sans-serif;font-size:12px;color:rgba(255,255,255,.38)}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage">
+  <div id="dark"></div>
+  <div id="white"></div>
+  <div id="flat">
+    <div class="fpre" style="font-size:40px;letter-spacing:.24em;color:#9C8B80">PIPELINES</div>
+    <div class="fmix" style="font-size:104px;margin-top:6px">組合唔同嘅 <i>AI 流水線</i></div>
+    <div class="lines" id="lines"></div>
+  </div>
+  <div id="pageB">
+    <div class="bpre">建立你嘅</div>
+    <div class="bmain">一人公司<i>軍團</i></div>
+    <div class="brule"></div>
+    <div class="b1">多條流水線同時行</div>
+    <div class="b2">唔係你請幾多人，係開幾多條線</div>
+  </div>
+  <div id="pageC">
+    <div class="pcard" id="pcard">
+      <div class="phead">
+        <div class="ptag">仲有呢啲流水線</div>
+        <div class="ptitle">其他日常，<i>都幫你頂住</i></div>
+      </div>
+      <div class="plist" id="plist"></div>
+      <div class="pfoot" id="pfoot">
+        <div class="pbtn">馬上同我哋聯絡</div>
+        <div class="pnote">描述欄就有資料</div>
+      </div>
+    </div>
+  </div>
+</div></div>
+<div id="hint">撳一下 → 下一步 · R 重播 · F 全屏</div>
+<script>
+
+
+const white=document.getElementById("white"), flat=document.getElementById("flat");
+const dark=document.getElementById("dark");
+const pageB=document.getElementById("pageB"), linesEl=document.getElementById("lines");
+const NAMES8=["一條片出齊所有平台","AI 客戶開發","素材變內容","取代付費工具","活動流水線","AI 流水線建系統","每日自動搵料","營運 YouTube Channel"];
+NAMES8.forEach(n=>{ const sp=document.createElement("span"); sp.innerHTML=n+"<i></i>"; linesEl.appendChild(sp); });
+
+/* 最後一版：彈出式服務卡 */
+const pageC=document.getElementById("pageC"), pcard=document.getElementById("pcard");
+const plist=document.getElementById("plist"), pfoot=document.getElementById("pfoot");
+const SVC=[["會計","Bookkeeping","#FF6B35"],["行政","HR","#FFC93C"],["客戶服務","Customer Care","#D9A96A"],
+           ["社交媒體","Social Media","#B4552F"],["設計出圖","Design","#FF8FA3"],["網站維護","Website","#E8CFC2"]];
+SVC.forEach(([n,e,c])=>{ const d=document.createElement("div"); d.className="pitem";
+  d.innerHTML='<span class="pdot" style="background:'+c+';color:'+c+'"></span>'
+    +'<span><span class="pn">'+n+'</span><br><span class="pe">'+e+'</span></span>';
+  plist.appendChild(d); });
+const pitems=[...plist.querySelectorAll(".pitem")];
+let cTimers=[];
+
+
+let step=0, ac=null, out=null, muted=false, raf=0, t0=0;
+function audio(){ try{ if(!ac){ const AC=window.AudioContext||window.webkitAudioContext; if(!AC) return null;
+ ac=new AC(); out=ac.createGain(); out.gain.value=.5; out.connect(ac.destination); if(muted) out.gain.value=0; }
+ if(ac.state==="suspended") ac.resume(); return ac; }catch(e){ return null; } }
+function tick(f=200){ if(!ac||muted) return; const t=ac.currentTime;
+ const len=Math.floor(ac.sampleRate*0.05); const b=ac.createBuffer(1,len,ac.sampleRate); const d=b.getChannelData(0);
+ for(let i=0;i<len;i++){ const e=1-i/len; d[i]=(Math.random()*2-1)*e*e; }
+ const src=ac.createBufferSource(); src.buffer=b; const hp=ac.createBiquadFilter(); hp.type="highpass"; hp.frequency.value=1500;
+ const g=ac.createGain(); g.gain.value=.3; src.connect(hp); hp.connect(g); g.connect(out); src.start(t); src.stop(t+.06);
+ const o=ac.createOscillator(), g2=ac.createGain(); o.type="square";
+ o.frequency.setValueAtTime(f*2.1,t); o.frequency.exponentialRampToValueAtTime(f*.65,t+.06);
+ g2.gain.setValueAtTime(.0001,t); g2.gain.exponentialRampToValueAtTime(.16,t+.008);
+ g2.gain.exponentialRampToValueAtTime(.0001,t+.07);
+ o.connect(g2); g2.connect(out); o.start(t); o.stop(t+.09); }
+function boom(){ if(!ac||muted) return; const t=ac.currentTime;
+ const o=ac.createOscillator(), g=ac.createGain(); o.type="sine";
+ o.frequency.setValueAtTime(150,t); o.frequency.exponentialRampToValueAtTime(42,t+.5);
+ g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.42,t+.015);
+ g.gain.exponentialRampToValueAtTime(.0001,t+.55);
+ o.connect(g); g.connect(out); o.start(t); o.stop(t+.6); }
+
+/* 液態流光：一直行，唔關頁數事 */
+
+function reset(){
+  step=0;
+  cTimers.forEach(clearTimeout); cTimers=[];
+  dark.style.opacity=0; white.style.opacity=0; flat.style.opacity=1; pageB.style.opacity=0;
+  pageC.classList.remove("on");
+  pitems.forEach(el=>el.classList.remove("on")); pfoot.classList.remove("on");
+  pcard.style.transition="none"; pcard.style.opacity=""; pcard.style.transform="";
+  void pcard.offsetWidth;
+  requestAnimationFrame(()=>{ pcard.style.transition=""; });
+}
+function toC(){
+  step=2; audio(); boom(); tick(240);
+  pageC.classList.add("on");
+  cTimers.push(setTimeout(()=>{ pcard.style.transition=""; }, 30));
+  pitems.forEach((el,i)=>{ cTimers.push(setTimeout(()=>{ el.classList.add("on"); tick(320+i*36); }, 300+i*150)); });
+  cTimers.push(setTimeout(()=>{ pfoot.classList.add("on"); tick(540); }, 300+pitems.length*150+120));
+}
+function toB(){
+  step=1; audio(); boom(); tick(210);
+  flat.style.opacity=0; pageB.style.opacity=1;
+}
+const NEXT_DECK="one-video-pipeline";
+function goNextDeck(){
+  try{ if(window.self!==window.top){ parent.location.hash="#"+NEXT_DECK; return; } }catch(e){}
+  location.href="../"+NEXT_DECK+"/";
+}
+function advance(){
+  if (step===0){ toB(); }
+  else if (step===1){ toC(); }
+  else { goNextDeck(); }
+}
+addEventListener("click", advance);
+function goPrevDeck(){
+  try{ if (window.self !== window.top){ parent.postMessage({ type:"goto", id:"youtube-pipeline-flow-end" }, "*"); return; } }catch(e){}
+  location.href = "../youtube-pipeline-flow/?at=end";
+}
+function back(){
+  if (step===2){
+    cTimers.forEach(clearTimeout); cTimers=[];
+    pageC.classList.remove("on"); pageB.style.opacity=1; step=1;
+  } else if (step===1){
+    pageB.style.opacity=0; flat.style.opacity=1; step=0;
+  } else {
+    goPrevDeck();
+  }
+}
+addEventListener("keydown", e=>{
+  if (e.key===" "||e.key==="ArrowRight"||e.key==="ArrowDown") advance();
+  else if (e.key==="ArrowLeft"||e.key==="ArrowUp"||e.key==="Backspace") back();
+  else if (e.key==="r"||e.key==="R") reset();
+  else if (e.key==="m"||e.key==="M"){ muted=!muted; if(out) out.gain.value=muted?0:.5; }
+  else if (e.key==="f"||e.key==="F"){ document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen(); }
+  else if (e.key==="h"||e.key==="H"){ document.getElementById("hint").style.display="none"; }
+});
+function fit(){ const w=innerWidth,h=innerHeight,s=Math.min(w/1920,h/1080);
+  document.getElementById("stage").style.transform=`translate(${(w-1920*s)/2}px,${(h-1080*s)/2}px) scale(${s})`; }
+addEventListener("resize",fit); fit();
+reset();
+
+</script>
+<div style="display:none">組合唔同嘅 AI 流水線 建立你嘅一人公司軍團 多條流水線同時行 唔係你請幾多人 係開幾多條線 重播 全屏</div>
+<script>
+/* gesture bridge：向下撳／向下滑＝下一版，向上撳／向上滑＝上一版 */
+(function(){
+  if (window.__gestureBridge) return;
+  window.__gestureBridge = true;
+  var lock = 0, swallow = false;
+  function fire(key){
+    window.dispatchEvent(new KeyboardEvent("keydown", { key: key, bubbles: true, cancelable: true }));
+  }
+  var lockDir = { up: 0, down: 0 };
+  window.addEventListener("wheel", function(e){
+    if (Math.abs(e.deltaY) < 22) return;
+    var dir = e.deltaY > 0 ? "down" : "up", now = Date.now();
+    if (now - lockDir[dir] < 620) return;
+    lockDir[dir] = now;
+    fire(dir === "down" ? "ArrowRight" : "ArrowLeft");
+  }, { passive: true });
+  var ty = 0, tx = 0;
+  window.addEventListener("touchstart", function(e){
+    var t = e.touches[0]; ty = t.clientY; tx = t.clientX;
+  }, { passive: true });
+  window.addEventListener("touchend", function(e){
+    var t = e.changedTouches[0], dy = t.clientY - ty, dx = t.clientX - tx;
+    if (Math.abs(dy) < 54 || Math.abs(dy) < Math.abs(dx)) return;
+    swallow = true;
+    setTimeout(function(){ swallow = false; }, 420);
+    fire(dy < 0 ? "ArrowLeft" : "ArrowRight");
+  }, { passive: true });
+  window.addEventListener("click", function(e){
+    if (swallow){ e.stopPropagation(); e.preventDefault(); swallow = false; }
+  }, true);
+})();
+</script>
+<script>
+/* endboot */
+if (location.search.indexOf("at=end") >= 0) setTimeout(function(){ try{ toC(); }catch(e){} }, 80);
+</script>
+<script>
+if (!window.__escBridge){ window.__escBridge = true;
+  window.addEventListener("keydown", function(e){
+    if (e.key === "Escape"){ try{ parent.postMessage({ type:"escape" }, "*"); }catch(err){} }
+  });
+}
+</script>
+</body>
+</html>

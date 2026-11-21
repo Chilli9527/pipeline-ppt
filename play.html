@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000000">
+<title>AI 流水線 · 連續播放</title>
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+#f{position:fixed;inset:0;width:100%;height:100%;border:0;display:block;background:#000}
+#back{position:fixed;left:12px;bottom:10px;z-index:5;
+  font:11px/1 -apple-system,BlinkMacSystemFont,"PingFang HK",sans-serif;
+  color:rgba(255,255,255,.30);text-decoration:none;letter-spacing:.16em;font-weight:700;
+  padding:8px 12px;border-radius:999px;background:rgba(0,0,0,.30);
+  border:1px solid rgba(255,255,255,.10);opacity:.25;transition:opacity .2s,color .2s}
+#back:hover{opacity:1;color:#fff}
+</style>
+</head>
+<body>
+<iframe id="f" src="intro.html" allow="fullscreen" title="AI 流水線 連續播放"></iframe>
+<a id="back" href="./">‹ 目錄</a>
+<script>
+const f = document.getElementById("f");
+function loadHash(){
+  let id = location.hash.slice(1);
+  if (!id) return;
+  if (id.indexOf("intro") === 0){
+    var at = id.split("-")[1];
+    f.src = "intro.html" + (at ? "?at=" + at : "");
+  }
+  else if (id.slice(-4) === "-end") f.src = id.slice(0, -4) + "/?at=end";
+  else f.src = id + "/";
+}
+addEventListener("hashchange", loadHash);
+addEventListener("message", function(e){
+  var d = e.data;
+  if (!d || d.type !== "goto" || !d.id) return;
+  if (d.id.indexOf("intro") === 0){
+    var at = d.id.split("-")[1];
+    f.src = "intro.html" + (at ? "?at=" + at : "");
+  } else if (d.id.slice(-4) === "-end"){
+    f.src = d.id.slice(0,-4) + "/?at=end";
+  } else { f.src = d.id + "/"; }
+});
+loadHash();
+</script>
+</body>
+</html>

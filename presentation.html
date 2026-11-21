@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08090B">
+<title>AI 流水線：你的一人公司軍團出發</title>
+<style>
+:root{--ink:#EFF4F8;--dim:#8C9AA7;--line:rgba(255,255,255,.14);--gold:#D9A96A;--acc:#C6F432}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#08090B;overflow:hidden;
+  font-family:"PingFang HK","PingFang TC","Noto Sans TC",-apple-system,sans-serif}
+#f{position:fixed;inset:0;width:100%;height:100%;border:0;background:#08090B}
+.chrome{position:fixed;left:0;right:0;z-index:20;display:flex;align-items:center;gap:10px;
+  padding:12px 16px;color:var(--ink);transition:opacity .35s ease,transform .35s ease;
+  pointer-events:none}
+.chrome *{pointer-events:auto}
+.top{top:0;background:linear-gradient(180deg,rgba(4,5,7,.86),rgba(4,5,7,0))}
+.bottom{bottom:0;justify-content:center;background:linear-gradient(0deg,rgba(4,5,7,.86),rgba(4,5,7,0));
+  padding-bottom:18px}
+.brand{display:flex;flex-direction:column;gap:2px}
+.brand b{font-size:14px;font-weight:900;letter-spacing:.04em}
+.brand span{font-size:10.5px;letter-spacing:.24em;color:var(--dim);font-weight:700}
+.spacer{flex:1}
+.btn{background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--ink);
+  border-radius:10px;padding:9px 14px;font:13px/1 inherit;font-weight:800;letter-spacing:.04em;
+  cursor:pointer;backdrop-filter:blur(10px);transition:.18s;white-space:nowrap}
+.btn:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.34)}
+.btn.round{width:46px;height:46px;border-radius:50%;padding:0;display:flex;align-items:center;
+  justify-content:center;font-size:20px;font-weight:900}
+.now{font-size:12.5px;color:var(--dim);letter-spacing:.08em;font-weight:800;
+  min-width:190px;text-align:center}
+body.hide .chrome{opacity:0;transform:translateY(-6px)}
+body.hide .bottom{transform:translateY(6px)}
+#menu{position:fixed;inset:0;z-index:30;background:rgba(4,6,8,.86);backdrop-filter:blur(14px);
+  display:none;align-items:center;justify-content:center;padding:24px}
+#menu.on{display:flex}
+.panel{width:min(760px,100%);max-height:84vh;overflow:auto;background:#0E1319;
+  border:1px solid var(--line);border-radius:18px;padding:22px}
+.panel h3{font-size:11px;letter-spacing:.28em;color:var(--gold);font-weight:900;margin-bottom:14px}
+.panel .row{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  width:100%;background:transparent;border:0;border-top:1px solid rgba(255,255,255,.07);
+  color:var(--ink);font:14px/1.4 inherit;font-weight:700;padding:13px 6px;cursor:pointer;text-align:left}
+.panel .row:hover{color:var(--acc)}
+.panel .row small{color:var(--dim);font-size:11px;letter-spacing:.1em;font-weight:800}
+.panel .close{position:sticky;top:0;float:right;background:none;border:0;color:var(--dim);
+  font-size:22px;cursor:pointer;padding:0 4px}
+@media (max-width:640px){
+  .brand b{font-size:12px}.brand span{display:none}
+  .now{min-width:0;font-size:11px}
+  .btn{padding:9px 11px;font-size:12px}
+  .btn.round{width:42px;height:42px}
+}
+
+#ov{position:fixed;inset:0;z-index:40;background:rgba(4,6,8,.94);backdrop-filter:blur(10px);
+  display:none;overflow:auto;padding:56px 22px 40px}
+#ov.on{display:block}
+.ovhead{max-width:1400px;margin:0 auto 18px;display:flex;align-items:baseline;gap:14px}
+.ovhead b{font-size:13px;letter-spacing:.26em;color:var(--gold);font-weight:900}
+.ovhead span{font-size:12px;color:var(--dim)}
+.ovgrid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px 16px}
+.ovitem{background:none;border:0;padding:0;cursor:pointer;text-align:left}
+.ovframe{position:relative;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.16);background:#0A0D11;transition:.18s}
+.ovitem:hover .ovframe{border-color:var(--acc);box-shadow:0 0 0 2px rgba(198,244,50,.25)}
+.ovframe iframe{position:absolute;left:0;top:0;width:1280px;height:720px;border:0;
+  transform-origin:0 0;pointer-events:none}
+.ovitem span{display:block;margin:8px 2px 0;font-size:12.5px;color:var(--ink2);font-weight:800;
+  letter-spacing:.04em}
+@media (max-width:1100px){ .ovgrid{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:760px){ .ovgrid{grid-template-columns:repeat(2,1fr)} }
+</style>
+</head>
+<body>
+
+<iframe id="f" src="intro.html" title="AI 流水線簡報" allow="fullscreen"></iframe>
+
+<div class="chrome top">
+  <div class="brand"><b>AI 流水線</b><span>一人公司軍團出發</span></div>
+  <div class="spacer"></div>
+  <button class="btn" id="ovBtn">概覽</button>
+  <button class="btn" id="chapBtn">章節</button>
+  <button class="btn" id="fsBtn">全屏</button>
+</div>
+
+<div class="chrome bottom">
+  <button class="btn round" id="prevBtn" title="上一版">‹</button>
+  <div class="now" id="now">封面</div>
+  <button class="btn round" id="nextBtn" title="下一版">›</button>
+</div>
+
+<div id="ov">
+  <div class="ovhead"><b>全部版面</b><span>撳一下跳去 · Esc 關閉</span></div>
+  <div class="ovgrid" id="ovgrid"></div>
+</div>
+
+<div id="menu">
+  <div class="panel">
+    <button class="close" id="menuClose">×</button>
+    <h3>章節</h3>
+    <div id="menuList"></div>
+  </div>
+</div>
+
+<script>
+const f = document.getElementById("f");
+const now = document.getElementById("now");
+const menu = document.getElementById("menu");
+const DECKS = [
+  { id:"one-video-pipeline",   name:"一條片出齊所有平台" },
+  { id:"ai-pipeline-flow",     name:"AI 客戶開發" },
+  { id:"material-to-content",  name:"素材變內容" },
+  { id:"replace-paid-tools",   name:"取代付費工具" },
+  { id:"event-pipeline",       name:"活動流水線" },
+  { id:"platform-features",    name:"AI 流水線做唔同功能" },
+  { id:"content-pipeline-text",name:"每日自動搵料" },
+  { id:"youtube-pipeline-flow",name:"營運 YouTube Channel" },
+  { id:"one-person-army",      name:"一人公司軍團" }
+];
+const TITLES = { intro:"封面", "one-video-pipeline":"一條片出齊所有平台" };
+
+function key(k){
+  try{ f.contentWindow.dispatchEvent(new KeyboardEvent("keydown",{ key:k, bubbles:true, cancelable:true })); }catch(e){}
+}
+function go(id, end){
+  f.src = end ? id + "/?at=end" : id + "/";
+  setNow(id);
+}
+function setNow(id){
+  const d = DECKS.find(x => x.id === id);
+  now.textContent = d ? d.name : (id === "intro" ? "封面" : id);
+  document.title = (d ? d.name : "封面") + " · AI 流水線";
+}
+function loadHash(){
+  let id = location.hash.slice(1);
+  if (!id) return;
+  if (id.indexOf("intro") === 0){
+    var at = id.split("-")[1];
+    f.src = "intro.html" + (at ? "?at=" + at : "");
+    setNow("intro");
+  }
+  else if (id.slice(-4) === "-end") go(id.slice(0,-4), true);
+  else go(id, false);
+}
+function syncFromFrame(){
+  try{
+    const p = f.contentWindow.location.pathname;
+    const m = p.match(/([a-z0-9-]+)\/?$/);
+    const id = m ? m[1] : "intro";
+    setNow(id === "decks" || id === "" ? "intro" : id);
+  }catch(e){}
+}
+
+f.addEventListener("load", syncFromFrame);
+addEventListener("hashchange", loadHash);
+addEventListener("message", function(e){
+  var d = e.data;
+  if (d && d.type === "escape"){ toggleOverview(true); return; }
+  if (!d || d.type !== "goto" || !d.id) return;
+  if (d.id.indexOf("intro") === 0){
+    var at = d.id.split("-")[1];
+    f.src = "intro.html" + (at ? "?at=" + at : "");
+    setNow("intro");
+  } else if (d.id.slice(-4) === "-end"){
+    go(d.id.slice(0,-4), true);
+  } else { go(d.id, false); }
+});
+
+document.getElementById("nextBtn").onclick = () => key("ArrowRight");
+document.getElementById("prevBtn").onclick = () => key("ArrowLeft");
+document.getElementById("fsBtn").onclick = () => {
+  if (document.fullscreenElement) document.exitFullscreen();
+  else document.documentElement.requestFullscreen();
+};
+
+document.getElementById("chapBtn").onclick = () => menu.classList.add("on");
+document.getElementById("menuClose").onclick = () => menu.classList.remove("on");
+menu.addEventListener("click", e => { if (e.target === menu) menu.classList.remove("on"); });
+
+const list = document.getElementById("menuList");
+function row(label, small, fn){
+  const b = document.createElement("button");
+  b.className = "row";
+  b.innerHTML = "<span>" + label + "</span><small>" + small + "</small>";
+  b.onclick = () => { menu.classList.remove("on"); fn(); };
+  list.appendChild(b);
+}
+row("封面 · 開場三版", "INTRO", () => { f.src = "intro.html"; setNow("intro"); });
+DECKS.forEach((d,i) => row(d.name, String(i+1).padStart(2,"0"), () => go(d.id, false)));
+
+const ov = document.getElementById("ov");
+const ovgrid = document.getElementById("ovgrid");
+let ovBuilt = false;
+const ALL = [{ src:"intro.html", name:"封面 · 開場三版" }]
+  .concat(DECKS.map(function(d){ return { src:d.id + "/", name:d.name }; }));
+
+function buildOverview(){
+  if (ovBuilt) return;
+  ovBuilt = true;
+  const scale = 0.2;
+  ALL.forEach(function(it, i){
+    const b = document.createElement("button");
+    b.className = "ovitem";
+    const frame = document.createElement("div");
+    frame.className = "ovframe";
+    const ifr = document.createElement("iframe");
+    ifr.src = it.src;
+    ifr.setAttribute("loading", "lazy");
+    ifr.setAttribute("tabindex", "-1");
+    ifr.addEventListener("load", function(){
+      try{
+        const w = frame.clientWidth / 1280;
+        ifr.style.transform = "scale(" + w + ")";
+      }catch(e){}
+    });
+    frame.appendChild(ifr);
+    b.appendChild(frame);
+    const label = document.createElement("span");
+    label.textContent = it.name;
+    b.appendChild(label);
+    b.onclick = function(){
+      ov.classList.remove("on");
+      if (i === 0){ f.src = "intro.html"; setNow("intro"); }
+      else { go(DECKS[i-1].id, false); }
+    };
+    ovgrid.appendChild(b);
+  });
+  requestAnimationFrame(function(){
+    ovgrid.querySelectorAll(".ovframe").forEach(function(fr){
+      const ifr = fr.querySelector("iframe");
+      ifr.style.transform = "scale(" + (fr.clientWidth / 1280) + ")";
+    });
+  });
+}
+function toggleOverview(force){
+  const on = (force === undefined) ? !ov.classList.contains("on") : force;
+  if (on) buildOverview();
+  ov.classList.toggle("on", on);
+  if (on) menu.classList.remove("on");
+}
+document.getElementById("ovBtn").onclick = function(){ toggleOverview(); };
+
+addEventListener("keydown", function(e){
+  if (e.key === "Escape"){
+    if (ov.classList.contains("on")) { toggleOverview(false); return; }
+    if (menu.classList.contains("on")) { menu.classList.remove("on"); return; }
+    toggleOverview(true); return;
+  }
+  if (e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "ArrowUp" ||
+      e.key === "ArrowDown" || e.key === " " || e.key === "Enter" ||
+      e.key === "PageUp" || e.key === "PageDown" || e.key === "Backspace"){
+    if (ov.classList.contains("on")) return;
+    e.preventDefault();
+    key(e.key);
+  }
+});
+
+/* 自動收起控制欄 */
+let hideTimer = 0;
+function wake(){
+  document.body.classList.remove("hide");
+  clearTimeout(hideTimer);
+  hideTimer = setTimeout(() => document.body.classList.add("hide"), 3200);
+}
+["mousemove","touchstart","keydown"].forEach(ev => addEventListener(ev, wake, { passive:true }));
+wake();
+</script>
+</body>
+</html>

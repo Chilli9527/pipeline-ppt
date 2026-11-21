@@ -304,7 +304,7 @@ body.collapsed #navopen{opacity:1;pointer-events:auto}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 13.4a4.2 4.2 0 0 0 5.9 0l3-3a4.2 4.2 0 0 0-5.9-5.9l-1.7 1.7"/><path d="M13.4 10.6a4.2 4.2 0 0 0-5.9 0l-3 3a4.2 4.2 0 0 0 5.9 5.9l1.7-1.7"/></svg>
       複製分享連結
     </button>
-    <div class="pinurl">pipeline-ppt.vercel.app</div>
+    <div class="pinurl" id="pinurl"></div>
     <a class="playbtn" href="play.html">▶ 一次過播放</a>
     <div id="list"></div>
     <div class="foot">
@@ -334,7 +334,14 @@ const DECKS = [
   { id:"one-person-army",       name:"組合不同流水線 · 建立你嘅一人公司軍團", steps:0  },
 ];
 
-const PUB = "https://pipeline-ppt.vercel.app/";
+/* 分享連結按目前網域自動計，Vercel 同 GitHub Pages 都指返自己 */
+const PUB = (() => {
+  if (location.protocol === "file:") return "./";
+  const p = location.pathname;
+  const dir = p.endsWith("/") ? p : p.replace(/\/[^/]*$/, "/");
+  return location.origin + dir;
+})();
+document.getElementById("pinurl").textContent = PUB.replace(/^https?:\/\//, "").replace(/\/$/, "");
 const cover = document.getElementById("cover");
 const l1 = document.getElementById("l1"), l2 = document.getElementById("l2");
 const stepsEl = document.getElementById("steps");

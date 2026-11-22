@@ -69,11 +69,21 @@ body.hide .bottom{transform:translateY(6px)}
   letter-spacing:.04em}
 @media (max-width:1100px){ .ovgrid{grid-template-columns:repeat(3,1fr)} }
 @media (max-width:760px){ .ovgrid{grid-template-columns:repeat(2,1fr)} }
+
+.partners{position:fixed;right:14px;top:60px;z-index:21;display:flex;align-items:center;gap:9px;
+  background:rgba(255,255,255,.95);border-radius:12px;padding:7px 12px;
+  box-shadow:0 8px 26px rgba(0,0,0,.42);pointer-events:none}
+.partners img{display:block;width:auto;border-radius:3px}
+.partners img:nth-of-type(1){height:52px}
+.partners img:nth-of-type(2){height:40px}
+.partners .pl{width:1px;height:34px;background:rgba(0,0,0,.16)}
+@media (max-width:640px){ .partners{top:56px;right:10px;padding:5px 8px;gap:6px} .partners img:nth-of-type(1){height:30px}.partners img:nth-of-type(2){height:24px} }
+@media print{ .partners{display:none} }
 </style>
 </head>
 <body>
 
-<iframe id="f" src="intro-seminar.html?v=10" title="AI 流水線簡報" allow="fullscreen"></iframe>
+<iframe id="f" src="intro-seminar.html?v=11" title="AI 流水線簡報" allow="fullscreen"></iframe>
 
 <div class="chrome top">
   <div class="brand"><b>AI 流水線</b><span>一人公司軍團出發</span></div>
@@ -87,6 +97,12 @@ body.hide .bottom{transform:translateY(6px)}
   <button class="btn round" id="prevBtn" title="上一版">‹</button>
   <div class="now" id="now">封面</div>
   <button class="btn round" id="nextBtn" title="下一版">›</button>
+</div>
+
+<div class="partners" aria-label="合辦及贊助">
+  <img src="assets/logo-aip.jpg" alt="亞洲商業 IP 聯盟">
+  <span class="pl"></span>
+  <img src="assets/logo-lion-ai.jpg" alt="Lion AI 獅子智能">
 </div>
 
 <div id="ov">
@@ -118,7 +134,7 @@ const DECKS = [
   { id:"one-person-army",      name:"一人公司軍團" }
 ];
 const TITLES = { intro:"封面", "one-video-pipeline":"一條片出齊所有平台" };
-const INTRO = "intro-seminar.html?v=10";
+const INTRO = "intro-seminar.html?v=11";
 
 function key(k){
   try{ f.contentWindow.dispatchEvent(new KeyboardEvent("keydown",{ key:k, bubbles:true, cancelable:true })); }catch(e){}

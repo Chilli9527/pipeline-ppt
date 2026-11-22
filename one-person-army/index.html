@@ -178,10 +178,10 @@ function toB(){
   step=1; audio(); boom(); tick(210);
   flat.style.opacity=0; pageB.style.opacity=1;
 }
-const NEXT_DECK="one-video-pipeline";
+const NEXT_DECK="ai-staff";   /* 軍團之後：AI 員工 */
 function goNextDeck(){
-  try{ if(window.self!==window.top){ parent.location.hash="#"+NEXT_DECK; return; } }catch(e){}
-  location.href="../"+NEXT_DECK+"/";
+  try{ if(window.self!==window.top){ parent.postMessage({type:"goto",id:NEXT_DECK},"*"); return; } }catch(e){}
+  location.href = NEXT_DECK === "ai-staff" ? "../ai-staff.html" : "../" + NEXT_DECK + "/";
 }
 function advance(){
   if (step===0){ toB(); }

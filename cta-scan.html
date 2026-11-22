@@ -55,5 +55,27 @@ li::before{content:"";position:absolute;left:6px;top:.58em;width:9px;height:9px;
     <div class="brandline">WHATSAPP GROUP</div>
   </div>
 </div>
+<script>
+/* 同其他版面一致：↓／→ 下一版，↑／← 上一版（呢頁之前完全冇導航） */
+(function(){
+  function send(id){
+    try{ if (window.self !== window.top){ parent.postMessage({ type:"goto", id:id }, "*"); return true; } }catch(e){}
+    return false;
+  }
+  function next(){ if(!send("intro")) location.href = "intro-seminar.html"; }
+  function prev(){ if(!send("ai-staff-2")) location.href = "ai-staff.html?at=2"; }
+  addEventListener("keydown", function(e){
+    if ([" ","ArrowRight","ArrowDown","PageDown","Enter"].indexOf(e.key) >= 0){ e.preventDefault(); next(); }
+    else if (["ArrowLeft","ArrowUp","PageUp","Backspace"].indexOf(e.key) >= 0){ e.preventDefault(); prev(); }
+  });
+  var ty = 0;
+  addEventListener("touchstart", function(e){ ty = e.touches[0].clientY; }, {passive:true});
+  addEventListener("touchend", function(e){
+    var dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dy) < 54) return;
+    if (dy < 0) prev(); else next();
+  }, {passive:true});
+})();
+</script>
 </body>
 </html>

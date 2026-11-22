@@ -588,7 +588,7 @@ stage.addEventListener("click", next);
 const NEXT_DECK = "youtube-pipeline-flow";
 function goNextDeck(){
   try {
-    if (window.self !== window.top){ parent.location.hash = "#" + NEXT_DECK; return; }
+    if (window.self !== window.top){ parent.postMessage({ type:"goto", id: NEXT_DECK }, "*"); return; }
   } catch (e) {}
   location.href = "../" + NEXT_DECK + "/";
 }

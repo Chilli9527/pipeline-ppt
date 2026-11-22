@@ -686,7 +686,7 @@ stage.addEventListener("click", next);
 const NEXT_DECK = "replace-paid-tools";
 function goNextDeck(){
   try {
-    if (window.self !== window.top){ parent.location.hash = "#" + NEXT_DECK; return; }
+    if (window.self !== window.top){ parent.postMessage({ type:"goto", id: NEXT_DECK }, "*"); return; }
   } catch (e) {}
   location.href = "../" + NEXT_DECK + "/";
 }

@@ -125,27 +125,33 @@ function key(k){
 function go(id, end){
   f.src = end ? id + "/?at=end" : id + "/";
   setNow(id);
+  setHash(id);
 }
 function setNow(id){
   const d = DECKS.find(x => x.id === id);
   now.textContent = d ? d.name : (id === "intro" ? "封面" : (id === "ai-staff" ? "AI 員工 · 15 個" : id));
   document.title = (d ? d.name : "封面") + " · AI 流水線";
 }
-function loadHash(){
-  let id = location.hash.slice(1);
+const NEXT_AFTER_STAFF = "one-video-pipeline";  /* 客戶版：AI 員工後回到第一條線 */
+function open(id, end){
   if (!id) return;
   if (id.indexOf("intro") === 0){
     var at = id.split("-")[1];
     f.src = "intro.html" + (at ? "?at=" + at : "");
     setNow("intro");
   }
-  else if (id === "ai-staff"){ f.src = "ai-staff.html"; setNow("ai-staff"); }
+  else if (id === "ai-staff"){ f.src = "ai-staff.html?next=" + NEXT_AFTER_STAFF; setNow("ai-staff"); }
+  else if (id === "ai-staff-2"){ f.src = "ai-staff.html?at=2&next=" + NEXT_AFTER_STAFF; setNow("ai-staff"); }
   else if (id.slice(-4) === "-end") go(id.slice(0,-4), true);
-  else go(id, false);
+  else go(id, !!end);
 }
+function loadHash(){ open(location.hash.slice(1)); }
 function label(t){
   now.textContent = t;
   document.title = t + " · AI 流水線";
+}
+function setHash(id){
+  try{ history.replaceState(null, "", "#" + id); }catch(e){}
 }
 function syncFromFrame(){
   try{
@@ -154,21 +160,21 @@ function syncFromFrame(){
     seg = seg.replace(/\.html?$/i, "");
     let q = "";
     try{ q = f.contentWindow.location.search || ""; }catch(e){}
-    if (!seg || seg === "decks"){ setNow("intro"); return; }
+    if (!seg || seg === "decks"){ setNow("intro"); setHash("intro"); return; }
     if (seg === "intro-seminar" || seg === "intro"){
       if (q.indexOf("at=bio") >= 0) label("講者介紹 · 布Sir");
       else if (q.indexOf("at=l1") >= 0) label("傳統工廠流水線");
       else if (q.indexOf("at=l2") >= 0) label("AI 流水線 · 一人公司");
       else setNow("intro");
-      return;
+      setHash("intro"); return;
     }
     if (seg === "ai-staff"){
       if (q.indexOf("at=2") >= 0) label("AI 員工 · 睇晒邊個做緊咩");
       else setNow("ai-staff");
-      return;
+      setHash("ai-staff"); return;
     }
-    if (seg === "cta-scan"){ setNow("cta"); return; }
-    setNow(seg);
+    if (seg === "cta-scan"){ setNow("cta"); setHash("cta"); return; }
+    setNow(seg); setHash(seg);
   }catch(e){}
 }
 
@@ -179,13 +185,7 @@ addEventListener("message", function(e){
   var d = e.data;
   if (d && d.type === "escape"){ toggleOverview(true); return; }
   if (!d || d.type !== "goto" || !d.id) return;
-  if (d.id.indexOf("intro") === 0){
-    var at = d.id.split("-")[1];
-    f.src = "intro.html" + (at ? "?at=" + at : "");
-    setNow("intro");
-  } else if (d.id.slice(-4) === "-end"){
-    go(d.id.slice(0,-4), true);
-  } else { go(d.id, false); }
+  open(d.id);
 });
 
 document.getElementById("nextBtn").onclick = () => key("ArrowRight");
@@ -209,7 +209,7 @@ function row(label, small, fn){
 }
 row("封面 · 開場三版", "INTRO", () => { f.src = "intro.html"; setNow("intro"); });
 DECKS.forEach((d,i) => row(d.name, String(i+1).padStart(2,"0"), () => go(d.id, false)));
-row("AI 員工 · 15 個", "STAFF", () => { f.src = "ai-staff.html"; setNow("ai-staff"); });
+row("AI 員工 · 15 個", "STAFF", () => open("ai-staff"));
 
 const ov = document.getElementById("ov");
 const ovgrid = document.getElementById("ovgrid");
@@ -219,8 +219,8 @@ const ALL = [
 ].concat(DECKS.map(function(d){
   return { img:"assets/ov/" + d.id + ".jpg", name:d.name, open:function(){ go(d.id, false); } };
 })).concat([
-  { img:"assets/ov/staff1.jpg", name:"AI 員工 · 15 個", open:function(){ f.src = "ai-staff.html"; setNow("ai-staff"); } },
-  { img:"assets/ov/staff2.jpg", name:"AI 員工 · 睇晒邊個做緊咩", open:function(){ f.src = "ai-staff.html?at=2"; setNow("ai-staff"); } }
+  { img:"assets/ov/staff1.jpg", name:"AI 員工 · 15 個", open:function(){ open("ai-staff"); } },
+  { img:"assets/ov/staff2.jpg", name:"AI 員工 · 睇晒邊個做緊咩", open:function(){ open("ai-staff-2"); } }
 ]);
 
 function buildOverview(){

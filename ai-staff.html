@@ -68,13 +68,14 @@ const pages = [document.getElementById("p1"), document.getElementById("p2")];
 function show(i){ pages.forEach((el,k)=>el.classList.toggle("on", k===i)); p=i; }
 function next(){ if (p < pages.length-1) show(p+1); else goNext(); }
 function prev(){ if (p > 0) show(p-1); else goPrev(); }
+const NEXT = new URLSearchParams(location.search).get("next") || "cta";  /* 由外殼指定 */
 function goNext(){
-  try{ if (window.self !== window.top){ parent.location.hash = "#cta"; return; } }catch(e){}
-  location.href = "cta-scan.html";
+  try{ if (window.self !== window.top){ parent.postMessage({ type:"goto", id:NEXT }, "*"); return; } }catch(e){}
+  location.href = NEXT === "cta" ? "cta-scan.html" : "../" + NEXT + "/";
 }
 function goPrev(){
-  try{ if (window.self !== window.top){ parent.location.hash = "#one-person-army-end"; return; } }catch(e){}
-  location.href = "one-person-army/?at=end";
+  try{ if (window.self !== window.top){ parent.postMessage({ type:"goto", id:"one-person-army-end" }, "*"); return; } }catch(e){}
+  location.href = "../one-person-army/?at=end";
 }
 addEventListener("click", e => { if (e.target.closest("a")) return; next(); });
 addEventListener("keydown", e => {

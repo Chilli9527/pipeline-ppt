@@ -570,6 +570,7 @@ function enterDeck(){
   stage = 4;
   clearTimers();
   stopOrbit();
+  try{ if (window.self !== window.top){ parent.postMessage({ type:"goto", id:"one-video-pipeline" }, "*"); return; } }catch(e){}
   location.href = "one-video-pipeline/";
 }
 function resetIntro(){

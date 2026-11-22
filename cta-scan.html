@@ -24,15 +24,24 @@ li::before{content:"";position:absolute;left:6px;top:.58em;width:9px;height:9px;
 .qrside{display:flex;flex-direction:column;align-items:center;gap:clamp(12px,2.2vh,22px)}
 .qrbox{background:#fff;border-radius:clamp(14px,2vw,26px);padding:clamp(12px,2vw,26px);
   box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 0 6px rgba(198,244,50,.16)}
-.qrbox img{display:block;width:clamp(160px,22vw,340px);height:auto}
+.qrbox img{display:block;width:clamp(180px,24vw,410px);height:auto;image-rendering:auto}
 .qrside .cap{font-size:clamp(12px,1.3vw,18px);font-weight:800;letter-spacing:.08em;color:#E8EFE9;text-align:center}
 .qrside .cap b{color:var(--green)}
 .brandline{font-size:clamp(10px,1vw,13px);letter-spacing:.24em;color:#6E7A74;font-weight:800}
+.fallback{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+  margin-top:clamp(4px,1vh,10px)}
+.fallback span{font-size:clamp(11px,1.1vw,14px);color:#8C9A94}
+.fallback a{font-size:clamp(12px,1.2vw,15px);font-weight:800;color:var(--green);text-decoration:none;
+  border-bottom:1px solid rgba(198,244,50,.4);padding-bottom:1px}
+.fallback button{font:inherit;font-size:clamp(11px,1.1vw,13px);font-weight:800;cursor:pointer;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:#DDE6E0;
+  border-radius:8px;padding:5px 10px}
+.fallback button:hover{background:rgba(255,255,255,.14)}
 @media (max-width:820px){
   .wrap{grid-template-columns:1fr;align-content:center;gap:26px;padding:30px 22px;text-align:center}
   ul{align-items:flex-start;text-align:left;display:inline-flex}
   .qrside{order:-1}
-  .qrbox img{width:clamp(150px,44vw,240px)}
+  .qrbox img{width:clamp(170px,52vw,280px)}
 }
 </style>
 </head>
@@ -41,7 +50,7 @@ li::before{content:"";position:absolute;left:6px;top:.58em;width:9px;height:9px;
   <div>
     <div class="kick">NEXT STEP · 下一步</div>
     <h1>加入 WhatsApp 群組<br><span class="y">取得最新資訊</span></h1>
-    <p class="lede">掃一掃右邊個碼，入群就收到：</p>
+    <p class="lede">掃一掃個碼，入群就收到：</p>
     <ul>
       <li>最新 AI 流水線玩法同實測結果</li>
       <li>講座／課程時間，第一時間通知</li>
@@ -52,9 +61,28 @@ li::before{content:"";position:absolute;left:6px;top:.58em;width:9px;height:9px;
   <div class="qrside">
     <div class="qrbox"><img src="assets/whatsapp-qr.png" alt="WhatsApp 群組 QR Code"></div>
     <div class="cap">用手機 <b>掃一掃</b> · 加入群組</div>
+    <div class="fallback">
+      <span>掃唔到？</span>
+      <a href="https://chat.whatsapp.com/K9md76bQaFHLSQX0CZm3HH" target="_blank" rel="noopener">撳呢度開群組</a>
+      <button id="copyBtn" type="button">複製連結</button>
+    </div>
     <div class="brandline">WHATSAPP GROUP</div>
   </div>
 </div>
+<script>
+(function(){
+  var url = "https://chat.whatsapp.com/K9md76bQaFHLSQX0CZm3HH";
+  var b = document.getElementById("copyBtn");
+  if (!b) return;
+  b.addEventListener("click", function(e){
+    e.stopPropagation();
+    function done(){ b.textContent = "已複製"; setTimeout(function(){ b.textContent = "複製連結"; }, 1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(done, function(){ prompt("複製呢條連結：", url); });
+    } else { prompt("複製呢條連結：", url); }
+  });
+})();
+</script>
 <script>
 /* 同其他版面一致：↓／→ 下一版，↑／← 上一版（呢頁之前完全冇導航） */
 (function(){

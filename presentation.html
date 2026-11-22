@@ -129,10 +129,13 @@ function go(id, end){
 }
 function setNow(id){
   const d = DECKS.find(x => x.id === id);
-  now.textContent = d ? d.name : (id === "intro" ? "封面" : (id === "ai-staff" ? "AI 員工 · 15 個" : id));
-  document.title = (d ? d.name : "封面") + " · AI 流水線";
+  now.textContent = d ? d.name
+    : (id === "intro" ? "封面"
+    : (id === "ai-staff" ? "AI 員工 · 15 個"
+    : (id === "cta" ? "加入 WhatsApp 群組" : id)));
+  document.title = (d ? d.name : (id === "cta" ? "加入 WhatsApp 群組" : "封面")) + " · AI 流水線";
 }
-const NEXT_AFTER_STAFF = "one-video-pipeline";  /* 客戶版：AI 員工後回到第一條線 */
+const NEXT_AFTER_STAFF = "cta";  /* 客戶版：AI 員工後去 WhatsApp CTA（同 seminar 一致） */
 function open(id, end){
   if (!id) return;
   if (id.indexOf("intro") === 0){
@@ -142,6 +145,7 @@ function open(id, end){
   }
   else if (id === "ai-staff"){ f.src = "ai-staff.html?next=" + NEXT_AFTER_STAFF; setNow("ai-staff"); }
   else if (id === "ai-staff-2"){ f.src = "ai-staff.html?at=2&next=" + NEXT_AFTER_STAFF; setNow("ai-staff"); }
+  else if (id === "cta"){ f.src = "cta-scan.html"; setNow("cta"); }
   else if (id.slice(-4) === "-end") go(id.slice(0,-4), true);
   else go(id, !!end);
 }
@@ -210,6 +214,7 @@ function row(label, small, fn){
 row("封面 · 開場三版", "INTRO", () => { f.src = "intro.html"; setNow("intro"); });
 DECKS.forEach((d,i) => row(d.name, String(i+1).padStart(2,"0"), () => go(d.id, false)));
 row("AI 員工 · 15 個", "STAFF", () => open("ai-staff"));
+row("加入 WhatsApp 群組", "CTA", () => open("cta"));
 
 const ov = document.getElementById("ov");
 const ovgrid = document.getElementById("ovgrid");
@@ -220,7 +225,8 @@ const ALL = [
   return { img:"assets/ov/" + d.id + ".jpg", name:d.name, open:function(){ go(d.id, false); } };
 })).concat([
   { img:"assets/ov/staff1.jpg", name:"AI 員工 · 15 個", open:function(){ open("ai-staff"); } },
-  { img:"assets/ov/staff2.jpg", name:"AI 員工 · 睇晒邊個做緊咩", open:function(){ open("ai-staff-2"); } }
+  { img:"assets/ov/staff2.jpg", name:"AI 員工 · 睇晒邊個做緊咩", open:function(){ open("ai-staff-2"); } },
+  { img:"assets/ov/cta.jpg", name:"加入 WhatsApp 群組", open:function(){ open("cta"); } }
 ]);
 
 function buildOverview(){

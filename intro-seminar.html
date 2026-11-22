@@ -113,11 +113,39 @@ body.snap .biorow{opacity:1!important;transform:none!important;transition:none!i
 .bcard .bd b{color:#C6F432;font-weight:900}
 .events{grid-column:1/-1;display:flex;flex-direction:column;gap:clamp(6px,1vh,10px);min-height:0}
 .evtitle{font-size:clamp(9px,.86vw,12px);letter-spacing:.26em;color:#7E8A86;font-weight:900}
-.evimgs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.4vw,20px)}
+.evimgs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(10px,1.4vw,20px)}
+.evimgs figure:nth-child(1),.evimgs figure:nth-child(2){grid-column:span 3}
+.evimgs figure:nth-child(n+3){grid-column:span 2}
 .evimgs figure{margin:0;border-radius:clamp(10px,1.1vw,16px);overflow:hidden;
   border:1px solid rgba(255,255,255,.14);background:#10151A;display:flex;flex-direction:column}
-.evimgs img{display:block;width:100%;height:clamp(130px,25vh,290px);object-fit:cover;object-position:center 36%}
+.evimgs img{display:block;width:100%;height:clamp(84px,15.4vh,166px);object-fit:cover;object-position:center 42%}
 .evimgs figcaption{font-size:clamp(9px,.86vw,12.5px);color:#9AA6A0;padding:clamp(4px,.7vh,8px) clamp(8px,1vw,12px);font-weight:700}
+
+@media (max-height:830px){
+  .biowrap{gap:8px 18px}
+  .bioleft{justify-content:flex-start;gap:8px}
+  .biophoto{max-height:none;flex:1 1 auto;min-height:0}
+  .bioname{font-size:24px}
+  .bioname small{font-size:8.5px;margin-top:3px}
+  .biotag{font-size:11.5px}
+  .bcard{padding:9px 11px;border-radius:11px}
+  .bcard .bl{font-size:7.5px}
+  .bcard .bn{font-size:16px}
+  .bcard .bd{font-size:9.5px}
+  .bcard .ba{font-size:9px}
+  .ytlogo{width:18px}
+  .kpi{padding:8px 10px;border-radius:10px}
+  .kpi .kv{font-size:21px}
+  .kpi .kl{font-size:8.5px;margin-top:2px}
+  .ctitle,.evtitle{font-size:8px;letter-spacing:.2em}
+  .cgrid{gap:4px 10px}
+  .citem{font-size:11.4px;padding-left:10px;line-height:1.35}
+  .citem::before{width:4px;height:4px;top:.5em}
+  .evimgs{gap:6px}
+  .evimgs img{height:88px}
+  .evimgs figcaption{font-size:9px;padding:2px 7px}
+  .biofoot{font-size:9.5px}
+}
 body.snap #bio{opacity:1!important}
 /* ── 講者介紹（滿版 · 左相右文）── */
 #bio{position:fixed;inset:0;z-index:55;opacity:0;pointer-events:none;transition:opacity .5s ease;
@@ -336,6 +364,9 @@ body.snap #bio{opacity:1!important}
       <div class="evimgs">
         <figure><img src="assets/bio-club1.jpg" alt="HK AI Club 大合照"><figcaption>HK AI Club 大合照</figcaption></figure>
         <figure><img src="assets/bio-club2.jpg" alt="HK AI Club 預先發佈日團隊"><figcaption>預先發佈日 · 團隊</figcaption></figure>
+        <figure><img src="assets/bio-sem1.jpg" alt="ChatGPT 實戰課程 全場坐滿"><figcaption>ChatGPT 實戰課程 · 全場滿座</figcaption></figure>
+        <figure><img src="assets/bio-sem2.jpg" alt="自動引流 Seminar"><figcaption>自動引流 Seminar</figcaption></figure>
+        <figure><img src="assets/bio-sem3.jpg" alt="企業 AI 培訓"><figcaption>企業 AI 培訓 · 宴會廳場</figcaption></figure>
       </div>
     </div>
     <div class="biofoot">今日唔講理論 · 全部係我自己跑緊嘅系統</div>

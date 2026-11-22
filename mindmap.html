@@ -20,10 +20,10 @@ h1{font-size:clamp(22px,3.4vw,34px);font-weight:900;color:#fff5df;
   box-shadow:0 4px 0 rgba(70,40,12,.35)}
 .btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(70,40,12,.35)}
 .map{display:flex;gap:26px;align-items:flex-start}
-.root{flex:0 0 210px;position:sticky;top:20px;background:#2f3b5c;color:#fff;
+.root{flex:0 0 252px;position:sticky;top:20px;background:#2f3b5c;color:#fff;
   border-radius:22px;padding:26px 20px;box-shadow:0 16px 30px rgba(40,20,6,.42);transform:rotate(-1.2deg)}
-.root b{display:block;font-size:30px;font-weight:900;line-height:1.18;letter-spacing:.04em}
-.root small{display:block;margin-top:8px;font-size:13px;opacity:.78;font-weight:600}
+.root b{display:block;font-size:42px;white-space:nowrap;font-weight:900;line-height:1.18;letter-spacing:.04em}
+.root small{display:block;margin-top:10px;font-size:14px;opacity:.78;font-weight:600}
 .root .bar{margin-top:14px;height:5px;border-radius:3px;background:rgba(255,255,255,.35)}
 .depts{flex:1;min-width:0;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
 .dept:nth-child(1){grid-area:1/1}
@@ -37,12 +37,12 @@ h1{font-size:clamp(22px,3.4vw,34px);font-weight:900;color:#fff5df;
 .dept:nth-child(3){--r:-.6deg} .dept:nth-child(4){--r:.5deg}
 .dept-head{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;
   cursor:pointer;color:#fff;font:inherit;padding:2px 2px 10px;text-align:left}
-.dic{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;
+.dic{width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;
   background:rgba(255,255,255,.18);border-radius:12px}
-.dname{font-size:22px;font-weight:900;letter-spacing:.06em}
-.dmeta{font-size:12px;font-weight:700;opacity:.85;background:rgba(0,0,0,.18);
+.dname{font-size:40px;font-weight:900;letter-spacing:.04em;line-height:1.1}
+.dmeta{font-size:13px;font-weight:700;opacity:.85;background:rgba(0,0,0,.18);
   padding:3px 9px;border-radius:99px}
-.tri{margin-left:auto;font-size:14px;opacity:.85;transition:transform .22s}
+.tri{margin-left:auto;font-size:18px;opacity:.85;transition:transform .22s}
 .dept.closed .tri{transform:rotate(-90deg)}
 .line .tri{transform:none}
 .line:not(.closed) .tri{transform:rotate(90deg)}
@@ -50,14 +50,33 @@ h1{font-size:clamp(22px,3.4vw,34px);font-weight:900;color:#fff5df;
 .dept.closed .lines{display:none}
 .line{background:var(--cream);border-radius:14px;margin:0 0 10px;
   box-shadow:0 4px 10px rgba(40,20,6,.25);overflow:hidden}
-.line-head{display:flex;align-items:center;gap:8px;width:100%;background:none;border:0;
-  cursor:pointer;font:inherit;padding:11px 13px;text-align:left;color:#3d2f16}
-.lname{font-size:15px;font-weight:800}
-.cnt{font-size:11px;font-weight:800;color:#fff;background:var(--c);padding:2px 8px;border-radius:99px}
-.steps{display:flex;flex-wrap:wrap;gap:7px;padding:0 13px 13px}
+.line-head{display:flex;align-items:center;gap:12px;width:100%;background:none;border:0;
+  cursor:pointer;font:inherit;padding:15px 16px;text-align:left;color:#3d2f16}
+.lname{font-size:34px;font-weight:900;line-height:1.2}
+.cnt{font-size:13px;font-weight:800;color:#fff;background:var(--c);padding:2px 8px;border-radius:99px}
+.steps{display:flex;flex-wrap:wrap;gap:9px;padding:0 16px 16px}
 .line.closed .steps{display:none}
-.chip{font-size:13.5px;font-weight:700;color:#4a3a18;background:rgba(255,255,255,.72);
+.chip{font-size:18px;font-weight:700;color:#4a3a18;background:rgba(255,255,255,.72);
   border:1.5px solid rgba(0,0,0,.10);border-radius:99px;padding:6px 12px;white-space:nowrap}
+.staff{margin-top:54px}
+.sh{font-size:clamp(24px,3.2vw,38px);font-weight:900;color:#fff5df;
+  text-shadow:0 3px 0 rgba(60,32,8,.45);letter-spacing:.03em;margin-bottom:20px}
+.sgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.scard{position:relative;background:var(--c);border-radius:20px;padding:20px 14px 16px;
+  box-shadow:0 12px 22px rgba(40,20,6,.38),inset 0 1px 0 rgba(255,255,255,.24);
+  display:flex;flex-direction:column;align-items:center;transform:rotate(var(--r,0deg))}
+.sicon{height:48px;display:flex;align-items:center;justify-content:center}
+.sicon svg{width:46px;height:46px}
+.sname{color:#fff;font-weight:900;text-align:center;margin-top:12px;line-height:1.16;
+  font-size:clamp(21px,1.9vw,28px);text-shadow:0 2px 3px rgba(0,0,0,.22)}
+.sduty{color:rgba(255,255,255,.92);font-weight:600;text-align:center;margin-top:7px;
+  font-size:clamp(15px,1.35vw,18px);line-height:1.3}
+.stape{position:absolute;top:-11px;left:16px;background:#e9dcb6;color:#6f5a2e;
+  font-size:11px;font-weight:800;letter-spacing:.06em;padding:3px 10px;transform:rotate(-5deg);
+  box-shadow:0 3px 7px rgba(40,20,6,.32);clip-path:polygon(3% 10%,97% 0,100% 90%,0 100%)}
+@media (max-width:1200px){ .sgrid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (max-width:900px){ .sgrid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ .sgrid{grid-template-columns:1fr} .scard{transform:none} }
 .tape{position:absolute;top:-13px;left:22px;background:#e9dcb6;color:#6f5a2e;
   font-size:14px;font-weight:800;padding:5px 12px;transform:rotate(-6deg);
   box-shadow:0 3px 7px rgba(40,20,6,.35);letter-spacing:.06em;
@@ -79,8 +98,11 @@ h1{font-size:clamp(22px,3.4vw,34px);font-weight:900;color:#fff5df;
 }
 @media (max-width:520px){
   body{padding:16px 12px 44px}
-  .dname{font-size:19px}
-  .chip{font-size:12.5px;padding:5px 10px}
+  .dname{font-size:26px}
+  .lname{font-size:22px}
+  .chip{font-size:14px;padding:6px 11px}
+  .dic{width:40px;height:40px;flex:0 0 40px}
+  .root b{font-size:32px}
 }
 @media (max-width:430px){
   body{padding:12px 10px 40px}
@@ -176,6 +198,79 @@ h1{font-size:clamp(22px,3.4vw,34px);font-weight:900;color:#fff5df;
     </div>
   </section></div>
 </div>
+
+<section class="staff">
+  <h2 class="sh">17 個 AI 員工 — 邊個做</h2>
+  <div class="sgrid"><article class="scard" style="--c:#2f3b5c;--r:-1.3deg">
+      <div class="stape">統籌</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><circle cx="12" cy="12" r="9.1" fill="none" stroke="#fff" stroke-width="2.3"/><path d="M15.9 8.1 13.4 13.4 8.1 15.9 10.6 10.6z" fill="#fff"/></svg></div>
+      <div class="sname">阿強·CEO</div><div class="sduty">統籌、驗收、對外決定</div>
+    </article><article class="scard" style="--c:#cf4f22;--r:1.0deg">
+      <div class="stape">內容製作</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><rect x="2.6" y="12.6" width="4.6" height="8.6" rx="1.2" fill="#fff"/><rect x="9.7" y="7.4" width="4.6" height="13.8" rx="1.2" fill="#fff"/><rect x="16.8" y="2.6" width="4.6" height="18.6" rx="1.2" fill="#fff"/></svg></div>
+      <div class="sname">金水·PPT</div><div class="sduty">PPT 結構、排版、頁面</div>
+    </article><article class="scard" style="--c:#cf4f22;--r:-0.8deg">
+      <div class="stape">內容製作</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><path d="M2.8 8.6h18.4v10.9a1.5 1.5 0 0 1-1.5 1.5H4.3a1.5 1.5 0 0 1-1.5-1.5z" fill="#fff"/><path d="M2.8 8.6 4.1 3.9h3.5l-1.3 4.7zM10.4 8.6l1.3-4.7h3.5l-1.3 4.7zM18 8.6l1.3-4.7h.5a1.5 1.5 0 0 1 1.4 1.5v3.2z" fill="#fff"/></svg></div>
+      <div class="sname">阿梅·剪片</div><div class="sduty">動畫、動效、出片</div>
+    </article><article class="scard" style="--c:#cf4f22;--r:1.4deg">
+      <div class="stape">內容製作</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><rect x="8.8" y="1.9" width="6.4" height="11.6" rx="3.2" fill="#fff"/><path d="M5.2 11.4a6.8 6.8 0 0 0 13.6 0" fill="none" stroke="#fff" stroke-width="2.3"/><rect x="10.7" y="18.6" width="2.6" height="3.5" rx="1" fill="#fff"/></svg></div>
+      <div class="sname">秋香姐·口播</div><div class="sduty">旁白配音、Lipsync</div>
+    </article><article class="scard" style="--c:#cf4f22;--r:-0.9deg">
+      <div class="stape">內容製作</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><path d="M20.6 3.4C10.4 3.4 3.6 8.6 3.6 16.4c0 1.7.4 3.1 1 4.2C7.9 12.4 13 8.2 20.2 6.8 13.4 9.2 9.2 13.8 7.3 20.6c9.7.6 13.3-6.9 13.3-17.2z" fill="#fff"/></svg></div>
+      <div class="sname">斷水流師兄·CNY片</div><div class="sduty">農曆新年影片一條龍</div>
+    </article><article class="scard" style="--c:#2d6b98;--r:1.1deg">
+      <div class="stape">發布</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><path d="M14.7 3.4 20.6 9.3 9.7 20.4 3.8 14.5z" fill="#fff"/><path d="M3.2 20.8 4.9 15.2l3.9 3.9z" fill="#fff"/></svg></div>
+      <div class="sname">石榴姐·Seminar文案</div><div class="sduty">全部對外文字唯一來源</div>
+    </article><article class="scard" style="--c:#2d6b98;--r:-1.5deg">
+      <div class="stape">發布</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><path d="M21.4 2.6 2.2 10.1l5.9 2.4L19.3 5.4 10.5 14.3l1 6.6 3.1-4 4.4 1.8z" fill="#fff"/></svg></div>
+      <div class="sname">奔雷手文泰·發布</div><div class="sduty">五平台＋WhatsApp 發佈</div>
+    </article><article class="scard" style="--c:#7a3fa2;--r:0.7deg">
+      <div class="stape">YOUTUBE</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><rect x="2.2" y="4.4" width="19.6" height="15.2" rx="4.4" fill="#fff"/><path d="M10.1 8.5 16.5 12l-6.4 3.5z" fill="#7a3fa2"/></svg></div>
+      <div class="sname">阿漆·AI Lion</div><div class="sduty">AI Lion 上載、7 工序總管</div>
+    </article><article class="scard" style="--c:#7a3fa2;--r:-1.1deg">
+      <div class="stape">YOUTUBE</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><path d="M12 2.2v19.6M3.4 7.1l17.2 9.8M20.6 7.1 3.4 16.9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><path d="M12 6.3 9.3 3.6M12 6.3l2.7-2.7M12 17.7l-2.7 2.7M12 17.7l2.7 2.7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+      <div class="sname">西門吹雪·Shorts</div><div class="sduty">長片切 Shorts</div>
+    </article><article class="scard" style="--c:#7a3fa2;--r:1.3deg">
+      <div class="stape">YOUTUBE</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><path d="M2.6 5.4A2.8 2.8 0 0 1 5.4 2.6h8.4a2.8 2.8 0 0 1 2.8 2.8v6.2a2.8 2.8 0 0 1-2.8 2.8H9.4l-4.6 3.9v-3.9h-1A2.8 2.8 0 0 1 1 13.6z" fill="#fff"/><path d="M19.4 8.2h.5a1.5 1.5 0 0 1 1.5 1.5v3.6a1.5 1.5 0 0 1-1.5 1.5H19v3l-2.8-3" fill="none" stroke="#fff" stroke-width="2.1" stroke-linejoin="round"/></svg></div>
+      <div class="sname">黃金右腳·普通話</div><div class="sduty">粵語轉普通話版</div>
+    </article><article class="scard" style="--c:#7a3fa2;--r:-0.7deg">
+      <div class="stape">YOUTUBE</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><path d="M2.6 16.4h18.8c-1.1-2-2.9-3.1-5-3.6 0 0-1.5-6.9-5.5-10-2.1 4.4-4.4 9.4-8.3 13.6z" fill="#fff"/><path d="M1.6 19.8h20.8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+      <div class="sname">醬爆·AI Shark</div><div class="sduty">AI Shark 頻道</div>
+    </article><article class="scard" style="--c:#2d6b98;--r:1.2deg">
+      <div class="stape">SALES</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><rect x="2.4" y="5.8" width="19.2" height="12.6" rx="2.4" fill="#fff"/><path d="M3.6 7.1 12 13.2 20.4 7.1" fill="none" stroke="#2d6b98" stroke-width="2.5"/></svg></div>
+      <div class="sname">金槍人·email流水線</div><div class="sduty">名單・睇網站・開發信・跟進</div>
+    </article><article class="scard" style="--c:#4a8a55;--r:-1.0deg">
+      <div class="stape">GOMAN</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><rect x="3.2" y="2.6" width="17.6" height="18.8" rx="2.8" fill="none" stroke="#fff" stroke-width="2.3"/><circle cx="8.7" cy="8.5" r="2" fill="#fff"/><path d="M4.8 18.9 10 12.7l3.1 3.5 2.5-2.5 3.9 5.2z" fill="#fff"/></svg></div>
+      <div class="sname">三叔·GoMan</div><div class="sduty">活動頁、海報 keyvisual</div>
+    </article><article class="scard" style="--c:#b5892c;--r:0.9deg">
+      <div class="stape">系統</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><rect x="2.4" y="3.8" width="19.2" height="12.6" rx="2.2" fill="#fff"/><rect x="8.4" y="18.2" width="7.2" height="2.4" rx="1.2" fill="#fff"/></svg></div>
+      <div class="sname">阿成·Zo</div><div class="sduty">Zo Computer 管理</div>
+    </article><article class="scard" style="--c:#b5892c;--r:-1.4deg">
+      <div class="stape">系統</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><path d="M12 2.2 1.8 10.4h2.9V21h5.4v-5.8h3.8V21h5.4V10.4h2.9z" fill="#fff"/></svg></div>
+      <div class="sname">包租公·介面</div><div class="sduty">DSH 介面</div>
+    </article><article class="scard" style="--c:#b5892c;--r:1.1deg">
+      <div class="stape">系統</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><path d="M8.6 1.9h6.8l1 5.3H7.6z" fill="#fff"/><path d="M7.4 7.6h9.2l1.1 12.1a1.7 1.7 0 0 1-1.7 1.8H8a1.7 1.7 0 0 1-1.7-1.8z" fill="#fff"/></svg></div>
+      <div class="sname">太陽能電筒·Grill Me</div><div class="sduty">開工前逼問需求</div>
+    </article><article class="scard" style="--c:#b5892c;--r:-0.6deg">
+      <div class="stape">系統</div>
+      <div class="sicon"><svg viewBox="0 0 24 24" width="62" height="62"><path d="M15.6 2a6.6 6.6 0 0 0-5.7 9.9L2.6 19.2a2.2 2.2 0 0 0 3.1 3.1l7.3-7.3A6.6 6.6 0 0 0 21.2 6.7l-3.5 3.5-3.7-.9-.9-3.7z" fill="#fff"/></svg></div>
+      <div class="sname">火雞姐·技術</div>
+    </article></div>
+</section>
 </div>
 <script>
 (function(){

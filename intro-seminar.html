@@ -107,6 +107,9 @@ body.collapsed #navopen{opacity:1;pointer-events:auto}
 .hublines.on line{opacity:.55}
 
 
+
+body.snap .biorow{opacity:1!important;transform:none!important;transition:none!important}
+body.snap #bio{opacity:1!important}
 /* ── 講者介紹 ── */
 #bio{position:fixed;inset:0;z-index:55;opacity:0;pointer-events:none;
   transition:opacity .5s ease;display:flex;flex-direction:column;align-items:center;
@@ -133,6 +136,15 @@ body.collapsed #navopen{opacity:1;pointer-events:auto}
 .bv{font-size:clamp(16px,1.75vw,25px);font-weight:800;color:#F4F7F2;letter-spacing:-.01em}
 .biofoot{position:relative;z-index:2;margin-top:clamp(4px,1.2vh,16px);font-size:clamp(10px,1vw,13px);
   letter-spacing:.22em;color:#7E8A86;font-weight:800}
+
+
+.yt{color:#F4F7F2;text-decoration:none;border-bottom:1px solid rgba(198,244,50,.45);padding-bottom:1px;transition:color .2s,border-color .2s}
+.yt:hover{color:#C6F432;border-color:#C6F432}
+.credits{margin-top:clamp(10px,1.8vh,20px);padding-top:clamp(8px,1.4vh,16px);border-top:1px solid rgba(255,255,255,.1)}
+.ctitle{font-size:clamp(9px,.86vw,11px);letter-spacing:.24em;color:#7E8A86;font-weight:900;margin-bottom:clamp(6px,1vh,12px)}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(4px,.8vh,9px) clamp(14px,2vw,28px)}
+.citem{font-size:clamp(11px,1.05vw,14px);color:#B9C3BC;line-height:1.45;padding-left:12px;position:relative}
+.citem::before{content:"";position:absolute;left:0;top:.55em;width:5px;height:5px;border-radius:50%;background:#C6F432;opacity:.75}
 
 /* ── 開場兩版：傳統流水線 / AI 流水線 ── */
 #l1,#l2{position:fixed;inset:0;z-index:55;opacity:0;pointer-events:none;
@@ -269,10 +281,21 @@ body.collapsed #navopen{opacity:1;pointer-events:auto}
       <div class="biotag">AI 一人公司實戰者</div>
     </div>
     <div class="bioright">
-      <div class="biorow"><span class="bk">YOUTUBE</span><span class="bv">AI Bunny</span></div>
-      <div class="biorow"><span class="bk">YOUTUBE</span><span class="bv">AI Lion</span></div>
+      <div class="biorow"><span class="bk">YOUTUBE</span><span class="bv"><a class="yt" href="https://www.youtube.com/@Itsss-AI-Bunny" target="_blank" rel="noopener">AI Bunny ↗</a></span></div>
+      <div class="biorow" id="ailionrow"><span class="bk">YOUTUBE</span><span class="bv">AI Lion</span></div>
       <div class="biorow"><span class="bk">受邀</span><span class="bv">理工大學邀講師</span></div>
       <div class="biorow"><span class="bk">實戰</span><span class="bv">一個人營運八條 AI 流水線</span></div>
+      <div class="credits">
+        <div class="ctitle">背書 · 過往身份</div>
+        <div class="cgrid">
+          <div class="citem">阿布自動客源引流系統 創辦人</div>
+          <div class="citem">Chilli Expert 創辦人</div>
+          <div class="citem">團隊管理及營銷資深講師</div>
+          <div class="citem">20 年市場策劃經驗</div>
+          <div class="citem">學員超過 5,000 人</div>
+          <div class="citem">HK AI CLUB 發起及講者</div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="biofoot">今日唔講理論 · 全部係我自己跑緊嘅系統</div>
@@ -551,6 +574,7 @@ function showIntro(key){
 
 function boot(){
   var q = location.search;
+  if (q.indexOf("snap") >= 0) document.body.classList.add("snap");
   if (q.indexOf("at=l2") >= 0){ showIntro("l2"); }
   else if (q.indexOf("at=l1") >= 0){ showIntro("l1"); }
   else if (q.indexOf("at=bio") >= 0){ showIntro("bio"); }

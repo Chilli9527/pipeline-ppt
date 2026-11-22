@@ -115,12 +115,13 @@ body.snap #bio{opacity:1!important}
   display:flex;align-items:center;justify-content:center;overflow:hidden;
   background:radial-gradient(120% 100% at 84% 0%,#182027,#0A0D10 62%)}
 #bio.on{opacity:1;pointer-events:auto}
-.biowrap{position:relative;z-index:2;width:min(95%,1640px);height:min(96%,1010px);
+.biowrap{position:relative;z-index:2;width:96%;max-width:2400px;height:min(96%,1010px);
   display:grid;grid-template-rows:auto auto auto auto auto;align-content:space-between;gap:clamp(10px,2vh,26px);margin:0 auto}
 .biohead{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
   border-bottom:1px solid rgba(255,255,255,.13);padding-bottom:clamp(12px,2.2vh,26px)}
 .bioname{font-size:clamp(32px,4.2vw,62px);font-weight:900;letter-spacing:-.02em;color:#F4F7F2;line-height:1}
 .bioname small{display:block;font-size:clamp(9px,.9vw,12px);letter-spacing:.28em;color:#8892A0;font-weight:800;margin-top:7px}
+.biomid{flex:1;text-align:center;font-size:clamp(11px,1.1vw,15px);letter-spacing:.34em;color:#62706A;font-weight:900}
 .biotag{font-size:clamp(15px,1.6vw,24px);color:#C6F432;font-weight:800;letter-spacing:.01em;text-align:right;line-height:1.2}
 .biocards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.5vw,20px)}
 .bcard{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.13);border-radius:15px;
@@ -275,6 +276,7 @@ body.snap #bio{opacity:1!important}
   <div class="biowrap">
     <div class="biohead">
       <div class="bioname">布Sir<small>BRUCE LAM</small></div>
+      <div class="biomid">八 條 流 水 線 · 一 人 公 司</div>
       <div class="biotag">AI 一人公司實戰者</div>
     </div>
     <div class="biocards">

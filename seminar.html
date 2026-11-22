@@ -73,7 +73,7 @@ body.hide .bottom{transform:translateY(6px)}
 </head>
 <body>
 
-<iframe id="f" src="intro-seminar.html" title="AI 流水線簡報" allow="fullscreen"></iframe>
+<iframe id="f" src="intro-seminar.html?v=5" title="AI 流水線簡報" allow="fullscreen"></iframe>
 
 <div class="chrome top">
   <div class="brand"><b>AI 流水線</b><span>一人公司軍團出發</span></div>
@@ -118,6 +118,7 @@ const DECKS = [
   { id:"one-person-army",      name:"一人公司軍團" }
 ];
 const TITLES = { intro:"封面", "one-video-pipeline":"一條片出齊所有平台" };
+const INTRO = "intro-seminar.html?v=5";
 
 function key(k){
   try{ f.contentWindow.dispatchEvent(new KeyboardEvent("keydown",{ key:k, bubbles:true, cancelable:true })); }catch(e){}
@@ -136,7 +137,7 @@ function loadHash(){
   if (!id) return;
   if (id.indexOf("intro") === 0){
     var at = id.split("-")[1];
-    f.src = "intro-seminar.html" + (at ? "?at=" + at : "");
+    f.src = INTRO + (at ? "&at=" + at : "");
     setNow("intro");
   }
   else if (id.slice(-4) === "-end") go(id.slice(0,-4), true);
@@ -159,7 +160,7 @@ addEventListener("message", function(e){
   if (!d || d.type !== "goto" || !d.id) return;
   if (d.id.indexOf("intro") === 0){
     var at = d.id.split("-")[1];
-    f.src = "intro-seminar.html" + (at ? "?at=" + at : "");
+    f.src = INTRO + (at ? "&at=" + at : "");
     setNow("intro");
   } else if (d.id.slice(-4) === "-end"){
     go(d.id.slice(0,-4), true);
@@ -185,13 +186,13 @@ function row(label, small, fn){
   b.onclick = () => { menu.classList.remove("on"); fn(); };
   list.appendChild(b);
 }
-row("封面 · 講者 · 開場三版", "INTRO", () => { f.src = "intro-seminar.html"; setNow("intro"); });
+row("封面 · 講者 · 開場三版", "INTRO", () => { f.src = INTRO; setNow("intro"); });
 DECKS.forEach((d,i) => row(d.name, String(i+1).padStart(2,"0"), () => go(d.id, false)));
 
 const ov = document.getElementById("ov");
 const ovgrid = document.getElementById("ovgrid");
 let ovBuilt = false;
-const ALL = [{ src:"intro-seminar.html", name:"封面 · 講者 · 開場三版" }]
+const ALL = [{ src:INTRO, name:"封面 · 講者 · 開場三版" }]
   .concat(DECKS.map(function(d){ return { src:d.id + "/", name:d.name }; }));
 
 function buildOverview(){
@@ -220,7 +221,7 @@ function buildOverview(){
     b.appendChild(label);
     b.onclick = function(){
       ov.classList.remove("on");
-      if (i === 0){ f.src = "intro-seminar.html"; setNow("intro"); }
+      if (i === 0){ f.src = INTRO; setNow("intro"); }
       else { go(DECKS[i-1].id, false); }
     };
     ovgrid.appendChild(b);

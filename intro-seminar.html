@@ -109,6 +109,15 @@ body.collapsed #navopen{opacity:1;pointer-events:auto}
 
 
 body.snap .biorow{opacity:1!important;transform:none!important;transition:none!important}
+.ytlogo{width:clamp(22px,1.8vw,30px);height:auto;display:block;margin-bottom:2px}
+.bcard .bd b{color:#C6F432;font-weight:900}
+.events{grid-column:1/-1;display:flex;flex-direction:column;gap:clamp(6px,1vh,10px);min-height:0}
+.evtitle{font-size:clamp(9px,.86vw,12px);letter-spacing:.26em;color:#7E8A86;font-weight:900}
+.evimgs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.4vw,20px)}
+.evimgs figure{margin:0;border-radius:clamp(10px,1.1vw,16px);overflow:hidden;
+  border:1px solid rgba(255,255,255,.14);background:#10151A;display:flex;flex-direction:column}
+.evimgs img{display:block;width:100%;height:clamp(96px,17vh,190px);object-fit:cover;object-position:center 34%}
+.evimgs figcaption{font-size:clamp(10px,.92vw,13px);color:#9AA6A0;padding:clamp(4px,.7vh,8px) clamp(8px,1vw,12px);font-weight:700}
 body.snap #bio{opacity:1!important}
 /* ── 講者介紹（滿版 · 左相右文）── */
 #bio{position:fixed;inset:0;z-index:55;opacity:0;pointer-events:none;transition:opacity .5s ease;
@@ -116,7 +125,8 @@ body.snap #bio{opacity:1!important}
   background:radial-gradient(120% 100% at 84% 0%,#182027,#0A0D10 62%)}
 #bio.on{opacity:1;pointer-events:auto}
 .biowrap{position:relative;z-index:2;width:96%;max-width:2400px;height:min(96%,1010px);margin:0 auto;
-  display:grid;grid-template-columns:minmax(0,.42fr) minmax(0,1fr);gap:clamp(20px,2.6vw,54px);align-items:stretch}
+  display:grid;grid-template-columns:minmax(0,.40fr) minmax(0,1fr);grid-template-rows:auto auto auto;
+  gap:clamp(10px,1.8vh,22px) clamp(20px,2.6vw,54px);align-items:stretch}
 .bioleft{display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1.3vh,14px);min-height:0;height:100%;justify-content:space-between;padding:4px 0}
 .biophoto{flex:1 1 auto;min-height:0;height:auto;aspect-ratio:3/4;width:auto;max-width:100%;border-radius:clamp(12px,1.4vw,22px);
   overflow:hidden;background:#10151A;border:1px solid rgba(255,255,255,.16);
@@ -126,7 +136,6 @@ body.snap #bio{opacity:1!important}
 .bioname small{display:block;font-size:clamp(9px,.85vw,12px);letter-spacing:.28em;color:#8892A0;font-weight:800;margin-top:6px}
 .biotag{font-size:clamp(12px,1.2vw,17px);color:#C6F432;font-weight:900;letter-spacing:.02em;text-align:center}
 .biorightcol{display:flex;flex-direction:column;justify-content:space-between;gap:clamp(12px,2vh,24px);min-height:0;height:100%}
-.biointro{font-size:clamp(14px,1.42vw,21px);line-height:1.55;color:#C9D2CB;max-width:92%;font-weight:600}
 .biocards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.5vw,20px)}
 .bcard{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.13);border-radius:15px;
   padding:clamp(14px,2.2vh,26px) clamp(14px,1.6vw,24px);text-decoration:none;color:inherit;
@@ -284,13 +293,14 @@ body.snap #bio{opacity:1!important}
       <div class="biotag">AI 一人公司實戰者</div>
     </div>
     <div class="biorightcol">
-      <p class="biointro">20 年市場策劃出身，做過直銷、加盟、零售；近年主力用 AI 流水線，一個人同時營運八條業務線。</p>
       <div class="biocards">
-        <a class="bcard" href="https://www.youtube.com/@Itsss-AI-Bunny" target="_blank" rel="noopener">
-          <span class="bl">YOUTUBE</span><span class="bn">AI Bunny</span><span class="bd">廣東話 AI 頻道</span><span class="ba">撳入去 ↗</span>
+        <a class="bcard ytc" href="https://www.youtube.com/@Itsss-AI-Bunny" target="_blank" rel="noopener">
+          <svg class="ytlogo" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#FF0000"/><path d="M11.5 6l7 4-7 4z" fill="#fff"/></svg>
+          <span class="bn">AI Bunny</span><span class="bd"><b>創辦人</b> · 廣東話 AI 頻道</span><span class="ba">撳入去 ↗</span>
         </a>
-        <a class="bcard" href="https://www.youtube.com/@Itsssss-Lion-AI" target="_blank" rel="noopener">
-          <span class="bl">YOUTUBE</span><span class="bn">AI Lion</span><span class="bd">一人公司 OPC</span><span class="ba">撳入去 ↗</span>
+        <a class="bcard ytc" href="https://www.youtube.com/@Itsssss-Lion-AI" target="_blank" rel="noopener">
+          <svg class="ytlogo" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#FF0000"/><path d="M11.5 6l7 4-7 4z" fill="#fff"/></svg>
+          <span class="bn">AI Lion</span><span class="bd"><b>創辦人</b> · 一人公司 OPC</span><span class="ba">撳入去 ↗</span>
         </a>
         <div class="bcard">
           <span class="bl">受邀</span><span class="bn">理工大學</span><span class="bd">邀講師 · AI 應用講座</span><span class="ba">大專院校</span>
@@ -319,6 +329,13 @@ body.snap #bio{opacity:1!important}
         <div class="citem">累計學員超過 10,000 人</div>
         <div class="citem">HK AI CLUB 發起人</div>
         </div>
+      </div>
+    </div>
+    <div class="events">
+      <div class="evtitle">講座實況 · HK AI CLUB</div>
+      <div class="evimgs">
+        <figure><img src="assets/bio-club1.jpg" alt="HK AI Club 大合照"><figcaption>HK AI Club 大合照</figcaption></figure>
+        <figure><img src="assets/bio-club2.jpg" alt="HK AI Club 預先發佈日"><figcaption>HK AI Club 預先發佈日 · 團隊</figcaption></figure>
       </div>
     </div>
     <div class="biofoot">今日唔講理論 · 全部係我自己跑緊嘅系統</div>

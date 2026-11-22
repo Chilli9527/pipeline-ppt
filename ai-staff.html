@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AI 員工 · AI 流水線</title>
+<style>
+:root{--ink:#F4F7F2;--dim:#9AA6A0;--line:rgba(255,255,255,.13);--green:#C6F432;--gold:#D9A96A}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#08090B;color:var(--ink);overflow:hidden;
+  font:16px/1.6 "PingFang HK","PingFang TC","Noto Sans TC",-apple-system,sans-serif}
+body{background:radial-gradient(110% 100% at 15% 0%,#16202A,#08090B 62%)}
+.page{position:fixed;inset:0;display:none;flex-direction:column;justify-content:center;
+  padding:clamp(22px,4.2vh,52px) clamp(24px,4vw,80px)}
+.page.on{display:flex}
+.kick{font-size:clamp(9px,.9vw,12px);letter-spacing:.3em;color:var(--green);font-weight:900;margin-bottom:clamp(8px,1.4vh,16px)}
+h1{font-size:clamp(30px,4.4vw,64px);line-height:1.08;letter-spacing:-.02em;font-weight:900;margin-bottom:clamp(6px,1.2vh,14px)}
+h1 .y{color:var(--green)} h1 .g{color:var(--gold)}
+.sub{font-size:clamp(13px,1.35vw,20px);color:#C3CCC6;margin-bottom:clamp(12px,2vh,24px)}
+.shot{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;
+  border-radius:clamp(10px,1.2vw,18px);overflow:hidden;border:1px solid rgba(255,255,255,.16);
+  background:#0B0F14;box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.shot img{display:block;width:100%;height:100%;object-fit:contain}
+.chips{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(8px,1.2vw,16px);
+  margin-top:clamp(10px,1.6vh,20px)}
+.chip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);border-radius:11px;
+  padding:clamp(7px,1.2vh,13px) clamp(8px,1vw,14px)}
+.chip b{display:block;font-size:clamp(11px,1.05vw,15px);color:#F4F7F2;font-weight:900;margin-bottom:2px}
+.chip span{font-size:clamp(9px,.85vw,12px);color:#9AA6A0}
+.foot{margin-top:clamp(8px,1.3vh,16px);font-size:clamp(10px,1vw,14px);letter-spacing:.18em;color:#7E8A86;font-weight:800;text-align:center}
+.hint{position:fixed;right:18px;bottom:14px;font-size:11px;letter-spacing:.14em;color:#5E6A64;z-index:5}
+@media (max-width:860px){
+  .chips{grid-template-columns:repeat(2,minmax(0,1fr))}
+  h1{font-size:clamp(24px,7vw,38px)}
+}
+</style>
+</head>
+<body>
+
+<section class="page on" id="p1">
+  <div class="kick">TEAM · AI 員工</div>
+  <h1>15 個 <span class="y">AI 員工</span>，唔使請人</h1>
+  <p class="sub">每個負責一條線：剪片、出圖、寫字、配音、查數、發佈、客服；有任務就開工，做完回報。</p>
+  <div class="shot"><img src="assets/ai-staff-team.jpg" alt="AI 員工團隊"></div>
+  <div class="foot">你唔係請人，你係請一隊唔會放假嘅 AI</div>
+</section>
+
+<section class="page" id="p2">
+  <div class="kick">CONTROL ROOM · 調度台</div>
+  <h1>一版睇晒<span class="g">邊個做緊咩</span></h1>
+  <p class="sub">等你批幾多項、邊個做緊、邊個完成——同一個畫面，唔使逐個問。</p>
+  <div class="shot"><img src="assets/ai-staff-board.jpg" alt="AI 員工任務看板"></div>
+  <div class="chips">
+    <div class="chip"><b>等你批</b><span>要你決定嘅事</span></div>
+    <div class="chip"><b>做緊</b><span>正在執行</span></div>
+    <div class="chip"><b>排隊</b><span>排下一手</span></div>
+    <div class="chip"><b>已完成</b><span>交咗貨</span></div>
+    <div class="chip"><b>卡住</b><span>要你開路</span></div>
+  </div>
+  <div class="foot">你係調度者：派任務、收結果、統一審核</div>
+</section>
+
+<div class="hint">撳一下 / ↓ 下一版</div>
+
+<script>
+let p = 0;
+const pages = [document.getElementById("p1"), document.getElementById("p2")];
+function show(i){ pages.forEach((el,k)=>el.classList.toggle("on", k===i)); p=i; }
+function next(){ if (p < pages.length-1) show(p+1); else goNext(); }
+function prev(){ if (p > 0) show(p-1); else goPrev(); }
+function goNext(){
+  try{ if (window.self !== window.top){ parent.location.hash = "#cta"; return; } }catch(e){}
+  location.href = "cta-scan.html";
+}
+function goPrev(){
+  try{ if (window.self !== window.top){ parent.location.hash = "#one-person-army-end"; return; } }catch(e){}
+  location.href = "one-person-army/?at=end";
+}
+addEventListener("click", e => { if (e.target.closest("a")) return; next(); });
+addEventListener("keydown", e => {
+  if ([" ","ArrowRight","ArrowDown","PageDown","Enter"].includes(e.key)){ e.preventDefault(); next(); }
+  else if (["ArrowLeft","ArrowUp","PageUp","Backspace"].includes(e.key)){ e.preventDefault(); prev(); }
+  else if (e.key === "r" || e.key === "R"){ show(0); }
+});
+let ty=0;
+addEventListener("touchstart", e => { ty = e.touches[0].clientY; }, {passive:true});
+addEventListener("touchend", e => { const dy = e.changedTouches[0].clientY - ty; if (Math.abs(dy) > 44) (dy < 0 ? next() : prev()); }, {passive:true});
+const q = location.search;
+if (q.indexOf("at=2") >= 0) show(1);
+</script>
+</body>
+</html>

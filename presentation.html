@@ -128,7 +128,7 @@ function go(id, end){
 }
 function setNow(id){
   const d = DECKS.find(x => x.id === id);
-  now.textContent = d ? d.name : (id === "intro" ? "封面" : id);
+  now.textContent = d ? d.name : (id === "intro" ? "封面" : (id === "ai-staff" ? "AI 員工 · 15 個" : id));
   document.title = (d ? d.name : "封面") + " · AI 流水線";
 }
 function loadHash(){
@@ -139,6 +139,7 @@ function loadHash(){
     f.src = "intro.html" + (at ? "?at=" + at : "");
     setNow("intro");
   }
+  else if (id === "ai-staff"){ f.src = "ai-staff.html"; setNow("ai-staff"); }
   else if (id.slice(-4) === "-end") go(id.slice(0,-4), true);
   else go(id, false);
 }
@@ -153,6 +154,7 @@ function syncFromFrame(){
 
 f.addEventListener("load", syncFromFrame);
 addEventListener("hashchange", loadHash);
+loadHash();
 addEventListener("message", function(e){
   var d = e.data;
   if (d && d.type === "escape"){ toggleOverview(true); return; }
@@ -187,12 +189,14 @@ function row(label, small, fn){
 }
 row("封面 · 開場三版", "INTRO", () => { f.src = "intro.html"; setNow("intro"); });
 DECKS.forEach((d,i) => row(d.name, String(i+1).padStart(2,"0"), () => go(d.id, false)));
+row("AI 員工 · 15 個", "STAFF", () => { f.src = "ai-staff.html"; setNow("ai-staff"); });
 
 const ov = document.getElementById("ov");
 const ovgrid = document.getElementById("ovgrid");
 let ovBuilt = false;
 const ALL = [{ src:"intro.html", name:"封面 · 開場三版" }]
-  .concat(DECKS.map(function(d){ return { src:d.id + "/", name:d.name }; }));
+  .concat(DECKS.map(function(d){ return { src:d.id + "/", name:d.name }; }))
+  .concat([{ src:"ai-staff.html", name:"AI 員工 · 15 個" }]);
 
 function buildOverview(){
   if (ovBuilt) return;

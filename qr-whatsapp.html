@@ -10,47 +10,47 @@ body{background:
   color:#eef6f2;font-family:"LINE Seed TW","Noto Sans TC","PingFang TC",sans-serif;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   min-height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased}
-.eyebrow{font-size:clamp(13px,1.35vmin,18px);letter-spacing:.34em;color:#5d7a86;
+.eyebrow{font-size:clamp(13px,1.35vmin,18px);letter-spacing:.34em;color:#8a8060;
   text-transform:uppercase;margin-bottom:clamp(10px,1.6vmin,22px)}
 h1{font-size:clamp(26px,4.2vmin,58px);font-weight:900;letter-spacing:.02em;
   text-align:center;line-height:1.15;
   background:linear-gradient(180deg,#ffffff 30%,#bfe9d6 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  text-shadow:0 0 42px rgba(52,227,155,.18)}
+  text-shadow:0 0 42px rgba(245,215,11,.18)}
 .stage{position:relative;margin:clamp(16px,3vmin,42px) 0;
   width:clamp(300px,60vmin,760px);height:clamp(300px,60vmin,760px);
   display:grid;place-items:center;isolation:isolate}
 /* 外圈光暈（喺卡後面，唔會蓋到碼） */
 .glow{position:absolute;inset:-14%;border-radius:50%;
-  background:radial-gradient(circle,rgba(52,227,155,.34) 0%,rgba(52,227,155,.10) 42%,transparent 68%);
+  background:radial-gradient(circle,rgba(245,215,11,.34) 0%,rgba(245,215,11,.10) 42%,transparent 68%);
   filter:blur(18px);z-index:0;animation:pulse 3.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:.55;transform:scale(.96)}50%{opacity:1;transform:scale(1.04)}}
 /* 掃描光帶：走卡後面，只喺卡上下留白位見到 */
 .sweep{position:absolute;left:-6%;right:-6%;height:22%;top:0;z-index:1;
-  background:linear-gradient(180deg,rgba(52,227,155,0) 0%,rgba(52,227,155,.30) 46%,rgba(120,255,214,.45) 52%,rgba(52,227,155,.30) 58%,rgba(52,227,155,0) 100%);
+  background:linear-gradient(180deg,rgba(245,215,11,0) 0%,rgba(245,215,11,.30) 46%,rgba(255,241,150,.45) 52%,rgba(245,215,11,.30) 58%,rgba(245,215,11,0) 100%);
   filter:blur(6px);opacity:.9;animation:sweep 3.6s linear infinite}
 @keyframes sweep{0%{transform:translateY(-40%)}100%{transform:translateY(460%)}}
 /* 白卡：靜區 = 內距 + 圖本身白邊 */
 .card{position:relative;z-index:2;background:#fff;border-radius:clamp(14px,2.2vmin,28px);
   padding:clamp(20px,4.4vmin,56px);
   box-shadow:0 34px 80px rgba(0,0,0,.62),0 0 0 1px rgba(255,255,255,.10),
-             0 0 46px rgba(52,227,155,.16)}
+             0 0 46px rgba(245,215,11,.16)}
 .card img{display:block;width:clamp(190px,42vmin,540px);height:auto;image-rendering:pixelated}
 /* 四角括號（喺卡外圍，唔會壓到卡） */
 .br{position:absolute;width:clamp(22px,4vmin,54px);height:clamp(22px,4vmin,54px);
-  border:clamp(2px,.42vmin,5px) solid #34e39b;z-index:3;opacity:.92;
+  border:clamp(2px,.42vmin,5px) solid #F5D70B;z-index:3;opacity:.92;
   animation:breathe 2.8s ease-in-out infinite alternate;
-  filter:drop-shadow(0 0 10px rgba(52,227,155,.55))}
+  filter:drop-shadow(0 0 10px rgba(245,215,11,.55))}
 .br.tl{top:0;left:0;border-right:0;border-bottom:0;border-radius:14px 0 0 0}
 .br.tr{top:0;right:0;border-left:0;border-bottom:0;border-radius:0 14px 0 0}
 .br.bl{bottom:0;left:0;border-right:0;border-top:0;border-radius:0 0 0 14px}
 .br.br2{bottom:0;right:0;border-left:0;border-top:0;border-radius:0 0 14px 0}
 @keyframes breathe{from{transform:scale(1);opacity:.72}to{transform:scale(1.045);opacity:1}}
 .group{margin-top:clamp(12px,2vmin,26px);font-size:clamp(15px,2.05vmin,30px);
-  font-weight:800;color:#9fd6c2;letter-spacing:.04em;text-align:center}
-.dot{display:inline-block;width:.5em;height:.5em;border-radius:50%;background:#34e39b;
+  font-weight:800;color:#f2e3c0;letter-spacing:.04em;text-align:center}
+.dot{display:inline-block;width:.5em;height:.5em;border-radius:50%;background:#F5D70B;
   margin:0 .45em .08em .45em;vertical-align:middle;
-  box-shadow:0 0 12px #34e39b;animation:blink 1.8s ease-in-out infinite}
+  box-shadow:0 0 12px #F5D70B;animation:blink 1.8s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:.35}50%{opacity:1}}
 @media (prefers-reduced-motion:reduce){
   .sweep,.glow,.br,.dot{animation:none}

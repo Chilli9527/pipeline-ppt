@@ -63,10 +63,10 @@ body.hide .bottom{transform:translateY(6px)}
 .ovframe{position:relative;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;
   border:1px solid rgba(255,255,255,.16);background:#0A0D11;transition:.18s}
 .ovitem:hover .ovframe{border-color:var(--acc);box-shadow:0 0 0 2px rgba(198,244,50,.25)}
-.ovframe iframe{position:absolute;left:0;top:0;width:1280px;height:720px;border:0;
-  transform-origin:0 0;pointer-events:none}
-.ovitem span{display:block;margin:8px 2px 0;font-size:12.5px;color:var(--ink2);font-weight:800;
-  letter-spacing:.04em}
+.ovframe img{display:block;width:100%;height:100%;object-fit:cover;background:#0A0D11}
+.ovitem span{display:block;margin:9px 2px 0;font-size:14px;color:#E9EFF5;font-weight:800;
+  letter-spacing:.02em}
+.ovitem:hover span{color:var(--acc)}
 @media (max-width:1100px){ .ovgrid{grid-template-columns:repeat(3,1fr)} }
 @media (max-width:760px){ .ovgrid{grid-template-columns:repeat(2,1fr)} }
 
@@ -170,12 +170,32 @@ function loadHash(){
   else if (id.slice(-4) === "-end") go(id.slice(0,-4), true);
   else go(id, false);
 }
+function label(t){
+  now.textContent = t;
+  document.title = t + " · AI 流水線";
+}
 function syncFromFrame(){
   try{
     const p = f.contentWindow.location.pathname;
-    const m = p.match(/([a-z0-9-]+)\/?$/);
-    const id = m ? m[1] : "intro";
-    setNow(id === "decks" || id === "" ? "intro" : id);
+    let seg = p.split("/").filter(Boolean).pop() || "";
+    seg = seg.replace(/\.html?$/i, "");
+    let q = "";
+    try{ q = f.contentWindow.location.search || ""; }catch(e){}
+    if (!seg || seg === "decks"){ setNow("intro"); return; }
+    if (seg === "intro-seminar" || seg === "intro"){
+      if (q.indexOf("at=bio") >= 0) label("講者介紹 · 布Sir");
+      else if (q.indexOf("at=l1") >= 0) label("傳統工廠流水線");
+      else if (q.indexOf("at=l2") >= 0) label("AI 流水線 · 一人公司");
+      else setNow("intro");
+      return;
+    }
+    if (seg === "ai-staff"){
+      if (q.indexOf("at=2") >= 0) label("AI 員工 · 睇晒邊個做緊咩");
+      else setNow("ai-staff");
+      return;
+    }
+    if (seg === "cta-scan"){ setNow("cta"); return; }
+    setNow(seg);
   }catch(e){}
 }
 
@@ -222,46 +242,42 @@ row("加入 WhatsApp 群組", "CTA", () => { f.src = "cta-scan.html"; setNow("ct
 const ov = document.getElementById("ov");
 const ovgrid = document.getElementById("ovgrid");
 let ovBuilt = false;
-const ALL = [{ src:INTRO, name:"封面 · 講者 · 開場三版" }]
-  .concat(DECKS.map(function(d){ return { src:d.id + "/", name:d.name }; }))
-  .concat([{ src:"ai-staff.html", name:"AI 員工 · 15 個" }, { src:"cta-scan.html", name:"加入 WhatsApp 群組" }]);
+/* 每格自己帶去邊，唔靠陣列 index 推算（舊版最後兩格因此跳去 undefined） */
+const ALL = [
+  { img:"assets/ov/cover.jpg", name:"封面", open:function(){ f.src = INTRO; setNow("intro"); } },
+  { img:"assets/ov/bio.jpg",   name:"講者介紹 · 布Sir", open:function(){ f.src = INTRO + "&at=bio"; setNow("intro"); } },
+  { img:"assets/ov/l1.jpg",    name:"傳統工廠流水線", open:function(){ f.src = INTRO + "&at=l1"; setNow("intro"); } }
+].concat(DECKS.map(function(d){
+  return { img:"assets/ov/" + d.id + ".jpg", name:d.name, open:function(){ go(d.id, false); } };
+})).concat([
+  { img:"assets/ov/staff1.jpg", name:"AI 員工 · 15 個", open:function(){ f.src = "ai-staff.html"; setNow("ai-staff"); } },
+  { img:"assets/ov/staff2.jpg", name:"AI 員工 · 睇晒邊個做緊咩", open:function(){ f.src = "ai-staff.html?at=2"; setNow("ai-staff"); } },
+  { img:"assets/ov/cta.jpg", name:"加入 WhatsApp 群組", open:function(){ f.src = "cta-scan.html"; setNow("cta"); } }
+]);
 
 function buildOverview(){
   if (ovBuilt) return;
   ovBuilt = true;
-  const scale = 0.2;
-  ALL.forEach(function(it, i){
+  ALL.forEach(function(it){
     const b = document.createElement("button");
     b.className = "ovitem";
     const frame = document.createElement("div");
     frame.className = "ovframe";
-    const ifr = document.createElement("iframe");
-    ifr.src = it.src;
-    ifr.setAttribute("loading", "lazy");
-    ifr.setAttribute("tabindex", "-1");
-    ifr.addEventListener("load", function(){
-      try{
-        const w = frame.clientWidth / 1280;
-        ifr.style.transform = "scale(" + w + ")";
-      }catch(e){}
-    });
-    frame.appendChild(ifr);
+    const im = document.createElement("img");
+    im.src = it.img;
+    im.alt = it.name;
+    im.loading = "lazy";
+    im.decoding = "async";
+    frame.appendChild(im);
     b.appendChild(frame);
     const label = document.createElement("span");
     label.textContent = it.name;
     b.appendChild(label);
     b.onclick = function(){
       ov.classList.remove("on");
-      if (i === 0){ f.src = INTRO; setNow("intro"); }
-      else { go(DECKS[i-1].id, false); }
+      it.open();
     };
     ovgrid.appendChild(b);
-  });
-  requestAnimationFrame(function(){
-    ovgrid.querySelectorAll(".ovframe").forEach(function(fr){
-      const ifr = fr.querySelector("iframe");
-      ifr.style.transform = "scale(" + (fr.clientWidth / 1280) + ")";
-    });
   });
 }
 function toggleOverview(force){
@@ -271,6 +287,8 @@ function toggleOverview(force){
   if (on) menu.classList.remove("on");
 }
 document.getElementById("ovBtn").onclick = function(){ toggleOverview(); };
+/* 測試用：?ov=1 直接開概覽（給截圖／驗證用） */
+if (/[?&]ov(?:=1)?(?:&|$)/.test(location.search)) toggleOverview(true);
 
 addEventListener("keydown", function(e){
   if (e.key === "Escape"){

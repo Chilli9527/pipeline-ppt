@@ -113,11 +113,12 @@ body.snap .biorow{opacity:1!important;transform:none!important;transition:none!i
 .bcard .bd b{color:#C6F432;font-weight:900}
 .events{grid-column:1/-1;display:flex;flex-direction:column;gap:clamp(6px,1vh,10px);min-height:0}
 .evtitle{font-size:clamp(9px,.86vw,12px);letter-spacing:.26em;color:#7E8A86;font-weight:900}
-.evimgs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.4vw,20px)}
+.evimgs{display:grid;grid-template-columns:1.5fr 1.5fr 1fr 1fr;gap:clamp(10px,1.4vw,20px)}
 .evimgs figure{margin:0;border-radius:clamp(10px,1.1vw,16px);overflow:hidden;
   border:1px solid rgba(255,255,255,.14);background:#10151A;display:flex;flex-direction:column}
-.evimgs img{display:block;width:100%;height:clamp(96px,17vh,190px);object-fit:cover;object-position:center 34%}
-.evimgs figcaption{font-size:clamp(10px,.92vw,13px);color:#9AA6A0;padding:clamp(4px,.7vh,8px) clamp(8px,1vw,12px);font-weight:700}
+.evimgs img{display:block;width:100%;height:clamp(90px,15.5vh,180px);object-fit:contain;background:#0B0F12}
+.evimgs figure:nth-child(-n+2) img{object-fit:cover;object-position:center 36%}
+.evimgs figcaption{font-size:clamp(9px,.86vw,12.5px);color:#9AA6A0;padding:clamp(4px,.7vh,8px) clamp(8px,1vw,12px);font-weight:700}
 body.snap #bio{opacity:1!important}
 /* ── 講者介紹（滿版 · 左相右文）── */
 #bio{position:fixed;inset:0;z-index:55;opacity:0;pointer-events:none;transition:opacity .5s ease;
@@ -335,7 +336,9 @@ body.snap #bio{opacity:1!important}
       <div class="evtitle">講座實況 · HK AI CLUB</div>
       <div class="evimgs">
         <figure><img src="assets/bio-club1.jpg" alt="HK AI Club 大合照"><figcaption>HK AI Club 大合照</figcaption></figure>
-        <figure><img src="assets/bio-club2.jpg" alt="HK AI Club 預先發佈日"><figcaption>HK AI Club 預先發佈日 · 團隊</figcaption></figure>
+        <figure><img src="assets/bio-club2.jpg" alt="HK AI Club 預先發佈日"><figcaption>預先發佈日 · 團隊</figcaption></figure>
+        <figure><img src="assets/club-poster-200.jpg" alt="AI Club Launch Day 200 人報名"><figcaption>LAUNCH DAY · 200 人報名</figcaption></figure>
+        <figure><img src="assets/club-poster-chronicle.jpg" alt="AI Club 宣傳 The AI Chronicle"><figcaption>The AI Chronicle</figcaption></figure>
       </div>
     </div>
     <div class="biofoot">今日唔講理論 · 全部係我自己跑緊嘅系統</div>

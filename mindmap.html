@@ -11,9 +11,23 @@ body{overflow-x:hidden;font-family:"Noto Sans TC","PingFang TC",-apple-system,"H
   color:var(--ink);min-height:100vh;padding:26px 18px 60px;
   -webkit-font-smoothing:antialiased}
 .wrap{max-width:1500px;margin:0 auto}
+.hero{margin-bottom:26px}
+h1{font-size:clamp(40px,7.4vw,116px);font-weight:900;color:#fff6e3;line-height:1.02;
+  letter-spacing:.01em;text-shadow:0 5px 0 rgba(60,32,8,.5),0 14px 34px rgba(40,18,4,.45);
+  margin-bottom:26px}
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.ncard{position:relative;background:var(--c);border-radius:26px;padding:44px 22px 34px;
+  display:flex;flex-direction:column;align-items:center;transform:rotate(var(--r,0deg));
+  box-shadow:0 18px 34px rgba(40,18,4,.46),inset 0 2px 0 rgba(255,255,255,.22)}
+.nnum{font-size:clamp(88px,9vw,132px);font-weight:900;color:#fff;line-height:.86;
+  letter-spacing:-.02em;text-shadow:0 6px 0 rgba(0,0,0,.22)}
+.nlab{margin-top:16px;font-size:clamp(17px,1.5vw,24px);font-weight:800;
+  color:rgba(255,255,255,.95);letter-spacing:.04em;text-align:center}
+.ntape{position:absolute;top:-14px;left:50%;transform:translateX(-50%) rotate(-4deg);
+  background:#e9dcb6;color:#6f5a2e;font-size:13px;font-weight:900;letter-spacing:.12em;
+  padding:5px 14px;box-shadow:0 3px 8px rgba(40,18,4,.35);
+  clip-path:polygon(3% 10%,97% 0,100% 90%,0 100%);white-space:nowrap}
 .top{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:22px}
-h1{font-size:clamp(22px,3.4vw,34px);font-weight:900;color:#fff5df;
-  text-shadow:0 3px 0 rgba(60,32,8,.45);letter-spacing:.02em}
 .top .sp{flex:1}
 .btn{border:0;cursor:pointer;font:inherit;font-weight:800;font-size:14px;
   padding:10px 16px;border-radius:12px;background:rgba(255,246,228,.94);color:#5a3f1d;
@@ -99,6 +113,11 @@ h1{font-size:clamp(22px,3.4vw,34px);font-weight:900;color:#fff5df;
 @media (max-width:700px){
   .dept{transform:none}      /* 窄螢幕唔轉，避免長卡旋轉造成橫向溢出 */
 }
+@media (max-width:760px){
+  .nums{grid-template-columns:1fr;gap:26px}
+  .ncard{transform:none;padding:26px 18px 20px}
+  .nnum{font-size:clamp(90px,26vw,150px)}
+}
 @media (max-width:640px){
   .top{gap:10px}
   h1{flex:1 1 100%}
@@ -132,8 +151,15 @@ h1{font-size:clamp(22px,3.4vw,34px);font-weight:900;color:#fff5df;
   .root{padding:20px 16px} .root b{font-size:25px}
 }
 </style></head><body><div class="wrap">
-<div class="top">
-  <h1>一人公司架構</h1><span class="sp"></span>
+<header class="hero">
+  <h1>AI Lion 一人公司架構</h1>
+  <div class="nums">
+    <div class="ncard" style="--c:#2f3b5c;--r:-2.2deg"><span class="ntape">AGENTS</span><span class="nnum">3</span><span class="nlab">AI Agents</span></div>
+    <div class="ncard" style="--c:#cf4f22;--r:1.4deg"><span class="ntape">PIPELINES</span><span class="nnum">9</span><span class="nlab">條 AI 流水線</span></div>
+    <div class="ncard" style="--c:#4a8a55;--r:-1.1deg"><span class="ntape">STAFF</span><span class="nnum">17</span><span class="nlab">個 AI 員工</span></div>
+  </div>
+</header>
+<div class="top"><span class="sp"></span>
   <button class="btn" id="expand">全部打開</button>
   <button class="btn" id="collapse">全部收起</button>
 </div>

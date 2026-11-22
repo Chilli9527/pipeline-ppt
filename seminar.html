@@ -129,7 +129,7 @@ function go(id, end){
 }
 function setNow(id){
   const d = DECKS.find(x => x.id === id);
-  now.textContent = d ? d.name : (id === "intro" ? "封面" : id);
+  now.textContent = d ? d.name : (id === "intro" ? "封面" : (id === "cta" ? "加入 WhatsApp 群組" : id));
   document.title = (d ? d.name : "封面") + " · AI 流水線";
 }
 function loadHash(){
@@ -188,12 +188,14 @@ function row(label, small, fn){
 }
 row("封面 · 講者 · 開場三版", "INTRO", () => { f.src = INTRO; setNow("intro"); });
 DECKS.forEach((d,i) => row(d.name, String(i+1).padStart(2,"0"), () => go(d.id, false)));
+row("加入 WhatsApp 群組", "CTA", () => { f.src = "cta-scan.html"; setNow("cta"); });
 
 const ov = document.getElementById("ov");
 const ovgrid = document.getElementById("ovgrid");
 let ovBuilt = false;
 const ALL = [{ src:INTRO, name:"封面 · 講者 · 開場三版" }]
-  .concat(DECKS.map(function(d){ return { src:d.id + "/", name:d.name }; }));
+  .concat(DECKS.map(function(d){ return { src:d.id + "/", name:d.name }; }))
+  .concat([{ src:"cta-scan.html", name:"加入 WhatsApp 群組" }]);
 
 function buildOverview(){
   if (ovBuilt) return;

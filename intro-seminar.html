@@ -110,40 +110,44 @@ body.collapsed #navopen{opacity:1;pointer-events:auto}
 
 body.snap .biorow{opacity:1!important;transform:none!important;transition:none!important}
 body.snap #bio{opacity:1!important}
-/* ── 講者介紹（滿版）── */
+/* ── 講者介紹（滿版 · 左相右文）── */
 #bio{position:fixed;inset:0;z-index:55;opacity:0;pointer-events:none;transition:opacity .5s ease;
   display:flex;align-items:center;justify-content:center;overflow:hidden;
   background:radial-gradient(120% 100% at 84% 0%,#182027,#0A0D10 62%)}
 #bio.on{opacity:1;pointer-events:auto}
-.biowrap{position:relative;z-index:2;width:96%;max-width:2400px;height:min(96%,1010px);
-  display:grid;grid-template-rows:auto auto auto auto auto;align-content:space-between;gap:clamp(10px,2vh,26px);margin:0 auto}
-.biohead{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
-  border-bottom:1px solid rgba(255,255,255,.13);padding-bottom:clamp(12px,2.2vh,26px)}
-.bioname{font-size:clamp(32px,4.2vw,62px);font-weight:900;letter-spacing:-.02em;color:#F4F7F2;line-height:1}
-.bioname small{display:block;font-size:clamp(9px,.9vw,12px);letter-spacing:.28em;color:#8892A0;font-weight:800;margin-top:7px}
-.biomid{flex:1;text-align:center;font-size:clamp(11px,1.1vw,15px);letter-spacing:.34em;color:#62706A;font-weight:900}
-.biotag{font-size:clamp(15px,1.6vw,24px);color:#C6F432;font-weight:800;letter-spacing:.01em;text-align:right;line-height:1.2}
+.biowrap{position:relative;z-index:2;width:96%;max-width:2400px;height:min(96%,1010px);margin:0 auto;
+  display:grid;grid-template-columns:minmax(0,.42fr) minmax(0,1fr);gap:clamp(20px,2.6vw,54px);align-items:stretch}
+.bioleft{display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1.3vh,14px);min-height:0;height:100%;justify-content:space-between;padding:4px 0}
+.biophoto{flex:1 1 auto;min-height:0;height:auto;aspect-ratio:3/4;width:auto;max-width:100%;border-radius:clamp(12px,1.4vw,22px);
+  overflow:hidden;background:#10151A;border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 24px 70px rgba(0,0,0,.5),0 0 0 5px rgba(198,244,50,.10)}
+.biophoto img{width:100%;height:100%;object-fit:contain;display:block}
+.bioname{font-size:clamp(26px,2.9vw,44px);font-weight:900;letter-spacing:-.02em;color:#F4F7F2;line-height:1;margin-top:4px;text-align:center}
+.bioname small{display:block;font-size:clamp(9px,.85vw,12px);letter-spacing:.28em;color:#8892A0;font-weight:800;margin-top:6px}
+.biotag{font-size:clamp(12px,1.2vw,17px);color:#C6F432;font-weight:900;letter-spacing:.02em;text-align:center}
+.biorightcol{display:flex;flex-direction:column;justify-content:space-between;gap:clamp(12px,2vh,24px);min-height:0;height:100%}
+.biointro{font-size:clamp(14px,1.42vw,21px);line-height:1.55;color:#C9D2CB;max-width:92%;font-weight:600}
 .biocards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.5vw,20px)}
 .bcard{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.13);border-radius:15px;
-  padding:clamp(16px,2.6vh,30px) clamp(16px,1.9vw,28px);text-decoration:none;color:inherit;
+  padding:clamp(14px,2.2vh,26px) clamp(14px,1.6vw,24px);text-decoration:none;color:inherit;
   display:flex;flex-direction:column;gap:5px;transition:border-color .25s,background .25s,transform .25s}
 a.bcard:hover{border-color:rgba(198,244,50,.5);background:rgba(198,244,50,.07);transform:translateY(-2px)}
-.bcard .bl{font-size:clamp(8px,.8vw,10px);letter-spacing:.24em;color:#7E8A86;font-weight:900}
-.bcard .bn{font-size:clamp(20px,2.2vw,34px);font-weight:900;color:#F4F7F2;letter-spacing:-.01em;line-height:1.12}
-.bcard .bd{font-size:clamp(11px,1.05vw,15px);color:#9AA6A0}
-.bcard .ba{font-size:clamp(10px,.95vw,12px);color:#C6F432;font-weight:800;letter-spacing:.08em;margin-top:2px}
-.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.5vw,20px)}
-.kpi{background:rgba(198,244,50,.055);border:1px solid rgba(198,244,50,.2);border-radius:15px;
-  padding:clamp(12px,2vh,22px) clamp(14px,1.6vw,24px)}
-.kpi .kv{font-size:clamp(26px,3.1vw,46px);font-weight:900;color:#C6F432;letter-spacing:-.02em;line-height:1.05}
-.kpi .kl{font-size:clamp(10px,1vw,14px);color:#9AA6A0;letter-spacing:.1em;font-weight:700;margin-top:3px}
-.credits{display:flex;flex-direction:column;gap:clamp(7px,1.3vh,13px);min-height:0}
-.ctitle{font-size:clamp(9px,.9vw,12px);letter-spacing:.26em;color:#7E8A86;font-weight:900}
-.cgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:clamp(11px,2.2vh,26px) clamp(12px,1.8vw,26px);align-content:start}
-.citem{font-size:clamp(11px,1.12vw,16px);color:#B9C3BC;line-height:1.4;padding-left:13px;position:relative}
-.citem::before{content:"";position:absolute;left:0;top:.5em;width:5px;height:5px;border-radius:50%;background:#C6F432;opacity:.75}
-.biofoot{font-size:clamp(11px,1.1vw,15px);letter-spacing:.22em;color:#7E8A86;font-weight:800;text-align:center}
+.bcard .bl{font-size:clamp(8px,.78vw,10px);letter-spacing:.24em;color:#7E8A86;font-weight:900}
+.bcard .bn{font-size:clamp(16px,1.7vw,26px);font-weight:900;color:#F4F7F2;letter-spacing:-.01em;line-height:1.12}
+.bcard .bd{font-size:clamp(10px,.92vw,12.5px);color:#9AA6A0}
+.bcard .ba{font-size:clamp(9px,.9vw,12px);color:#C6F432;font-weight:900;letter-spacing:.08em;margin-top:2px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(9px,1.3vw,18px)}
+.kpi{background:rgba(198,244,50,.06);border:1px solid rgba(198,244,50,.22);border-radius:14px;
+  padding:clamp(12px,2vh,24px) clamp(13px,1.5vw,22px)}
+.kpi .kv{font-size:clamp(20px,2.3vw,36px);font-weight:900;color:#C6F432;letter-spacing:-.02em;line-height:1.02}
+.kpi .kl{font-size:clamp(9px,.85vw,11.5px);color:#A9B4AE;letter-spacing:.08em;font-weight:800;margin-top:3px}
+.credits{display:flex;flex-direction:column;gap:clamp(7px,1.2vh,13px);min-height:0}
+.ctitle{font-size:clamp(9px,.86vw,12px);letter-spacing:.26em;color:#7E8A86;font-weight:900}
+.cgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(9px,1.5vh,17px) clamp(12px,1.7vw,26px);align-content:start}
+.citem{font-size:clamp(13px,1.25vw,18px);color:#DFE7E1;line-height:1.45;padding-left:14px;position:relative;font-weight:800}
+.citem::before{content:"";position:absolute;left:0;top:.52em;width:6px;height:6px;border-radius:50%;background:#C6F432;opacity:.85}
+.biofoot{grid-column:1/-1;font-size:clamp(10px,1vw,13.5px);letter-spacing:.22em;color:#7E8A86;font-weight:800;text-align:center}
 body.snap #bio{opacity:1!important}
 /* ── 開場兩版：傳統流水線 / AI 流水線 ── */
 #l1,#l2{position:fixed;inset:0;z-index:55;opacity:0;pointer-events:none;
@@ -274,33 +278,35 @@ body.snap #bio{opacity:1!important}
 
 <section id="bio">
   <div class="biowrap">
-    <div class="biohead">
+    <div class="bioleft">
+      <div class="biophoto"><img src="assets/bio-polyu.jpg" alt="布Sir 於香港理工大學 AI 講座"></div>
       <div class="bioname">布Sir<small>BRUCE LAM</small></div>
-      <div class="biomid">八 條 流 水 線 · 一 人 公 司</div>
       <div class="biotag">AI 一人公司實戰者</div>
     </div>
-    <div class="biocards">
-      <a class="bcard" href="https://www.youtube.com/@Itsss-AI-Bunny" target="_blank" rel="noopener">
-        <span class="bl">YOUTUBE</span><span class="bn">AI Bunny</span><span class="bd">廣東話 AI 頻道</span><span class="ba">撳入去 ↗</span>
-      </a>
-      <a class="bcard" href="https://www.youtube.com/@Itsssss-Lion-AI" target="_blank" rel="noopener">
-        <span class="bl">YOUTUBE</span><span class="bn">AI Lion</span><span class="bd">一人公司 OPC</span><span class="ba">撳入去 ↗</span>
-      </a>
-      <div class="bcard">
-        <span class="bl">受邀</span><span class="bn">理工大學</span><span class="bd">邀講師 · AI 應用講座</span><span class="ba">大專院校</span>
+    <div class="biorightcol">
+      <p class="biointro">20 年市場策劃出身，做過直銷、加盟、零售；近年主力用 AI 流水線，一個人同時營運八條業務線。</p>
+      <div class="biocards">
+        <a class="bcard" href="https://www.youtube.com/@Itsss-AI-Bunny" target="_blank" rel="noopener">
+          <span class="bl">YOUTUBE</span><span class="bn">AI Bunny</span><span class="bd">廣東話 AI 頻道</span><span class="ba">撳入去 ↗</span>
+        </a>
+        <a class="bcard" href="https://www.youtube.com/@Itsssss-Lion-AI" target="_blank" rel="noopener">
+          <span class="bl">YOUTUBE</span><span class="bn">AI Lion</span><span class="bd">一人公司 OPC</span><span class="ba">撳入去 ↗</span>
+        </a>
+        <div class="bcard">
+          <span class="bl">受邀</span><span class="bn">理工大學</span><span class="bd">邀講師 · AI 應用講座</span><span class="ba">大專院校</span>
+        </div>
       </div>
-    </div>
-    <div class="kpis">
-      <div class="kpi"><div class="kv">20 年</div><div class="kl">市場策劃經驗</div></div>
-      <div class="kpi"><div class="kv">5,000+</div><div class="kl">累計學員</div></div>
-      <div class="kpi"><div class="kv">15 家</div><div class="kl">加盟商</div></div>
-      <div class="kpi"><div class="kv">8 條</div><div class="kl">AI 流水線同時行</div></div>
-    </div>
-    <div class="credits">
-      <div class="ctitle">背書 · 過往身份</div>
-      <div class="cgrid">
+      <div class="kpis">
+        <div class="kpi"><div class="kv">20 年+</div><div class="kl">市場策劃經驗</div></div>
+        <div class="kpi"><div class="kv">10,000+</div><div class="kl">累計學員</div></div>
+        <div class="kpi"><div class="kv">1,000+</div><div class="kl">場講座 · Seminar</div></div>
+        <div class="kpi"><div class="kv">8 條</div><div class="kl">AI 流水線同時行</div></div>
+      </div>
+      <div class="credits">
+        <div class="ctitle">背書 · 過往身份</div>
+        <div class="cgrid">
         <div class="citem">阿布自動客源引流系統 創辦人</div>
-        <div class="citem">國內東西南北咖啡廳加盟店營銷 創辦人</div>
+        <div class="citem">國內咖啡廳加盟店營銷 創辦人</div>
         <div class="citem">Chilli Expert 創辦人</div>
         <div class="citem">青年人備戰社會籌委會 顧問</div>
         <div class="citem">團隊管理及營銷 資深講師</div>
@@ -309,9 +315,10 @@ body.snap #bio{opacity:1!important}
         <div class="citem">協助成立直銷公司</div>
         <div class="citem">飛鴿傳書電子咭片 創辦人</div>
         <div class="citem">易達通 創辦人</div>
-        <div class="citem">20 年市場直銷策劃經驗</div>
-        <div class="citem">學員超過 5,000 人</div>
-        <div class="citem">HK AI CLUB 發起及講者</div>
+        <div class="citem">20 年+ 市場直銷策劃經驗</div>
+        <div class="citem">累計學員超過 10,000 人</div>
+        <div class="citem">HK AI CLUB 發起人</div>
+        </div>
       </div>
     </div>
     <div class="biofoot">今日唔講理論 · 全部係我自己跑緊嘅系統</div>

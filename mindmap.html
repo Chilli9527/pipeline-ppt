@@ -16,16 +16,16 @@ h1{font-size:clamp(40px,7.4vw,116px);font-weight:900;color:#fff6e3;line-height:1
   letter-spacing:.01em;text-shadow:0 5px 0 rgba(60,32,8,.5),0 14px 34px rgba(40,18,4,.45);
   margin-bottom:26px}
 .nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
-.ncard{position:relative;background:var(--c);border-radius:26px;padding:44px 22px 34px;
+.ncard{position:relative;background:var(--c);border-radius:26px;padding:52px 22px 40px;
   display:flex;flex-direction:column;align-items:center;transform:rotate(var(--r,0deg));
   box-shadow:0 18px 34px rgba(40,18,4,.46),inset 0 2px 0 rgba(255,255,255,.22)}
 .nnum{font-size:clamp(88px,9vw,132px);font-weight:900;color:#fff;line-height:.86;
   letter-spacing:-.02em;text-shadow:0 6px 0 rgba(0,0,0,.22)}
-.nlab{margin-top:16px;font-size:clamp(17px,1.5vw,24px);font-weight:800;
+.nlab{margin-top:18px;font-size:clamp(32px,3.2vw,46px);font-weight:800;line-height:1.15;
   color:rgba(255,255,255,.95);letter-spacing:.04em;text-align:center}
 .ntape{position:absolute;top:-14px;left:50%;transform:translateX(-50%) rotate(-4deg);
-  background:#e9dcb6;color:#6f5a2e;font-size:13px;font-weight:900;letter-spacing:.12em;
-  padding:5px 14px;box-shadow:0 3px 8px rgba(40,18,4,.35);
+  background:#e9dcb6;color:#6f5a2e;font-size:clamp(18px,1.5vw,21px);font-weight:900;letter-spacing:.1em;
+  padding:6px 18px;box-shadow:0 3px 8px rgba(40,18,4,.35);
   clip-path:polygon(3% 10%,97% 0,100% 90%,0 100%);white-space:nowrap}
 .top{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:22px}
 .top .sp{flex:1}
@@ -112,8 +112,9 @@ h1{font-size:clamp(40px,7.4vw,116px);font-weight:900;color:#fff6e3;line-height:1
 }
 @media (max-width:760px){
   .nums{grid-template-columns:1fr;gap:26px}
-  .ncard{transform:none;padding:26px 18px 20px}
+  .ncard{transform:none;padding:44px 16px 34px}
   .nnum{font-size:clamp(90px,26vw,150px)}
+  .nlab{font-size:clamp(34px,9vw,46px)}
 }
 @media (max-width:640px){
   .top{gap:10px}

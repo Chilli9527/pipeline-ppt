@@ -299,7 +299,7 @@ body.collapsed #navopen{opacity:1;pointer-events:auto}
 
 <div class="shell">
   <aside id="nav">
-    <div class="brand"><b>AI 流水線</b><span>12 個章節 · v15</span></div>
+    <div class="brand"><b>AI 流水線</b><span>14 個章節 · v16</span></div>
     <button class="pinbtn" id="pinbtn" type="button">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 13.4a4.2 4.2 0 0 0 5.9 0l3-3a4.2 4.2 0 0 0-5.9-5.9l-1.7 1.7"/><path d="M13.4 10.6a4.2 4.2 0 0 0-5.9 0l-3 3a4.2 4.2 0 0 0 5.9 5.9l1.7-1.7"/></svg>
       複製分享連結
@@ -332,6 +332,8 @@ const DECKS = [
   { id:"content-pipeline-text",name:"每日自動搵爆料 · 變你嘅 Post 內容", steps:8  },
   { id:"youtube-pipeline-flow",name:"AI 幫你營運 YouTube Channel", steps:8  },
   { id:"one-person-army",       name:"組合不同流水線 · 建立你嘅一人公司軍團", steps:0  },
+  { id:"ai-staff",   name:"AI 員工 · 15 個",              steps:0, src:"ai-staff.html?next=one-person-army" },
+  { id:"ai-staff-2", name:"AI 員工 · 睇晒邊個做緊咩",      steps:0, src:"ai-staff.html?at=2&next=one-person-army" },
 ];
 
 /* 分享連結按目前網域自動計，Vercel 同 GitHub Pages 都指返自己 */
@@ -552,7 +554,7 @@ INTRO.forEach(d => {
   list.appendChild(b);
 });
 const hDecks = document.createElement("div");
-hDecks.className = "introhead"; hDecks.textContent = "九條流水線";
+hDecks.className = "introhead"; hDecks.textContent = "十一條流水線";
 list.appendChild(hDecks);
 
 DECKS.forEach(d => {
@@ -594,7 +596,7 @@ function open(id, push){
   resetLayers();
   stepsEl.style.display = "none";
   frame.src = "about:blank";
-  requestAnimationFrame(() => { frame.src = d.id + "/"; });
+  requestAnimationFrame(() => { frame.src = d.src || (d.id + "/"); });
   markActive(d.id);
   document.title = d.name + " · AI 流水線";
   if (push && location.hash.slice(1) !== d.id){
@@ -605,6 +607,10 @@ function open(id, push){
 }
 
 addEventListener("hashchange", () => open(location.hash.slice(1) || DECKS[0].id, false));
+addEventListener("message", (e) => {
+  const d = e.data;
+  if (d && d.type === "goto" && typeof d.id === "string") open(d.id.replace(/-end$/, ""), true);
+});
 document.getElementById("fs").addEventListener("click", () => {
   if (document.fullscreenElement) document.exitFullscreen();
   else document.getElementById("stagebox").requestFullscreen();

@@ -33,6 +33,17 @@ h1 .y{color:var(--green)} h1 .g{color:var(--gold)}
   .chips{grid-template-columns:repeat(2,minmax(0,1fr))}
   h1{font-size:clamp(24px,7vw,38px)}
 }
+.mapbtn{position:fixed;right:18px;bottom:134px;z-index:30;display:inline-flex;align-items:center;gap:8px;
+  padding:10px 15px;border-radius:12px;text-decoration:none;font-weight:900;font-size:13px;
+  letter-spacing:.04em;color:#C6F432;background:rgba(198,244,50,.13);
+  border:1px solid rgba(198,244,50,.42);backdrop-filter:blur(8px);
+  transition:background .18s ease,transform .18s ease,border-color .18s ease;
+  font-family:"PingFang HK","PingFang TC","Noto Sans TC",-apple-system,sans-serif}
+.mapbtn:hover{background:rgba(198,244,50,.24);border-color:rgba(198,244,50,.7);transform:translateY(-1px)}
+.mapbtn:active{transform:translateY(0) scale(.98)}
+.mapbtn svg{display:block}
+@media (max-width:640px){ .mapbtn{right:12px;bottom:124px;padding:8px 11px;font-size:12px} }
+@media print{ .mapbtn{display:none} }
 </style>
 </head>
 <body>
@@ -89,5 +100,15 @@ addEventListener("touchend", e => { const dy = e.changedTouches[0].clientY - ty;
 const q = location.search;
 if (q.indexOf("at=2") >= 0) show(1);
 </script>
+<a class="mapbtn" href="mindmap-onepage.html?v=2" target="_top" title="睇一板過架構圖">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#C6F432" stroke-width="2.1"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="9" y="3" width="6" height="5" rx="1.2"/>
+    <rect x="2.5" y="16" width="6" height="5" rx="1.2"/>
+    <rect x="15.5" y="16" width="6" height="5" rx="1.2"/>
+    <path d="M12 8v4M5.5 16v-2h13v2"/>
+  </svg>
+  架構圖 · 一板過
+</a>
 </body>
 </html>

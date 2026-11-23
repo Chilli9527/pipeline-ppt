@@ -33,16 +33,18 @@ h1 .y{color:var(--green)} h1 .g{color:var(--gold)}
   .chips{grid-template-columns:repeat(2,minmax(0,1fr))}
   h1{font-size:clamp(24px,7vw,38px)}
 }
-.mapbtn{position:fixed;right:18px;bottom:134px;z-index:30;display:inline-flex;align-items:center;gap:8px;
-  padding:10px 15px;border-radius:12px;text-decoration:none;font-weight:900;font-size:13px;
-  letter-spacing:.04em;color:#C6F432;background:rgba(198,244,50,.13);
-  border:1px solid rgba(198,244,50,.42);backdrop-filter:blur(8px);
-  transition:background .18s ease,transform .18s ease,border-color .18s ease;
-  font-family:"PingFang HK","PingFang TC","Noto Sans TC",-apple-system,sans-serif}
-.mapbtn:hover{background:rgba(198,244,50,.24);border-color:rgba(198,244,50,.7);transform:translateY(-1px)}
+.hrow{display:flex;align-items:center;flex-wrap:wrap;gap:clamp(16px,2.6vw,44px);
+  margin-bottom:clamp(6px,1.2vh,14px)}
+.hrow h1{margin-bottom:0}
+.mapbtn{display:inline-flex;align-items:center;gap:9px;white-space:nowrap;
+  padding:clamp(9px,1.1vh,13px) clamp(14px,1.4vw,20px);border-radius:12px;text-decoration:none;
+  font-weight:900;font-size:clamp(12px,1.05vw,15px);letter-spacing:.04em;color:#C6F432;
+  background:rgba(198,244,50,.13);border:1px solid rgba(198,244,50,.45);
+  backdrop-filter:blur(8px);transition:background .18s ease,transform .18s ease,border-color .18s ease}
+.mapbtn:hover{background:rgba(198,244,50,.24);border-color:rgba(198,244,50,.72);transform:translateY(-1px)}
 .mapbtn:active{transform:translateY(0) scale(.98)}
-.mapbtn svg{display:block}
-@media (max-width:640px){ .mapbtn{right:12px;bottom:124px;padding:8px 11px;font-size:12px} }
+.mapbtn svg{display:block;flex:0 0 auto}
+@media (max-width:860px){ .hrow{gap:12px} .mapbtn{font-size:12px;padding:8px 12px} }
 @media print{ .mapbtn{display:none} }
 </style>
 </head>
@@ -50,7 +52,17 @@ h1 .y{color:var(--green)} h1 .g{color:var(--gold)}
 
 <section class="page on" id="p1">
   <div class="kick">TEAM · AI 員工</div>
-  <h1>15 個 <span class="y">AI 員工</span>，唔使請人</h1>
+  <div class="hrow"><h1>15 個 <span class="y">AI 員工</span>，唔使請人</h1>
+    <a class="mapbtn" href="mindmap-onepage.html?v=2" target="_top" title="睇一板過架構圖">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#C6F432" stroke-width="2.1"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="9" y="3" width="6" height="5" rx="1.2"/>
+        <rect x="2.5" y="16" width="6" height="5" rx="1.2"/>
+        <rect x="15.5" y="16" width="6" height="5" rx="1.2"/>
+        <path d="M12 8v4M5.5 16v-2h13v2"/>
+      </svg>
+      你的 AI 員工
+    </a></div>
   <p class="sub">每個負責一條線：剪片、出圖、寫字、配音、查數、發佈、客服；有任務就開工，做完回報。</p>
   <div class="shot"><img src="assets/ai-staff-team.jpg" alt="AI 員工團隊"></div>
   <div class="foot">你唔係請人，你係請一隊唔會放假嘅 AI</div>
@@ -58,7 +70,17 @@ h1 .y{color:var(--green)} h1 .g{color:var(--gold)}
 
 <section class="page" id="p2">
   <div class="kick">CONTROL ROOM · 調度台</div>
-  <h1>一版睇晒<span class="g">邊個做緊咩</span></h1>
+  <div class="hrow"><h1>一版睇晒<span class="g">邊個做緊咩</span></h1>
+    <a class="mapbtn" href="mindmap-onepage.html?v=2" target="_top" title="睇一板過架構圖">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#C6F432" stroke-width="2.1"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="9" y="3" width="6" height="5" rx="1.2"/>
+        <rect x="2.5" y="16" width="6" height="5" rx="1.2"/>
+        <rect x="15.5" y="16" width="6" height="5" rx="1.2"/>
+        <path d="M12 8v4M5.5 16v-2h13v2"/>
+      </svg>
+      你的 AI 員工
+    </a></div>
   <p class="sub">等你批幾多項、邊個做緊、邊個完成——同一個畫面，唔使逐個問。</p>
   <div class="shot"><img src="assets/ai-staff-board.jpg" alt="AI 員工任務看板"></div>
   <div class="chips">
@@ -100,15 +122,6 @@ addEventListener("touchend", e => { const dy = e.changedTouches[0].clientY - ty;
 const q = location.search;
 if (q.indexOf("at=2") >= 0) show(1);
 </script>
-<a class="mapbtn" href="mindmap-onepage.html?v=2" target="_top" title="睇一板過架構圖">
-  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#C6F432" stroke-width="2.1"
-       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <rect x="9" y="3" width="6" height="5" rx="1.2"/>
-    <rect x="2.5" y="16" width="6" height="5" rx="1.2"/>
-    <rect x="15.5" y="16" width="6" height="5" rx="1.2"/>
-    <path d="M12 8v4M5.5 16v-2h13v2"/>
-  </svg>
-  架構圖 · 一板過
-</a>
+
 </body>
 </html>

@@ -70,14 +70,19 @@ body.hide .bottom{transform:translateY(6px)}
 @media (max-width:1100px){ .ovgrid{grid-template-columns:repeat(3,1fr)} }
 @media (max-width:760px){ .ovgrid{grid-template-columns:repeat(2,1fr)} }
 
-.partners{position:fixed;right:14px;top:60px;z-index:21;display:flex;align-items:center;gap:9px;
-  background:rgba(255,255,255,.95);border-radius:12px;padding:7px 12px;
-  box-shadow:0 8px 26px rgba(0,0,0,.42);pointer-events:none}
-.partners img{display:block;width:auto;border-radius:3px}
-.partners img:nth-of-type(1){height:52px}
-.partners img:nth-of-type(2){height:40px}
-.partners .pl{width:1px;height:34px;background:rgba(0,0,0,.16)}
-@media (max-width:640px){ .partners{top:56px;right:10px;padding:5px 8px;gap:6px} .partners img:nth-of-type(1){height:30px}.partners img:nth-of-type(2){height:24px} }
+.partners{position:fixed;right:18px;top:62px;z-index:21;display:flex;align-items:center;gap:16px;
+  pointer-events:none}
+.partners .plate{display:block;background:#fff;border-radius:12px;padding:8px 12px;
+  box-shadow:0 10px 26px rgba(0,0,0,.45)}
+.partners .plate.dark{background:rgba(8,10,13,.55);border-radius:14px;padding:7px 11px;
+  box-shadow:0 8px 22px rgba(0,0,0,.35);backdrop-filter:blur(3px)}
+.partners img{display:block;width:auto}
+.partners .plate img{height:78px}
+.partners .plate.dark img{height:60px}
+@media (max-width:640px){
+  /* 窄螢幕：標題同底部字都會被遮，索性收起（簡報用大螢幕） */
+  .partners{display:none}
+}
 @media print{ .partners{display:none} }
 #stepBtn{position:fixed;right:18px;bottom:74px;z-index:22;width:46px;height:46px;border-radius:50%;
   border:1px solid rgba(255,255,255,.22);background:rgba(198,244,50,.16);color:#C6F432;
@@ -107,9 +112,8 @@ body.hide .bottom{transform:translateY(6px)}
 </div>
 
 <div class="partners" aria-label="合辦及贊助">
-  <img src="assets/logo-aip.jpg" alt="亞洲商業 IP 聯盟">
-  <span class="pl"></span>
-  <img src="assets/logo-lion-ai.jpg" alt="Lion AI 獅子智能">
+  <span class="plate"><img src="assets/logo-aip.png" alt="亞洲商業 IP 聯盟"></span>
+  <span class="plate dark"><img src="assets/logo-lion-ai.png" alt="Lion AI 獅子智能"></span>
 </div>
 
 <button id="stepBtn" type="button" title="下一步 / 下一條">↓</button>

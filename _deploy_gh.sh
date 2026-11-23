@@ -64,10 +64,10 @@ if command -v gh >/dev/null 2>&1; then
         if [ "$commit" = "$SHA" ]; then
           ok "build built（$commit · 完成 $(date '+%H:%M:%S')）"; break
         fi
-        warn "build 完成但係舊 commit（$commit ≠ $SHA），繼續等"
+        warn "build 完成但係舊 commit（${commit} ≠ ${SHA}），繼續等"
         ;;
       errored|failed)
-        die "GitHub Pages build 失敗（commit $commit）→ 去 https://github.com/$REPO/actions 睇 log" ;;
+        die "GitHub Pages build 失敗（commit ${commit}）→ 去 https://github.com/${REPO}/actions 睇 log" ;;
       "")
         warn "攞唔到 build 狀態，改用 HTTP 比對判斷" ;;
       *)

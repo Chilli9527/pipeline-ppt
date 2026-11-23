@@ -240,7 +240,7 @@ function row(label, small, fn){
 }
 row("封面 · 講者 · 開場三版", "INTRO", () => { f.src = INTRO; setNow("intro"); });
 DECKS.forEach((d,i) => row(d.name, String(i+1).padStart(2,"0"), () => go(d.id, false)));
-row("AI 員工 · 15 個", "STAFF", () => open("ai-staff"));
+row("AI 員工 · 17 個", "STAFF", () => open("ai-staff"));
 row("加入 WhatsApp 群組", "CTA", () => { f.src = "cta-scan.html"; setNow("cta"); });
 
 const ov = document.getElementById("ov");
@@ -254,7 +254,7 @@ const ALL = [
 ].concat(DECKS.map(function(d){
   return { img:"assets/ov/" + d.id + ".jpg", name:d.name, open:function(){ go(d.id, false); } };
 })).concat([
-  { img:"assets/ov/staff1.jpg", name:"AI 員工 · 15 個", open:function(){ open("ai-staff"); } },
+  { img:"assets/ov/staff1.jpg", name:"AI 員工 · 17 個", open:function(){ open("ai-staff"); } },
   { img:"assets/ov/staff2.jpg", name:"AI 員工 · 睇晒邊個做緊咩", open:function(){ open("ai-staff-2"); } },
   { img:"assets/ov/cta.jpg", name:"加入 WhatsApp 群組", open:function(){ f.src = "cta-scan.html"; setNow("cta"); } }
 ]);

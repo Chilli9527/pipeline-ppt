@@ -113,12 +113,12 @@ body.snap .biorow{opacity:1!important;transform:none!important;transition:none!i
 .bcard .bd b{color:#C6F432;font-weight:900}
 .events{grid-column:1/-1;display:flex;flex-direction:column;gap:clamp(6px,1vh,10px);min-height:0}
 .evtitle{font-size:clamp(9px,.86vw,12px);letter-spacing:.26em;color:#7E8A86;font-weight:900}
-.evimgs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(10px,1.4vw,20px)}
-.evimgs figure:nth-child(1),.evimgs figure:nth-child(2){grid-column:span 3}
-.evimgs figure:nth-child(n+3){grid-column:span 2}
+.evimgs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(10px,1.2vw,18px);align-items:stretch}
 .evimgs figure{margin:0;border-radius:clamp(10px,1.1vw,16px);overflow:hidden;
   border:1px solid rgba(255,255,255,.14);background:#10151A;display:flex;flex-direction:column}
-.evimgs img{display:block;width:100%;height:clamp(84px,15.4vh,166px);object-fit:cover;object-position:center 42%}
+/* 完整顯示整張相（唔裁切）；太空位用同背景色，肉眼睇唔出框 */
+.evimgs img{display:block;width:100%;height:clamp(140px,27vh,300px);object-fit:contain;
+  object-position:center center;background:#0B0F14}
 .evimgs figcaption{font-size:clamp(9px,.86vw,12.5px);color:#9AA6A0;padding:clamp(4px,.7vh,8px) clamp(8px,1vw,12px);font-weight:700}
 
 @media (max-height:830px){
@@ -142,7 +142,7 @@ body.snap .biorow{opacity:1!important;transform:none!important;transition:none!i
   .citem{font-size:11.4px;padding-left:10px;line-height:1.35}
   .citem::before{width:4px;height:4px;top:.5em}
   .evimgs{gap:6px}
-  .evimgs img{height:88px}
+  .evimgs img{height:clamp(92px,17vh,150px)}
   .evimgs figcaption{font-size:9px;padding:2px 7px}
   .biofoot{font-size:9.5px}
 }

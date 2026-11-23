@@ -92,52 +92,45 @@ ul.rows .v em{font-style:normal;color:var(--gold);font-weight:700}
 <div class="bar" id="bar"></div>
 <script>
 const PAGES = [
- {k:"收費方案 · 2026-11-22", h:`AI 流水線<br><span class="y">兩個人嘅價錢</span>，開<span class="g">八條線</span>`, l:"Plan A 每月起兩條，舊線我養；Plan B 想快啲全面接手。你先揀線，我幫你起。", type:"cover",
-  foot:'<span><b>Plan A</b> HK$3,000 / 月</span><span><b>Plan B</b> HK$5,000 / 月</span><span><b class="y">創始位</b> HK$2,000（限 5 位）</span>'},
+ {k:"收費方案 · 2026-11-23", h:`AI 流水線<br><span class="y">一次過起好</span>，之後<span class="g">月月養</span>`, l:"我幫你將 3 個 AI Agents 同 AI 員工一次過裝入你間公司。起好之後，每月少少維護費包養。", type:"cover",
+  foot:'<span><b>全包</b> HK$16,800 · 8 條線</span><span><b>半包</b> HK$8,800 · 4 條線</span><span><b class="y">維護</b> HK$1,000 / 月</span>'},
 
- {k:"第一步", h:`你先<span class="y">揀線</span>`, l:"八條線任你揀。每條線交付：已跑通嘅流水線 + 一頁使用說明 + 你自己個帳號權限。帳號齊嘅話，每條 2–4 個鐘交付。", type:"lines",
+ {k:"八條線菜單", h:`八條線，<span class="y">全開定揀</span>`, l:"每條線交付：已跑通嘅流水線 + 一頁使用說明 + 你自己個帳號權限。帳號齊嘅話，每條 2–4 個鐘交付。", type:"lines",
   items:["一條片出齊平台","AI 客戶開發","素材變內容","取代付費工具","開活動","建系統","每日自動搵料","營運 YouTube"]},
 
- {k:"Plan A", h:`每月起兩條，<span class="y">舊線我養</span>`, price:"HK$3,000", unit:"/ 月", tag:"創始位 HK$2,000（限 5 位）", type:"price",
-  bullets:["每月起新線 2 條","舊線全維護·48 小時回復","布Sir 15 分鐘驗收","流水線＋說明＋權限"]},
+ {k:"全包 · 一次過起好", h:`8 條線全開，<span class="y">3 Agents ＋ 17 員工</span>`, price:"HK$16,800", unit:"一次過 · 分兩期", tag:"8 條線全開 · 3 個月內交齊", type:"price",
+  bullets:["第一期 HK$8,800 開工","第二期 HK$8,000 交付齊","分階段交付：核心先行","流水線＋說明＋權限"]},
 
- {k:"Plan A · 包咩", h:`月費包含<span class="y">四樣</span>`, type:"cards", items:[
-   ["01","每月起新線 2 條","由八條線菜單揀；帳號齊嘅話每條 2–4 個鐘交付。"],
-   ["02","舊線全維護","已起嘅線我負責養：出事 48 小時內回復；每條線每月修復封頂 3 次；加急 HK$500 / 次。"],
-   ["03","質素關卡","每條新線出街前布Sir 親自驗收（15 分鐘 checklist），唔合格唔交付。"],
+ {k:"全包 · 包咩", h:`一次過<span class="y">四樣</span>`, type:"cards", items:[
+   ["01","3 個 AI Agents＋17 個 AI 員工","調度台一板睇晒：邊個做緊咩、等你批、已完成。"],
+   ["02","8 條線全開","唔使揀，全開。分階段交付：頭兩條核心先行，3 個月內交齊。"],
+   ["03","質素關卡","每條線出街前布Sir 親自驗收，唔合格唔交付。"],
    ["04","交付物","已跑通嘅流水線 + 一頁使用說明 + 客自己個帳號權限。"]]},
 
- {k:"Plan A · 節奏", h:`一個月<span class="y">四步</span>`, type:"rows", items:[
-   ["Week 1","揀 2 條線 → 確認目標（呢條線幫你慳咩）→ 開工"],
-   ["Week 1–2","起線：學生執行，布Sir 驗收"],
-   ["Week 2–3","舊線巡檢（被動，出事先動）"],
-   ["月底","15 分鐘成果快照：慳咗幾多鐘 / 幾多錢"]]},
+ {k:"半包 · 揀 4 條", h:`預算緊啲？<span class="y">揀 4 條</span>`, price:"HK$8,800", unit:"一次過 · 分兩期", tag:"4 條線任揀 · 分兩期（4,400 ＋ 4,400）", type:"price",
+  bullets:["保險 agent 有推薦組合","頭兩條 2 星期交付","補差價可升全包","流水線＋說明＋權限"]},
 
- {k:"Plan A · 邊界", h:`唔包咩，<span class="y">寫入條款</span>`, type:"rows", items:[
-   ["支援範圍","無限 helpdesk 唔包 — 支援以「線唔郁」為限"],
-   ["額外新線","每月超過 2 條，按 HK$1,500 / 條另計"],
-   ["大改結構","屬新需求，另計"],
-   ["客自己改爛","修復照包，但會記錄"]]},
+ {k:"半包 · 推薦組合", h:`保險 agent，直接用<span class="y">呢 4 條</span>`, l:"唔想逐條揀？呢個組合為保險 agent 而設，開箱即用。", type:"cards", items:[
+   ["01","AI 客戶開發","搵 contact、睇網站、自動跟進，搵客唔使逐個手做。"],
+   ["02","每日自動搵料","每日自動搵話題，變成你嘅 Post 內容。"],
+   ["03","素材變內容","舊素材一鍵翻新：一段片變齊所有平台。"],
+   ["04","開活動","講座、Kick-off、活動宣傳一條龍。"]]},
 
- {k:"創始位", h:`HK$2,000 嘅分別：<span class="y">平 1,000</span>，換三件`, l:"內容完全一樣。只係綁條件交換三件套。5 位滿之後，只收 HK$3,000。", type:"cards", items:[
-   ["01","每月 15 分鐘成果快照","慳咗幾多鐘、幾多錢，白紙黑字。"],
-   ["02","第 3 個月尾 50 字以上真實見證","你講嘅話，我可以用。"],
-   ["03","介紹權 2 個","介紹兩位同樣想慳時間嘅老闆。"]]},
+ {k:"升級路徑", h:`半包用落想加？<span class="g">補差價升全包</span>`, type:"rows", items:[
+   ["補 HK$8,000","直接升全包：8 條線全開，唔使重頭再計"],
+   ["90 日內","升級價 90 日內有效，過咗要重新報價"],
+   ["已交嘅線","全部保留，唔使重新設定"]]},
 
- {k:"Plan B", h:`想快啲全面接手，<span class="g">坐快線</span>`, price:"HK$5,000", unit:"/ 月", tag:"Plan A 全部 ＋ 以下四樣", type:"price",
-  bullets:["每月起新線 4 條","每月 30 分鐘 1-on-1","優先排期","線組合建議"]},
+ {k:"維護 · 月費", h:`起好之後，<span class="y">每月 HK$1,000</span> 養晒`, price:"HK$1,000", unit:"/ 月", tag:"全包半包統一 · 年繳 HK$10,000", type:"price",
+  bullets:["每月 10 個修改請求","出事 48 小時內回復","超出 HK$500 / 項","加急 HK$500 / 次"]},
 
- {k:"Plan B · 加碼", h:`多<span class="g">四樣</span>`, type:"cards", items:[
-   ["01","每月起 4 條線","唔係 2 條。3 個月就有 12 條線行緊。"],
-   ["02","每月 30 分鐘 1-on-1","唔止快照：面對面睇數據，決定下個月起邊條。"],
-   ["03","優先排期","新線起得快過 Plan A 客。"],
-   ["04","線組合建議","布Sir 按你生意，主動建議起線次序：先搵客，後自動化。"]]},
+ {k:"維護 · 邊界", h:`唔包咩，<span class="y">寫入條款</span>`, l:"按工作量計，唔按員工頭數計 — 一個請求一手，錄得清清楚楚。", type:"rows", items:[
+   ["支援範圍","每月 10 個修改請求封頂，超出 HK$500 / 項"],
+   ["新員工／新線","唔包 — 加線 HK$1,500 / 條另計"],
+   ["大改結構","屬新需求，另行報價"],
+   ["起計日","維護月費由第二期收妥後開始計"]]},
 
- {k:"Plan B · 對象", h:`Plan B 係畀<span class="g">兩種人</span>`, type:"cards", items:[
-   ["01","生意已經好忙","想一次過幾條線一齊行，唔想逐條等。"],
-   ["02","見過 Plan A 成果","想加碼嘅升級客：A → B 有升級路徑。"]]},
-
- {k:"下一步", h:`揀 <span class="y">2 條線</span>，我幫你起`, l:"你只需要講：邊兩條線、想慳咩。其餘我處理。", type:"cta", items:[["01","你講兩條線","邊兩條、想慳咩，講清楚就得。"],["02","我開工","學生執行，布Sir 驗收，每條 2–4 個鐘。"],["03","Week 2 交付","流水線 + 一頁說明 + 你個帳號權限。"]]}
+ {k:"下一步", h:`揀<span class="y">全包定半包</span>，我幫你起`, l:"你只需要講：全包定半包、揀邊 4 條、想慳咩。其餘我處理。", type:"cta", items:[["01","你揀 package","全包 8 條，定半包揀 4 條（保險 agent 有現成組合）。"],["02","我開工","收第一期開工，分階段交付，每條 2–4 個鐘。"],["03","起好之後","每月 HK$1,000 維護，10 手封頂，48 小時回復。"]]}
 ];
 
 const stage=document.getElementById('stage');
@@ -157,7 +150,7 @@ function render(){
   if(p.type==='cover'&&p.foot) h+='<div class="footline">'+p.foot+'</div>';
   if(p.type==='price'){
     h+='<div class="price"><span class="big">'+p.price+'</span><span class="unit">'+p.unit+'</span></div>';
-    h+='<div style="margin-top:18px"><span class="tag'+(p.tag.indexOf('Plan A 全部')===0?' gold':'')+'">'+p.tag+'</span></div>';
+    h+='<div style="margin-top:18px"><span class="tag'+(p.tag.indexOf('維護')===0?' gold':'')+'">'+p.tag+'</span></div>';
     if(p.bullets){h+='<div class="grid four" style="margin-top:34px">';p.bullets.forEach(t=>{h+='<div class="card lit"><h3>'+t+'</h3></div>';});h+='</div>';}
   }
   if(p.type==='lines'){

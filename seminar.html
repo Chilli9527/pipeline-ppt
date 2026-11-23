@@ -159,7 +159,7 @@ function go(id, end){
 }
 function setNow(id){
   const d = DECKS.find(x => x.id === id);
-  now.textContent = d ? d.name : (id === "intro" ? "封面" : (id === "cta" ? "加入 WhatsApp 群組" : (id === "ai-staff" ? "AI 員工 · 15 個" : id)));
+  now.textContent = d ? d.name : (id === "intro" ? "封面" : (id === "cta" ? "加入 WhatsApp 群組" : (id === "ai-staff" ? "AI 員工 · 17 個" : id)));
   document.title = (d ? d.name : "封面") + " · AI 流水線";
 }
 const NEXT_AFTER_STAFF = "cta";   /* AI 員工之後去邊：呢個 shell 去 CTA */

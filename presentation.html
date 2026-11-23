@@ -131,7 +131,7 @@ function setNow(id){
   const d = DECKS.find(x => x.id === id);
   now.textContent = d ? d.name
     : (id === "intro" ? "封面"
-    : (id === "ai-staff" ? "AI 員工 · 15 個"
+    : (id === "ai-staff" ? "AI 員工 · 17 個"
     : (id === "cta" ? "加入 WhatsApp 群組" : id)));
   document.title = (d ? d.name : (id === "cta" ? "加入 WhatsApp 群組" : "封面")) + " · AI 流水線";
 }

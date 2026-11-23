@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 流水線 · Infographic 版</title>
+<style>
+:root{
+  --navy:#1e2a5a; --ink:#25314f; --dim:#7c86a6;
+  --blue:#3b82f6; --purple:#8b5cf6; --green:#10b981; --amber:#f59e0b; --rose:#f43f5e; --cyan:#06b6d4;
+  --card:#ffffff; --line:#e3e9f7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",-apple-system,sans-serif;
+  background:linear-gradient(150deg,#eaf2ff 0%,#f6f3ff 38%,#fff 100%);
+  color:var(--ink); overflow:hidden;
+}
+/* pastel blobs */
+body::before,body::after{content:"";position:fixed;border-radius:50%;filter:blur(70px);z-index:0}
+body::before{width:520px;height:520px;left:-140px;top:-160px;background:rgba(147,197,253,.35)}
+body::after{width:480px;height:480px;right:-120px;bottom:-180px;background:rgba(196,181,253,.30)}
+#stage{position:relative;z-index:1;height:100vh;display:flex;align-items:center;justify-content:center;padding:26px}
+#page{width:min(1180px,96vw);height:min(760px,94vh);overflow:auto;background:var(--card);
+  border-radius:28px;box-shadow:0 18px 60px rgba(30,58,138,.12),0 2px 8px rgba(30,58,138,.06);
+  padding:34px 40px 30px;scrollbar-width:thin}
+.spark{position:fixed;z-index:2;font-size:22px;opacity:.8;pointer-events:none}
+.sp1{top:7%;left:8%;color:#f59e0b}.sp2{top:12%;right:10%;color:#8b5cf6}
+.sp3{bottom:10%;left:6%;color:#3b82f6}.sp4{bottom:14%;right:7%;color:#10b981}
+
+/* ── header ── */
+.kick{font-size:12px;font-weight:800;letter-spacing:.28em;color:var(--dim);text-transform:uppercase}
+h1.title{font-size:clamp(28px,4.2vw,46px);font-weight:900;letter-spacing:-.01em;line-height:1.15;margin-top:6px}
+h1.title .b{color:var(--navy)} h1.title .u{color:var(--blue)} h1.title .p{color:var(--purple)}
+h1.title .g{color:var(--green)} h1.title .a{color:var(--amber)} h1.title .r{color:var(--rose)}
+.sub{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;font-weight:800;font-size:15px}
+.sub .d{width:7px;height:7px;border-radius:50%}
+.dots{color:var(--dim);font-weight:700}
+
+/* ── panels ── */
+.panel{border-radius:18px;border:1.5px solid var(--line);background:#fbfcff;padding:14px 16px;margin-top:14px}
+.panel h3{font-size:12.5px;font-weight:900;letter-spacing:.14em;display:flex;gap:7px;align-items:center;margin-bottom:12px}
+.panel.blue h3{color:var(--blue)} .panel.green h3{color:#059669} .panel.purple h3{color:#7c3aed}
+.panel.amber h3{color:#b45309} .panel.rose h3{color:#e11d48}
+.panel.green{background:#f2fdf7;border-color:#bbf0d5}
+.panel.amber{background:#fffbeb;border-color:#fde9b8}
+.panel.purple{background:#faf8ff;border-color:#e4d8fb}
+.panel.blue{background:#f6faff;border-color:#cfe3fb}
+
+/* router row */
+.rowtop{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;margin-top:16px}
+.agent{border:2px solid #f5c445;background:#fff8e1;border-radius:16px;padding:12px 16px;text-align:center;min-width:180px}
+.agent .em{font-size:26px}
+.agent .t{font-weight:900;font-size:14px;margin-top:4px}
+.agent .s{font-size:11px;color:#9a7b1a;font-weight:700;margin-top:2px}
+.start{border:2px solid #6ee7b7;background:#ecfdf5;border-radius:16px;padding:12px 16px;text-align:center}
+.start .t{font-weight:900;font-size:13px;color:#065f46}
+.start .s{font-size:11px;color:#047857;margin-top:3px;font-weight:700}
+.note{border:1.5px solid #fde9b8;background:#fffbeb;border-radius:16px;padding:12px 14px;max-width:250px}
+.note .t{font-size:12.5px;font-weight:800;color:#92400e}
+.note .s{font-size:11.5px;color:#a16207;margin-top:4px;line-height:1.5}
+.dash{flex:1;border-top:2px dashed #cbd7ef;margin-top:26px}
+
+/* ── flow nodes ── */
+.flow{display:flex;flex-wrap:wrap;gap:10px 6px;align-items:center}
+.node{background:#fff;border:1.5px solid #dbe4f6;border-radius:14px;padding:10px 12px 9px;text-align:center;
+  min-width:104px;box-shadow:0 2px 6px rgba(30,58,138,.05);position:relative}
+.node .ic{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:17px;margin:0 auto 6px}
+.node .nn{font-size:12.5px;font-weight:800;line-height:1.25}
+.node .ns{font-size:10px;font-weight:800;color:#b6c0d8;letter-spacing:.12em;margin-top:3px}
+.arr{color:#93b4f5;font-size:17px;font-weight:900;padding:0 2px;flex:0 0 auto}
+.c1{background:#dbeafe}.c2{background:#ede9fe}.c3{background:#d1fae5}.c4{background:#fef3c7}
+.c5{background:#ffe4e6}.c6{background:#cffafe}.c7{background:#fef9c3}.c8{background:#f3e8ff}
+
+/* platform chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:flex;gap:8px;align-items:center;background:#fff;border:1.5px solid var(--line);
+  border-radius:12px;padding:8px 12px;font-size:12.5px;font-weight:800}
+.chip .ci{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:900}
+
+/* value banner */
+.value{margin-top:16px;background:linear-gradient(90deg,#e3edff,#efe9ff);border-radius:999px;
+  padding:14px 26px;display:flex;gap:14px;align-items:center}
+.value .vi{font-size:22px}
+.value .vt{font-size:clamp(15px,1.8vw,20px);font-weight:900;color:var(--navy)}
+.value .vs{font-size:12px;color:var(--dim);font-weight:700;margin-top:2px}
+
+/* staff grid */
+.staffgrid{display:flex;flex-wrap:wrap;gap:8px}
+.staff{border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:800;background:#fff;display:flex;gap:7px;align-items:center}
+.staff i{font-style:normal;font-size:14px}
+.dept{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.dept .dp{border-radius:16px;border:1.5px solid var(--line);padding:12px 14px}
+.dp .dn{font-weight:900;font-size:13px;letter-spacing:.1em;display:flex;justify-content:space-between;align-items:center}
+.dp .dn span{font-size:11px;color:#fff;border-radius:999px;padding:2px 10px;font-weight:900}
+
+/* CTA */
+.cta{margin-top:26px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:999px;
+  padding:22px 34px;text-align:center;color:#fff;font-size:clamp(22px,3.4vw,36px);font-weight:900}
+.cta .em{margin-right:12px}
+
+/* nav */
+#nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:10px;align-items:center;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;padding:8px 14px;z-index:5;box-shadow:0 6px 24px rgba(30,58,138,.12)}
+#nav button{border:0;background:#eef2fb;border-radius:999px;padding:7px 16px;font-weight:800;cursor:pointer;color:var(--navy)}
+#nav .ct{font-size:12.5px;font-weight:800;color:var(--dim);min-width:52px;text-align:center}
+#bar{position:fixed;bottom:0;left:0;height:4px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);z-index:6;transition:width .3s}
+.kbd{font-size:11px;color:var(--dim);font-weight:700}
+
+@media (max-width:860px){
+  #page{padding:22px 18px}.rowtop{grid-template-columns:1fr}.note{max-width:none}
+  .dept{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<span class="spark sp1">✦</span><span class="spark sp2">✦</span>
+<span class="spark sp3">✧</span><span class="spark sp4">✦</span>
+<div id="stage"><div id="page"></div></div>
+<div id="nav"><button id="prev">‹</button><span class="ct" id="ct"></span><button id="next">›</button><span class="kbd">撳一下 / ← →</span></div>
+<div id="bar"></div>
+
+<script>
+const LINES = [
+ {id:"lead", tag:"SALES", name:"AI 客戶開發", pain:"冇客；就算有客，又唔知俾咩嘢佢哋",
+  agent:"金槍人 · Email 流水線", agentSub:"名單 · 開發信 · 跟進",
+  note:"已跑實證：Google Sheet 149 間／145 封已寄，Ace (CPA) 客戶網站已交付",
+  value:"邊個開信、邊個回覆，一眼睇到",
+  steps:["抓名單","AI 判斷","做兩個 Demo","寫 Email Script","審核","發送同追蹤","每日報告"],
+  icons:["🗂️","🧠","🖥️","✍️","👀","📤","📊"],
+  chips:[["Google Maps","#34a853","G"],["Apify","#f97316","A"],["Google Sheet","#0f9d58","S"],["Brevo","#0b6cf0","B"],["Gmail","#ea4335","M"]]},
+
+ {id:"onevideo", tag:"MARKETING", name:"一條片出齊所有平台", pain:"出 social 好煩：每個平台 copy and paste",
+  agent:"奔雷手文泰 · 發布", agentSub:"五平台＋WhatsApp 一鍵出",
+  note:"一次拍攝，專欄＋五平台＋WhatsApp 一次出齊",
+  value:"唔使逐個 copy and paste",
+  steps:["拍一條片","轉內文","抽圖","改文案","切換版本","發五平台","發 WhatsApp","上網站 Blog"],
+  icons:["🎬","📝","🖼️","✂️","🔁","📤","💬","🌐"],
+  chips:[["YouTube","#ff0000","▶"],["Facebook","#1877f2","f"],["Instagram","#e4405f","◉"],["Threads","#111","@"],["LinkedIn","#0a66c2","in"],["WhatsApp","#25d366","✆"],["Blog／專欄","#8b5cf6","✍"]]},
+
+ {id:"material", tag:"MARKETING", name:"素材變內容", pain:"手頭一堆 PDF、PPT、產品資料，冇用得著",
+  agent:"石榴姐 · 文案", agentSub:"用你嘅語氣寫",
+  note:"舊料 + 爆款語氣，變成你嘅貼文",
+  value:"變你一星期貼文",
+  steps:["收料","搵爆款","學你風格","改寫","寫文案","起標題","出圖","發社交媒體"],
+  icons:["📥","🔥","🎭","✍️","📄","🏷️","🎨","📤"],
+  chips:[["PDF／PPT","#ef4444","P"],["Grill Me","#06b6d4","G"],["GPT Image","#8b5cf6","AI"],["五平台","#3b82f6","5×"]]},
+
+ {id:"trend", tag:"MARKETING", name:"每日自動搵料", pain:"想搵火熱資訊，又唔知邊度入手",
+  agent:"金水 · PPT／搵料", agentSub:"熱話 → 題目 → 內文",
+  note:"自動掃熱話，排程發佈，日日有料",
+  value:"每日自動有料寫",
+  steps:["掃熱話","揀題目","搵素材","想標題","寫內文","出圖","審批","排程發佈"],
+  icons:["📡","🎯","🔎","💡","✍️","🎨","👀","📅"],
+  chips:[["熱話掃描","#f43f5e","🔥"],["Agent-Reach","#06b6d4","AR"],["IG／FB／X","#8b5cf6","3×"],["審批一步","#10b981","✓"]]},
+
+ {id:"event", tag:"MARKETING", name:"活動流水線", pain:"開活動漏一步就出事",
+  agent:"三叔 · GoMan", agentSub:"九步備齊，唔會漏",
+  note:"報名頁、文案、email、日曆、存檔一次做完",
+  value:"一次做完，唔會漏",
+  steps:["開活動","出報名頁","寫文案","FB 廣告","Email 群發","群組通知","確認信","加日曆","提醒信","存檔覆盤"],
+  icons:["🚀","📝","✍️","📣","📧","💬","✉️","📅","🔔","🗄️"],
+  chips:[["GoMan","#8b5cf6","GM"],["FB 廣告","#1877f2","Ads"],["Brevo","#0b6cf0","B"],["WhatsApp","#25d366","✆"],["Calendar","#4285f4","📅"]]},
+
+ {id:"system", tag:"IT", name:"建系統 · 網站功能", pain:"加個會員付款功能，等 IT 等半年",
+  agent:"阿成 · Zo／包租公 · 介面", agentSub:"AI 砌 MVP，按清單組裝",
+  note:"會員、付款、課程、預約 — 快、度身、平",
+  value:"快、度身、平",
+  steps:["會員系統","自動收款","點數","AI 出圖","內容中樞","錄音變文字","紀錄中心","一鍵發佈","活動報名","預約系統","技能模板","推薦分佣"],
+  icons:["👥","💳","🎯","🎨","🗂️","🎙️","🧾","📤","🎟️","📆","🧩","🤝"],
+  chips:[["Lovable","#f43f5e","Lv"],["Supabase","#10b981","SB"],["Stripe","#635bff","S"],["Zo Space","#3b82f6","Z"]]},
+
+ {id:"tools", tag:"IT", name:"取代付費工具", pain:"訂閱月月都扣，下下都係錢",
+  agent:"火雞姐 · 技術", agentSub:"逆向重寫自家版",
+  note:"盤點訂閱，重寫同等能力，慳返月費",
+  value:"慳返月費，唔使下下都畀錢",
+  steps:["列清單","計用量","揀替代","AI 重寫","匯出資料","備份","試行","取消訂閱"],
+  icons:["📋","🧮","🔎","🤖","📦","💾","🧪","✂️"],
+  chips:[["Whisper","#10b981","W"],["筆記庫","#f59e0b","N"],["自家工具","#8b5cf6","AI"],["每年慳 HK$3,000+","#10b981","$"]]},
+
+ {id:"yt", tag:"MARKETING", name:"營運 YouTube Channel", pain:"想拍片出片，但成條 production 太重",
+  agent:"阿漆 · AI Lion 總管", agentSub:"你睇過先出",
+  note:"拍完有路徑上架，格式一次跟足；每週 3 條、0 人手",
+  value:"你睇過先出",
+  steps:["定題","寫稿","配音","出圖","出動畫","配樂＋字幕","剪接","上載"],
+  icons:["🎯","📝","🎙️","🎨","🎞️","🎵","✂️","📤"],
+  chips:[["MiniMax","#f43f5e","M"],["GPT Image","#8b5cf6","AI"],["Kling","#06b6d4","K"],["YouTube Studio","#ff0000","▶"]]},
+
+ {id:"staff", tag:"SYSTEM", name:"你的 AI 員工軍團", pain:"請人貴、請人慢、請人要放假",
+  agent:"阿強 · CEO Agent", agentSub:"統籌 · 驗收 · 對外決定",
+  note:"第二大腦：對話、決策、客戶資料，全部沉澱喺同一個腦",
+  value:"唔使請人，係請一隊唔會放假嘅 AI",
+  depts:[
+   {n:"MARKETING", c:"#3b82f6", lines:"4 條線", staff:["文案線","剪片線","出街＋分發","活動線"]},
+   {n:"SALES", c:"#10b981", lines:"1 條線", staff:["搵客線"]},
+   {n:"IT", c:"#8b5cf6", lines:"2 條線", staff:["網站／系統","工具逆向重寫"]},
+   {n:"ACCOUNTING", c:"#f59e0b", lines:"1 條線", staff:["單據入帳","銀行對數","出月報","報稅核數"]},
+  ],
+  chips:[["阿強·CEO","#1e2a5a","👑"],["金水·PPT","#3b82f6","P"],["阿梅·剪片","#3b82f6","✂"],["秋香姐·口播","#3b82f6","🎙"],["斷水流師兄·CNY片","#3b82f6","🧧"],["石榴姐·文案","#3b82f6","✍"],["奔雷手文泰·發布","#3b82f6","📤"],["阿漆·AI Lion","#8b5cf6","🦁"],["西門吹雪·Shorts","#8b5cf6","⚡"],["黃金右腳·普通話","#8b5cf6","普通話"],["醬爆·AI Shark","#8b5cf6","🦈"],["金槍人·Email","#10b981","📧"],["三叔·GoMan","#10b981","GM"],["阿成·Zo","#f59e0b","Z"],["包租公·介面","#f59e0b","🏠"],["太陽能電筒·Grill","#f59e0b","🔦"],["火雞姐·技術","#f59e0b","🔧"]]},
+];
+
+const CSSC = ["c1","c2","c3","c4","c5","c6","c7","c8"];
+
+function chipsHTML(chips){
+  return `<div class="panel blue"><h3>🧰 用開嘅工具／平台</h3><div class="chips">` +
+    chips.map(c=>`<div class="chip"><span class="ci" style="background:${c[1]}">${c[2]}</span>${c[0]}</div>`).join("") + `</div></div>`;
+}
+
+function boardHTML(l){
+  const flow = l.steps.map((s,i)=>
+    `<div class="node"><div class="ic ${CSSC[i%8]}">${l.icons[i]}</div><div class="nn">${s}</div><div class="ns">STEP ${String(i+1).padStart(2,"0")}</div></div>` +
+    (i<l.steps.length-1?`<div class="arr">➜</div>`:"")).join("");
+  return `
+  <div class="kick">${l.tag} · PIPELINE</div>
+  <h1 class="title"><span class="b">${l.name.split(" · ")[0]}</span>${l.name.includes(" · ")?'<span class="u"> · '+l.name.split(" · ")[1]+"</span>":""}</h1>
+  <div class="sub"><span class="d" style="background:var(--rose)"></span>痛點：${l.pain}<span class="dots">•</span><span class="d" style="background:var(--green)"></span>${l.steps.length} 步自動行</div>
+  <div class="rowtop">
+    <div class="start"><div class="t">START</div><div class="s">派任務 → 開工</div></div>
+    <div style="text-align:center"><div class="agent"><div class="em">🤖</div><div class="t">${l.agent}</div><div class="s">${l.agentSub}</div></div></div>
+    <div class="note"><div class="t">⭐ 實證／備註</div><div class="s">${l.note}</div></div>
+  </div>
+  <div class="panel blue"><h3>⚙️ 流水線 ${l.steps.length} 步 · 全自動</h3><div class="flow">${flow}</div></div>
+  ${l.depts?`<div class="panel purple"><h3>👥 四個部門</h3><div class="dept">`+l.depts.map(d=>`<div class="dp"><div class="dn">${d.n}<span style="background:${d.c}">${d.lines}</span></div><div class="staffgrid" style="margin-top:8px">`+d.staff.map(s=>`<span class="staff"><i>▸</i>${s}</span>`).join("")+`</div></div>`).join("")+`</div></div>
+  <div class="panel amber"><h3>🧠 17 個 AI 員工（有名有姓）</h3><div class="staffgrid">`+l.chips.map(c=>`<span class="staff"><i>${c[2]}</i>${c[0]}</span>`).join("")+`</div></div>`:chipsHTML(l.chips)}
+  <div class="value"><div class="vi">👉</div><div><div class="vt">${l.value}</div><div class="vs">你得到咩</div></div></div>`;
+}
+
+const PAGES = [
+ {cover:true},
+ ...LINES.map(l=>({board:l})),
+ {cta:true}
+];
+
+function coverHTML(){
+  const chips = LINES.slice(0,8).map((l,i)=>`<div class="chip"><span class="ci" style="background:${["#10b981","#3b82f6","#8b5cf6","#06b6d4","#f59e0b","#635bff","#f43f5e","#ff0000"][i]}">${i+1}</span>${l.name}</div>`).join("");
+  return `
+  <div class="kick">LION AI · ONE-PERSON COMPANY</div>
+  <h1 class="title" style="font-size:clamp(34px,5.4vw,58px)">AI <span class="u">流水線</span> · <span class="p">一人公司</span>軍團</h1>
+  <div class="sub">
+    <span class="d" style="background:var(--blue)"></span>3 AI Agents
+    <span class="dots">·</span>
+    <span class="d" style="background:var(--purple)"></span>8 條流水線
+    <span class="dots">·</span>
+    <span class="d" style="background:var(--green)"></span>17 個 AI 員工
+    <span class="dots">·</span>
+    <span class="d" style="background:var(--amber)"></span>唔使請人
+  </div>
+  <div class="panel blue"><h3>🧭 八條流水線 · 一版睇晒</h3><div class="chips" style="gap:10px">${chips}</div></div>
+  <div class="panel green"><h3>✅ 唔係概念 · 已經喺度跑</h3>
+    <div class="chips">
+      <div class="chip"><span class="ci" style="background:#0f9d58">S</span>客戶開發 149 間／145 封已寄</div>
+      <div class="chip"><span class="ci" style="background:#ff0000">▶</span>AI Lion 49 條片 · 1.01K 訂閱</div>
+      <div class="chip"><span class="ci" style="background:#1877f2">f</span>GoMan 活動 125 報名</div>
+      <div class="chip"><span class="ci" style="background:#8b5cf6">AI</span>取代工具每年慳 HK$3,000+</div>
+    </div></div>
+  <div class="value"><div class="vi">🚀</div><div><div class="vt">省返嘅時間，唔係用嚟休息 — 係用嚟搵客</div><div class="vs">布Sir · Lion AI 獅子智能</div></div></div>`;
+}
+
+function ctaHTML(){
+  return `
+  <div class="kick">NEXT STEP</div>
+  <h1 class="title"><span class="b">起你嘅</span> <span class="u">AI 部門</span></h1>
+  <div class="panel blue"><h3>💰 收費一版睇晒</h3>
+    <div class="chips" style="gap:10px">
+      <div class="chip"><span class="ci" style="background:#10b981">全</span>全包 HK$16,800 · 8 條線 · 分兩期</div>
+      <div class="chip"><span class="ci" style="background:#3b82f6">半</span>半包 HK$8,800 · 4 條任揀 · 分兩期</div>
+      <div class="chip"><span class="ci" style="background:#8b5cf6">養</span>維護 HK$1,000／月 · 10 手封頂</div>
+    </div></div>
+  <div class="panel amber"><h3>🤝 包咩服務</h3>
+    <div class="chips">
+      <div class="chip"><span class="ci" style="background:#f59e0b">1</span>已跑通嘅流水線＋使用說明＋你個帳號權限</div>
+      <div class="chip"><span class="ci" style="background:#f59e0b">2</span>布Sir 親自驗收，唔合格唔交付</div>
+      <div class="chip"><span class="ci" style="background:#f59e0b">3</span>48 小時內回復 · 分階段交付</div>
+    </div></div>
+  <div class="cta"><span class="em">💬</span>掃碼加入 WhatsApp 群組 <span class="em">→</span></div>
+  <div style="text-align:center;margin-top:14px" class="kbd">Lion AI 獅子智能 · 布Sir · bruce@lion88.ai · lion88.ai · hkai.club</div>`;
+}
+
+let page = 0;
+function render(){
+  const p = PAGES[page];
+  document.getElementById("page").innerHTML =
+    p.cover ? coverHTML() : p.cta ? ctaHTML() : boardHTML(p.board);
+  document.getElementById("ct").textContent = (page+1)+" / "+PAGES.length;
+  document.getElementById("bar").style.width = ((page+1)/PAGES.length*100)+"%";
+  document.getElementById("page").scrollTop = 0;
+}
+function go(d){
+  const n = page+d;
+  if(n<0||n>=PAGES.length) return;
+  page=n; render();
+}
+document.getElementById("prev").onclick=()=>go(-1);
+document.getElementById("next").onclick=()=>go(1);
+addEventListener("keydown",e=>{
+  if(["ArrowRight","ArrowDown"," ","PageDown","Enter"].includes(e.key)){e.preventDefault();go(1);}
+  if(["ArrowLeft","ArrowUp","PageUp","Backspace"].includes(e.key)){e.preventDefault();go(-1);}
+});
+document.getElementById("page").addEventListener("click",e=>{ if(e.target.closest("a"))return; go(1); });
+render();
+</script>
+</body>
+</html>

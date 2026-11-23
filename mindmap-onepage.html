@@ -19,7 +19,18 @@ h1{font-family:"Playfair Display","LINE Seed TW","PingFang TC",sans-serif;
 .nc b{font-size:40px;font-weight:900;color:#fff;line-height:.9}
 .nc i{font-style:normal;font-size:14px;font-weight:800;color:rgba(255,255,255,.94)}
 /* 部門格 */
-.grid{position:absolute;left:36px;top:118px;width:1200px;
+.brain{position:absolute;left:36px;top:118px;width:1200px;height:58px;
+  display:flex;align-items:center;gap:13px;padding:0 18px;border-radius:18px;
+  background:var(--c);color:#fff;
+  box-shadow:0 12px 24px rgba(40,18,4,.38),inset 0 1px 0 rgba(255,255,255,.22)}
+.brain .dic{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;
+  background:rgba(255,255,255,.18);border-radius:10px}
+.brain b{font-size:22px;font-weight:900;letter-spacing:.03em;white-space:nowrap}
+.brain i{font-style:normal;font-size:12px;font-weight:800;background:rgba(0,0,0,.22);
+  padding:3px 10px;border-radius:99px;white-space:nowrap}
+.brain .bsub{margin-left:auto;font-size:13.5px;font-weight:700;color:rgba(255,255,255,.86);
+  white-space:nowrap;letter-spacing:.02em}
+.grid{position:absolute;left:36px;top:190px;width:1200px;
   display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;
   gap:14px;align-items:start;align-content:start}
 /* 卡高跟內容，但封頂：展開時喺卡內 scroll，唔會推走下面 */
@@ -120,6 +131,19 @@ h1{font-family:"Playfair Display","LINE Seed TW","PingFang TC",sans-serif;
     <div class="nc" style="--c:#4a8a55;--r:-1deg"><b>17</b><i>個 AI 員工</i></div>
   </div>
 </div>
+<section class="brain" style="--c:#3b312b">
+  <span class="dic">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="1.9"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 4.2c-1.5-1.3-3.9-1-4.9.7-.9 1.5-.4 3 .6 3.9-1.4.7-2 2.4-1.4 3.9.5 1.3 1.8 2 3.1 1.9-.1 1.5 1 2.8 2.6 2.8"/>
+      <path d="M12 4.2c1.5-1.3 3.9-1 4.9.7.9 1.5.4 3-.6 3.9 1.4.7 2 2.4 1.4 3.9-.5 1.3-1.8 2-3.1 1.9.1 1.5-1 2.8-2.6 2.8"/>
+      <path d="M12 4.2v13.2"/>
+    </svg>
+  </span>
+  <b>你的第二大腦</b>
+  <i>所有 AI 員工共用</i>
+  <span class="bsub">對話 · 決策 · 客戶資料，全部沉澱喺同一個腦</span>
+</section>
 <div class="grid"><section class="dept" style="--c:#cf4f22">
       <div class="dh"><span class="dic"><svg viewBox="0 0 24 24" width="30" height="30" fill="#fff"><path d="M3 9.6h3.4l7-4.2v13.2l-7-4.2H3z"/><path d="M15.6 8.2a3.6 3.6 0 0 1 0 7.6" fill="none" stroke="#fff" stroke-width="2.1"/></svg></span>
         <b>MARKETING</b><i>5 條線</i></div>

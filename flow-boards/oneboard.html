@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>AI 流水線 · 一人公司 · 一板過（4K）</title>
+<style>
+:root{
+  --navy:#1e2a5a; --ink:#25314f; --dim:#7c86a6;
+  --blue:#3b82f6; --purple:#8b5cf6; --green:#10b981; --amber:#f59e0b; --rose:#f43f5e; --cyan:#06b6d4;
+  --card:#ffffff; --line:#e3e9f7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:3840px;height:2160px;overflow:hidden}
+body{
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  background:
+    radial-gradient(900px 700px at 4% -6%, rgba(59,130,246,.14), transparent 60%),
+    radial-gradient(1000px 800px at 102% 4%, rgba(139,92,246,.12), transparent 60%),
+    radial-gradient(900px 700px at -2% 108%, rgba(16,185,129,.12), transparent 60%),
+    radial-gradient(800px 700px at 100% 106%, rgba(245,158,11,.10), transparent 60%),
+    linear-gradient(150deg,#eef4ff 0%,#f6f5ff 48%,#f2fbf7 100%);
+  color:var(--ink);
+}
+#board{width:3840px;height:2160px;padding:64px 72px;display:flex;flex-direction:column;gap:34px;position:relative;z-index:1}
+.spark{position:absolute;font-size:44px;opacity:.85;pointer-events:none}
+.s1{top:60px;left:760px;color:#f59e0b}.s2{top:120px;right:220px;color:#8b5cf6}
+.s3{bottom:110px;left:140px;color:#3b82f6}.s4{bottom:190px;right:120px;color:#10b981}
+
+/* ── header ── */
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:40px}
+.kicker{display:inline-flex;align-items:center;gap:14px;font-size:28px;font-weight:900;letter-spacing:.22em;color:#fff;
+  background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:999px;padding:12px 30px}
+h1{font-size:108px;font-weight:900;line-height:1.06;letter-spacing:-.01em;margin-top:22px;color:var(--navy)}
+h1 .b{color:var(--blue)}h1 .p{color:var(--purple)}h1 .g{color:var(--green)}h1 .a{color:var(--amber)}
+.sub{margin-top:18px;display:flex;gap:26px;font-size:31px;font-weight:800;color:#4a5680}
+.sub i{font-style:normal;display:inline-flex;align-items:center;gap:10px}
+.sub .d{width:16px;height:16px;border-radius:50%;display:inline-block}
+.counters{display:flex;gap:26px}
+.nc{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:26px 38px;text-align:center;
+  box-shadow:0 10px 30px rgba(30,58,138,.08);transform:rotate(-1deg)}
+.nc:nth-child(2){transform:rotate(1.2deg)}.nc:nth-child(3){transform:rotate(-.8deg)}
+.nc b{display:block;font-size:78px;font-weight:900;line-height:1}
+.nc i{font-style:normal;font-size:26px;font-weight:800;color:var(--dim)}
+.nc.c1 b{color:var(--navy)}.nc.c2 b{color:var(--rose)}.nc.c3 b{color:var(--green)}
+
+/* ── main grid ── */
+.main{display:grid;grid-template-columns:760px 1fr;gap:34px;flex:1;min-height:0}
+.col{display:flex;flex-direction:column;gap:26px;min-height:0}
+.panel{background:var(--card);border:2px solid var(--line);border-radius:26px;padding:26px 30px;
+  box-shadow:0 10px 30px rgba(30,58,138,.06)}
+.ph{display:flex;align-items:center;gap:14px;font-size:27px;font-weight:900;letter-spacing:.12em;margin-bottom:16px}
+.ph .em{font-size:34px}
+.ph.t-g{color:#059669}.ph.t-b{color:#2563eb}.ph.t-p{color:#7c3aed}.ph.t-a{color:#b45309}.ph.t-n{color:#334155}
+
+.router{display:flex;gap:22px;align-items:stretch}
+.agent{border:3px solid #f5c445;background:#fff8e1;border-radius:22px;padding:20px 24px;text-align:center;flex:1}
+.agent .em{font-size:56px}
+.agent .n{font-size:32px;font-weight:900;color:#92400e;margin-top:6px}
+.agent .s{font-size:23px;color:#a16207;font-weight:700;margin-top:4px}
+.start{border:3px solid #6ee7b7;background:#ecfdf5;border-radius:22px;padding:20px 24px;text-align:center;width:300px}
+.start .em{font-size:56px}.start .n{font-size:30px;font-weight:900;color:#047857;margin-top:6px}
+.start .s{font-size:22px;color:#059669;font-weight:700}
+
+.brain{border:2.5px solid #c7d2fe;background:#eef2ff;border-radius:22px;padding:20px 26px;display:flex;align-items:center;gap:22px}
+.brain .em{font-size:52px}
+.brain .t{font-size:30px;font-weight:900;color:#3730a3}
+.brain .s{font-size:23px;color:#6366f1;font-weight:700;margin-top:4px}
+
+.staffrow{display:flex;flex-wrap:wrap;gap:12px}.chips{display:flex;flex-wrap:wrap;gap:12px}
+.tchip{background:#f4f7ff;border:2px solid #dfe6f7;border-radius:999px;padding:8px 18px;font-size:22px;font-weight:700;color:#4a5578}
+.sc{display:inline-flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--line);
+  border-radius:999px;padding:9px 18px;font-size:23px;font-weight:800;color:#37415f}
+.sc .d{width:13px;height:13px;border-radius:50%}
+.sc .ie{font-size:24px}
+
+/* ── lanes ── */
+.lanes{display:flex;flex-direction:column;gap:20px;min-height:0}
+.lane{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:18px 24px 20px;
+  box-shadow:0 8px 24px rgba(30,58,138,.05)}
+.lhead{display:flex;align-items:center;gap:18px;margin-bottom:14px}
+.dept{font-size:21px;font-weight:900;letter-spacing:.14em;color:#fff;border-radius:10px;padding:6px 14px}
+.lname{font-size:33px;font-weight:900;color:var(--navy)}
+.lagent{margin-left:auto;display:inline-flex;align-items:center;gap:10px;background:#fffbeb;border:2px solid #fde9b8;
+  border-radius:999px;padding:7px 18px;font-size:23px;font-weight:800;color:#b45309}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;row-gap:12px}
+.node{background:#fff;border:2px solid #dbe4f6;border-radius:16px;padding:10px 16px;display:flex;align-items:center;gap:12px;
+  box-shadow:0 3px 10px rgba(30,58,138,.05)}
+.node .ic{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:25px;flex:0 0 auto}
+.node .nn{font-size:25px;font-weight:800;color:#313c5e;white-space:nowrap}
+.node .ns{font-size:18px;font-weight:900;color:#9aa6c8;letter-spacing:.08em}
+.arr{color:#93b4f5;font-size:30px;font-weight:900;margin:0 2px}
+
+/* ── bottom ── */
+.bottom{display:flex;gap:26px;align-items:stretch}
+.pricing{flex:1.25;display:flex;gap:20px}
+.pc{flex:1;border-radius:22px;padding:18px 26px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.pc .k{font-size:24px;font-weight:900;letter-spacing:.1em}
+.pc .v{font-size:44px;font-weight:900}
+.pc .s{font-size:22px;font-weight:700;color:#64748b}
+.pc.full{background:#eef2ff;border:2.5px solid #a5b4fc}.pc.full .k,.pc.full .v{color:#4338ca}
+.pc.half{background:#ecfdf5;border:2.5px solid #6ee7b7}.pc.half .k,.pc.half .v{color:#047857}
+.pc.maint{background:#fffbeb;border:2.5px solid #f5c445}.pc.maint .k,.pc.maint .v{color:#b45309}
+.cta{flex:.9;background:linear-gradient(90deg,#3b82f6,#8b5cf6,#ec4899);border-radius:24px;color:#fff;
+  display:flex;align-items:center;justify-content:center;gap:24px;padding:18px 30px}
+.cta .em{font-size:64px}
+.cta .t{font-size:38px;font-weight:900;line-height:1.2}
+.cta .s{font-size:23px;font-weight:700;opacity:.92;margin-top:4px}
+</style>
+</head>
+<body>
+<div id="board">
+  
+
+  <div class="head">
+    <div>
+      <span class="kicker">⚙️ AI PRODUCTION LINE · ONE BOARD</span>
+      <h1>AI <span class="b">流水線</span> · <span class="p">一人公司軍團</span> · <span class="g">一板過</span></h1>
+      <div class="sub">
+        <i><span class="d" style="background:var(--blue)"></span>起線</i>
+        <i><span class="d" style="background:var(--purple)"></span>驗收</i>
+        <i><span class="d" style="background:var(--green)"></span>出街</i>
+        <i><span class="d" style="background:var(--amber)"></span>維護</i>
+        <i><span class="d" style="background:var(--rose)"></span>回報</i>
+      </div>
+    </div>
+    <div class="counters">
+      <div class="nc c1"><b>3</b><i>AI AGENTS</i></div>
+      <div class="nc c2"><b>8</b><i>條 AI 流水線</i></div>
+      <div class="nc c3"><b>17</b><i>個 AI 員工</i></div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="col">
+      <div class="panel">
+        <div class="ph t-a"><span class="em">🤖</span>調度台 · YOU ARE THE ROUTER</div>
+        <div class="router">
+          <div class="start"><div class="em">🧑‍💼</div><div class="n">你 · 老闆</div><div class="s">派任務 · 統一審核</div></div>
+          <div class="agent"><div class="em">👑</div><div class="n">阿強 · CEO Agent</div><div class="s">3 Agents 調度 17 個員工</div></div>
+        </div>
+      </div>
+      <div class="brain"><div class="em">🧠</div><div><div class="t">你的第二大腦</div><div class="s">對話 · 決策 · 客戶資料，全部沉澱喺同一個腦</div></div></div>
+      <div class="panel" style="flex:1;min-height:0">
+        <div class="ph t-n"><span class="em">🦁</span>17 個 AI 員工 · 四個部門</div>
+        <div class="staffrow" id="staff"></div>
+      </div>
+<div class="panel" style="margin-top:18px">
+  <div class="ph">🧰 用開嘅工具</div>
+  <div class="chips" id="tools-extra">
+    <span class="tchip">Google Maps</span><span class="tchip">Apify</span><span class="tchip">Google Sheets</span><span class="tchip">Brevo</span><span class="tchip">Gmail</span><span class="tchip">MiniMax</span><span class="tchip">Kling</span><span class="tchip">fal.ai</span><span class="tchip">WhatsApp</span><span class="tchip">FB · IG · Threads · LinkedIn · X</span><span class="tchip">YouTube</span><span class="tchip">GoMan</span><span class="tchip">Zo</span>
+  </div>
+</div>
+    </div>
+
+    <div class="lanes" id="lanes"></div>
+  </div>
+
+  <div class="bottom">
+    <div class="pricing">
+      <div class="pc full"><span class="k">全包 · 8 條線全開</span><span class="v">HK$16,800</span><span class="s">一次過 · 分兩期（8,800＋8,000）</span></div>
+      <div class="pc half"><span class="k">半包 · 揀 4 條</span><span class="v">HK$8,800</span><span class="s">一次過 · 分兩期（4,400＋4,400）</span></div>
+      <div class="pc maint"><span class="k">每月維護</span><span class="v">HK$1,000</span><span class="s">10 手封頂 · 48 小時回復</span></div>
+    </div>
+    <div class="cta"><div class="em">💬</div><div><div class="t">掃碼加入 WhatsApp 群</div><div class="s">亞洲商業 IP 聯盟 × AI Lion · lion88.ai</div></div></div>
+  </div>
+</div>
+
+<script>
+const D = {blue:["#dbeafe","#2563eb"],purple:["#ede9fe","#7c3aed"],green:["#d1fae5","#059669"],amber:["#fef3c7","#b45309"],rose:["#ffe4e6","#e11d48"],cyan:["#cffafe","#0891b2"]};
+const LANES = [
+ {dept:"MARKETING",dc:"#3b82f6",name:"一條片出齊所有平台",agent:"📤 奔雷手文泰 · 發布",steps:"拍一條片|轉內文|抽圖|改文案|切換版本|發五平台|發 WhatsApp|上網站 Blog"},
+ {dept:"SALES",dc:"#10b981",name:"AI 客戶開發",agent:"📧 金槍人 · Email 流水線",steps:"抓名單|AI 判斷|做兩個 Demo|寫 Email Script|審核|發送同追蹤|每日報告"},
+ {dept:"MARKETING",dc:"#8b5cf6",name:"素材變內容",agent:"✍️ 石榴姐 · 文案",steps:"收料|搵爆款|學你風格|改寫|寫文案|起標題|出圖|發社交媒體"},
+ {dept:"MARKETING",dc:"#06b6d4",name:"每日自動搵料",agent:"🔍 金水 · PPT／搵料",steps:"掃熱話|揀題目|搵素材|想標題|寫內文|出圖|審批|排程發佈"},
+ {dept:"MARKETING",dc:"#f59e0b",name:"活動流水線",agent:"🎪 三叔 · GoMan",steps:"開活動|出報名頁|寫文案|FB 廣告|Email 群發|群組通知|確認信|加日曆|提醒信|存檔覆盤"},
+ {dept:"IT",dc:"#f43f5e",name:"網站功能 · 建系統",agent:"🧱 阿成 · Zo",steps:"會員系統|自動收款|點數|AI 出圖|內容中樞|錄音變文字|紀錄中心|一鍵發佈|活動報名|預約系統|技能模板|推薦分佣"},
+ {dept:"IT",dc:"#64748b",name:"取代付費工具",agent:"🔧 火雞姐 · 技術",steps:"列清單|計用量|揀替代|AI 重寫|匯出資料|備份|試行|取消訂閱"},
+ {dept:"MARKETING",dc:"#ec4899",name:"營運 YouTube Channel",agent:"🦁 阿漆 · AI Lion 總管",steps:"定題|寫稿|配音|出圖|出動畫|配樂＋字幕|剪接|上載"},
+];
+const keys = Object.keys(D);
+document.getElementById('lanes').innerHTML = LANES.map((L,i)=>{
+  const steps = L.steps.split('|').map((s,j)=>{
+    const c = D[keys[(i+j)%keys.length]];
+    return `<div class="node"><span class="ic" style="background:${c[0]};color:${c[1]}">${String(j+1).padStart(2,'0')}</span><span class="nn">${s}</span></div>${j<L.steps.split('|').length-1?'<span class="arr">➜</span>':''}`;
+  }).join('');
+  return `<div class="lane"><div class="lhead"><span class="dept" style="background:${L.dc}">${L.dept}</span><span class="lname">${L.name}</span><span class="lagent">${L.agent}</span></div><div class="flow">${steps}</div></div>`;
+}).join('');
+
+const STAFF = [
+ ["👑","阿強 · CEO","#1e2a5a"],["P","金水 · PPT","#3b82f6"],["✂️","阿梅 · 剪片","#3b82f6"],["🎙️","秋香姐 · 口播","#3b82f6"],
+ ["🧧","斷水流師兄 · CNY片","#3b82f6"],["✍️","石榴姐 · 文案","#3b82f6"],["📤","奔雷手文泰 · 發布","#3b82f6"],
+ ["🦁","阿漆 · AI Lion","#8b5cf6"],["⚡","西門吹雪 · Shorts","#8b5cf6"],["🗣️","黃金右腳 · 普通話","#8b5cf6"],["🦈","醬爆 · AI Shark","#8b5cf6"],
+ ["📧","金槍人 · Email","#10b981"],["🎪","三叔 · GoMan","#10b981"],
+ ["🧱","阿成 · Zo","#f59e0b"],["🏠","包租公 · 介面","#f59e0b"],["🔦","太陽能電筒 · Grill","#f59e0b"],["🔧","火雞姐 · 技術","#f59e0b"],
+];
+document.getElementById('staff').innerHTML = STAFF.map(([ie,n,c])=>
+ `<span class="sc"><span class="ie">${ie}</span><span class="d" style="background:${c}"></span>${n}</span>`).join('');
+</script>
+</body>
+</html>

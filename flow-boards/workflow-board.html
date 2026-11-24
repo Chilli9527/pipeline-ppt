@@ -60,6 +60,11 @@ h1 .a{color:var(--navy)}h1 .b{color:var(--blue)}h1 .c{color:var(--purple)}
 .tcard{background:#fff;border:1.6px solid var(--line);border-radius:14px;width:150px;padding:12px 8px;text-align:center}
 .tcard .bi{width:46px;height:46px;border-radius:12px;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:900}
 .tcard .t{font-size:15px;font-weight:900;color:#333f66}
+.tgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:10px}
+.emp{display:flex;align-items:center;gap:9px;background:#fbfcff;border:1.4px solid var(--line);border-radius:12px;padding:9px 12px}
+.emp .em{font-size:22px}.emp .n{font-size:15px;font-weight:900;color:#333f66;white-space:nowrap}
+.emp .r{font-size:12px;font-weight:700;color:#8a94b8;margin-left:2px}
+.emp .d{width:10px;height:10px;border-radius:50%;margin-left:auto;flex:0 0 auto}
 .tcard .s{font-size:12.5px;font-weight:700;color:#8a94b8;margin-top:2px}
 .memcard{width:170px;text-align:center;padding:16px 12px;flex:0 0 auto}
 .memcard .ic{font-size:32px}
@@ -209,6 +214,12 @@ h1 .a{color:var(--navy)}h1 .b{color:var(--blue)}h1 .c{color:var(--purple)}
     <div id="lanes" style="margin-top:8px"></div>
   </div>
 
+  <!-- ══ team ══ -->
+  <div class="factory" style="background:#f4f8ff;border-color:#c9d9f8">
+    <div class="h">🦁 AI LION AGENT TEAM · 17 個 AI 員工</div>
+    <div class="tgrid" id="team"></div>
+  </div>
+
   <!-- ══ features ══ -->
   <div class="features">
     <div class="h">💎 FEATURES &amp; BENEFITS</div>
@@ -276,6 +287,16 @@ const FEATS = [
 document.getElementById("feats").innerHTML = FEATS.map(([c,e,t,pts])=>{
   return `<div class="fcard"><div class="fh"><span class="fi" style="background:${c}1a;color:${c}">${e}</span>${t}</div><ul>${pts.map(p=>`<li>${p}</li>`).join("")}</ul></div>`;
 }).join("");
+const TEAM=[
+ ["👑","阿強 · CEO","統籌 · 驗收","#1e2a5a"],["P","金水 · PPT","結構 · 排版","#2563eb"],["✂️","阿梅 · 剪片","粗剪 · 壓字幕","#2563eb"],
+ ["🎙️","秋香姐 · 口播","配音 · 對嘴","#2563eb"],["🧧","斷水流師兄 · CNY片","節日片一條龍","#2563eb"],["✍️","石榴姐 · 文案","對外文字唯一來源","#2563eb"],
+ ["📤","奔雷手文泰 · 發布","五平台＋WhatsApp","#2563eb"],["🦁","阿漆 · AI Lion","AI Lion 頻道總管","#7c3aed"],["⚡","西門吹雪 · Shorts","長片切 Shorts","#7c3aed"],
+ ["🗣️","黃金右腳 · 普通話","粵轉普 · 上普通話台","#7c3aed"],["🦈","醬爆 · AI Shark","AI Shark 頻道","#7c3aed"],["📧","金槍人 · Email","名單 · 開發信 · 跟進","#059669"],
+ ["🎪","三叔 · GoMan","活動頁 · 報名","#059669"],["🧱","阿成 · Zo","Zo Computer 管理","#b45309"],["🏠","包租公 · 介面","網站介面","#b45309"],
+ ["🔦","太陽能電筒 · Grill","開工前逼問需求","#b45309"],["🔧","火雞姐 · 技術","工具逆向重寫","#b45309"]
+];
+document.getElementById('team').innerHTML = TEAM.map(([ie,n,r,c])=>
+ `<div class="emp"><span class="em">${ie}</span><span class="n">${n}</span><span class="r">${r}</span><span class="d" style="background:${c}"></span></div>`).join('');
 </script>
 </body>
 </html>

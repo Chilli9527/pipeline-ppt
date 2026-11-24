@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>AI 流水線 · AUTOMATION WORKFLOW · 一板過</title>
+<style>
+:root{
+  --navy:#1b2a6b; --ink:#2b3555; --dim:#8a94b8; --line:#e3e9f7;
+  --blue:#2563eb; --purple:#7c3aed; --green:#0f9d6a; --amber:#b8860b; --pink:#ec4899; --orange:#f59e0b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;background:#eef2fb}
+body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;color:var(--ink);
+  background:radial-gradient(1200px 700px at 6% -4%, #dbe7ff, transparent 55%),
+             radial-gradient(1100px 700px at 96% 0%, #ece2ff, transparent 55%),
+             radial-gradient(1000px 700px at 2% 102%, #d9f4e6, transparent 55%),
+             linear-gradient(160deg,#f2f5ff,#f7f5ff 55%,#effaf3)}
+#board{width:1920px;padding:36px 44px 30px;position:relative}
+
+/* ── title ── */
+.titlewrap{position:relative;text-align:center;padding:8px 0 4px}
+.spray{position:absolute;top:34px;width:64px;height:14px;border-radius:8px}
+.spray i{position:absolute;height:14px;border-radius:8px;display:block}
+.spray.l{left:120px}.spray.r{right:120px;transform:scaleX(-1)}
+h1{font-size:64px;font-weight:900;letter-spacing:.01em;line-height:1}
+h1 .a{color:var(--navy)}h1 .b{color:var(--blue)}h1 .c{color:var(--purple)}
+.sub{margin-top:14px;font-size:26px;font-weight:800;color:#42507e}
+.sub .d{display:inline-block;width:13px;height:13px;border-radius:50%;margin:0 14px;vertical-align:2px}
+.sub .zh{font-weight:900}
+
+/* ── generic ── */
+.row{display:flex;gap:18px;align-items:stretch}
+.card{background:#fff;border:1.6px solid var(--line);border-radius:16px;box-shadow:0 4px 14px rgba(37,60,140,.06)}
+.mini{width:118px;padding:12px 10px;text-align:center;flex:0 0 auto}
+.mini .ic{font-size:30px}
+.mini .t{font-size:15.5px;font-weight:800;color:#333f66;margin-top:6px;line-height:1.3}
+.mini .s{font-size:12.5px;color:#8a94b8;font-weight:700;margin-top:3px}
+.arrow{align-self:center;color:#7f97d8;font-size:26px;font-weight:900;flex:0 0 auto}
+.dash{border-top:2.5px dashed #a8b8e8;width:40px;align-self:center}
+
+/* ── row 1 ── */
+.start{border:2px solid #59c99a;background:#e9f9f1;border-radius:16px;width:170px;text-align:center;padding:14px 10px;flex:0 0 auto}
+.start .h{font-size:13px;font-weight:900;letter-spacing:.1em;color:#0c8f5c}
+.start .em{font-size:34px;margin:6px 0 4px}
+.start .t{font-size:14.5px;font-weight:800;color:#1f7a54;line-height:1.35}
+.router{border:2.5px solid #f2c94c;background:#fff6dc;border-radius:16px;padding:14px 20px;text-align:center;min-width:250px;flex:0 0 auto}
+.router .h{font-size:15px;font-weight:900;letter-spacing:.08em;color:#8a6d1f}
+.router .em{font-size:36px;margin:6px 0 2px}
+.router .t{font-size:16px;font-weight:900;color:#7a5c12}
+.router .s{font-size:13px;font-weight:800;color:#a8862e;margin-top:3px}
+.note{border:2px solid #f5d76e;background:#fff9e6;border-radius:16px;padding:14px 18px;max-width:420px;flex:1}
+.note .h{font-size:15px;font-weight:900;color:#8a6d1f;line-height:1.4}
+.note .s{font-size:13.5px;font-weight:700;color:#7c6a35;margin-top:6px;line-height:1.5}
+
+/* ── tools panel ── */
+.toolszone{display:flex;gap:18px;margin-top:6px}
+.tools{background:#eaf1ff;border:1.6px solid #c9d9f8;border-radius:18px;padding:16px 18px;flex:1}
+.tools .h{text-align:center;font-size:16px;font-weight:900;letter-spacing:.14em;color:#3d5aa8;margin-bottom:12px}
+.toolgrid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.tcard{background:#fff;border:1.6px solid var(--line);border-radius:14px;width:150px;padding:12px 8px;text-align:center}
+.tcard .bi{width:46px;height:46px;border-radius:12px;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:900}
+.tcard .t{font-size:15px;font-weight:900;color:#333f66}
+.tcard .s{font-size:12.5px;font-weight:700;color:#8a94b8;margin-top:2px}
+.memcard{width:170px;text-align:center;padding:16px 12px;flex:0 0 auto}
+.memcard .ic{font-size:32px}
+.memcard .t{font-size:15.5px;font-weight:900;color:#333f66;margin-top:6px}
+.memcard .s{font-size:12.5px;color:#8a94b8;font-weight:700;margin-top:3px}
+
+/* ── approve / publish ── */
+.approvezone{display:flex;gap:16px;margin-top:6px;align-items:stretch}
+.approve{border:1.6px solid var(--line);border-radius:16px;overflow:hidden;width:300px;flex:0 0 auto;background:#fff}
+.approve .h{background:#e9f9f1;font-size:14.5px;font-weight:900;color:#0c8f5c;text-align:center;padding:10px 8px;letter-spacing:.04em}
+.approve .b{padding:14px;text-align:center}
+.approve .em{font-size:34px}
+.approve .t{font-size:14.5px;font-weight:900;color:#333f66;margin-top:6px}
+.approve .s{font-size:12.5px;font-weight:700;color:#0c8f5c;margin-top:8px}
+.publish{background:#f3e8ff;border:1.6px solid #cbb2f2;border-radius:16px;width:250px;text-align:center;padding:16px 14px;flex:0 0 auto}
+.publish .h{font-size:14.5px;font-weight:900;color:#6d28d9;letter-spacing:.06em;line-height:1.4}
+.publish .hub{font-size:40px;margin:8px 0 4px}
+.publish .s{font-size:12.5px;font-weight:800;color:#8b5cf6}
+.plist{width:330px;padding:14px 16px;flex:0 0 auto}
+.plist .h{font-size:13.5px;font-weight:900;letter-spacing:.12em;color:#7a5c12;margin-bottom:10px;text-align:center}
+.prow{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:10px}
+.prow:nth-child(even){background:#fbfcff}
+.prow .bi{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:900;flex:0 0 auto}
+.prow .t{font-size:15px;font-weight:800;color:#333f66}
+
+/* ── factory ── */
+.factory{margin-top:16px;border:1.8px solid #efe3c0;background:#fffdf6;border-radius:20px;padding:18px 22px}
+.factory .h{font-size:21px;font-weight:900;letter-spacing:.1em;color:#b07d10;display:flex;align-items:center;gap:12px}
+.lanerow{display:flex;align-items:center;gap:12px;padding:9px 6px;border-bottom:1.5px dashed #eee4c8}
+.lanerow:last-child{border-bottom:0}
+.lnum{width:34px;height:34px;border-radius:50%;color:#fff;font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.lname{font-size:19px;font-weight:900;color:var(--navy);width:225px;flex:0 0 auto}
+.lagent{font-size:13.5px;font-weight:800;color:#b07d10;background:#fff6dc;border:1.5px solid #f2dfa0;border-radius:999px;padding:4px 12px;flex:0 0 auto}
+.lsteps{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.lstep{background:#fff;border:1.5px solid #dfe6f7;border-radius:9px;padding:4px 10px;font-size:13.5px;font-weight:800;color:#42507e;white-space:nowrap}
+.larr{color:#93b4f5;font-size:15px;font-weight:900}
+
+/* ── features ── */
+.features{margin-top:16px}
+.features .h{font-size:21px;font-weight:900;letter-spacing:.1em;color:#3d5aa8;display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.fcard{background:#fff;border:1.6px solid var(--line);border-radius:14px;padding:12px 14px}
+.fcard .fh{display:flex;gap:10px;align-items:center;font-size:15.5px;font-weight:900;color:#333f66;line-height:1.3;margin-bottom:8px}
+.fcard .fi{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex:0 0 auto}
+.fcard ul{list-style:none}
+.fcard li{font-size:12.5px;font-weight:700;color:#67719a;padding:2.5px 0 2.5px 14px;position:relative}
+.fcard li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:#a8b8e8}
+
+/* ── cta ── */
+.cta{margin-top:18px;display:flex;align-items:center;justify-content:center;gap:26px}
+.cta .rocket{font-size:64px;transform:rotate(-8deg)}
+.ctapill{background:linear-gradient(90deg,#cfe0ff,#dcd0ff 55%,#f3d3ee);border-radius:999px;padding:20px 70px;
+  font-size:52px;font-weight:900;color:var(--navy);box-shadow:0 12px 34px rgba(90,80,200,.18)}
+.ctapill .yes{color:#ff2d78}
+.cta .bub{font-size:56px}
+.cta .spark{position:absolute;font-size:22px}
+</style>
+</head>
+<body>
+<div id="board">
+
+  <!-- ══ title ══ -->
+  <div class="titlewrap">
+    <div class="spray l"><i style="left:0;width:26px;background:#f2c94c;transform:rotate(-18deg)"></i><i style="left:20px;top:14px;width:34px;background:#7c3aed;transform:rotate(-8deg)"></i></div>
+    <div class="spray r"><i style="left:0;width:26px;background:#f2c94c;transform:rotate(18deg)"></i><i style="left:20px;top:14px;width:34px;background:#22b573;transform:rotate(8deg)"></i></div>
+    <h1><span class="a">AI 流水線</span> <span class="b">AUTOMATION</span> <span class="c">WORKFLOW</span></h1>
+    <div class="sub">
+      <span class="zh">起線</span><span class="d" style="background:#22b573"></span>
+      <span class="zh">審批</span><span class="d" style="background:#f2c94c"></span>
+      <span class="zh">出街</span><span class="d" style="background:#7c3aed"></span>
+      <span class="zh">養線</span><span class="d" style="background:#2563eb"></span>
+      <span class="zh">回報</span>
+    </div>
+  </div>
+
+  <!-- ══ row 1 : start → router → chain ══ -->
+  <div class="row" style="margin-top:20px">
+    <div class="start">
+      <div class="h">START HERE</div>
+      <div class="em">🧑‍💼</div>
+      <div class="t">你派任務<br>task message received</div>
+    </div>
+    <span class="arrow">➜</span>
+    <div class="router">
+      <div class="h">AI ROUTER AGENT</div>
+      <div class="em">🤖</div>
+      <div class="t">阿強 · CEO Agent</div>
+      <div class="s">3 Agents 調度 17 個 AI 員工</div>
+    </div>
+    <span class="arrow">➜</span>
+    <div class="card mini"><div class="ic">📁</div><div class="t">任務收料</div><div class="s">料齊先開工</div></div>
+    <span class="arrow">➜</span>
+    <div class="card mini"><div class="ic">📂</div><div class="t">攞素材</div><div class="s">from 你的雲端</div></div>
+    <span class="arrow">➜</span>
+    <div class="card mini"><div class="ic">🧾</div><div class="t">拆步驟</div><div class="s">Extract as JSON</div></div>
+    <div class="note">
+      <div class="h">⭐ 8 條線全開，帳號權限預先開好</div>
+      <div class="s">每條線交付：已跑通嘅流水線＋一頁說明＋你自己個帳號權限；帳號齊嘅話每條 2–4 個鐘交付，出街前布Sir 親自驗收。</div>
+    </div>
+  </div>
+
+  <!-- ══ tools zone ══ -->
+  <div class="toolszone">
+    <div class="card memcard"><div class="ic">🧠</div><div class="t">第二大腦<br>RAG</div><div class="s">Agent Memory · 對話決策客戶資料沉澱</div></div>
+    <div class="tools">
+      <div class="h">AI AGENT TOOLS</div>
+      <div class="toolgrid" id="tools"></div>
+    </div>
+    <div class="card memcard"><div class="ic">🗂️</div><div class="t">流水線狀態<br>Buffer</div><div class="s">等你批 · 做緊 · 排隊 · 完成</div></div>
+  </div>
+
+  <!-- ══ approve / publish ══ -->
+  <div class="approvezone">
+    <div class="approve">
+      <div class="h">PREPARE APPROVAL AS HTML</div>
+      <div class="b">
+        <div class="em">📧</div>
+        <div class="t">準備審批 Email 內容</div>
+        <div class="s">金槍人 · Email 流水線</div>
+      </div>
+    </div>
+    <span class="arrow">➜</span>
+    <div class="approve">
+      <div class="h">✔ 審批先至出 APPROVE FIRST</div>
+      <div class="b">
+        <div class="em">📮</div>
+        <div class="t">Email 畀你批 · Is Approved?</div>
+        <div class="s">✅ 批咗 → 出 &nbsp;&nbsp;↩ 未批 → 改完再嚟</div>
+      </div>
+    </div>
+    <span class="arrow">➜</span>
+    <div class="publish">
+      <div class="h">AI 發佈路由<br>PUBLISHING ROUTER</div>
+      <div class="hub">🌐</div>
+      <div class="s">奔雷手文泰 · 發布</div>
+    </div>
+    <span class="arrow">➜</span>
+    <div class="card plist">
+      <div class="h">PUBLISH TO SOCIAL PLATFORMS</div>
+      <div id="plist"></div>
+    </div>
+  </div>
+
+  <!-- ══ factory ══ -->
+  <div class="factory">
+    <div class="h">☀️ AI 流水線工廠 · CONTENT FACTORY</div>
+    <div id="lanes" style="margin-top:8px"></div>
+  </div>
+
+  <!-- ══ features ══ -->
+  <div class="features">
+    <div class="h">💎 FEATURES &amp; BENEFITS</div>
+    <div class="fgrid" id="feats"></div>
+  </div>
+
+  <!-- ══ cta ══ -->
+  <div class="cta">
+    <span class="rocket">🚀</span>
+    <div class="ctapill">留言 <span class="yes">"YES"</span> below</div>
+    <span class="bub">💬</span>
+  </div>
+
+</div>
+
+<script>
+const BI = {
+  x:{bg:"#111",t:"𝕏"}, ig:{bg:"linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)",t:"◉"},
+  fb:{bg:"#1877f2",t:"f"}, li:{bg:"#0a66c2",t:"in"}, th:{bg:"#111",t:"@"},
+  yt:{bg:"#ff0000",t:"▶"}, wa:{bg:"#25d366",t:"☎"}
+};
+const TOOLS = [
+  ["x","X (Twitter)","Post"],["ig","Instagram","Post"],["fb","Facebook","Post"],["li","LinkedIn","Post"],
+  ["th","Threads","Post"],["yt","YouTube","Short"],["wa","WhatsApp","Broadcast"]
+];
+document.getElementById("tools").innerHTML = TOOLS.map(([k,t,s])=>{
+  const b = BI[k];
+  return `<div class="tcard"><div class="bi" style="background:${b.bg}">${b.t}</div><div class="t">${t}</div><div class="s">${s}</div></div>`;
+}).join("");
+
+const PLIST = [
+  ["ig","Instagram Post"],["fb","Facebook Post"],["li","LinkedIn Post"],
+  ["x","X (Twitter) Post"],["th","Threads Post"],["yt","YouTube Upload"],["wa","WhatsApp Broadcast"]
+];
+document.getElementById("plist").innerHTML = PLIST.map(([k,t])=>{
+  const b = BI[k];
+  return `<div class="prow"><span class="bi" style="background:${b.bg}">${b.t}</span><span class="t">${t}</span></div>`;
+}).join("");
+
+const LANES = [
+  ["#2563eb","一條片出齊所有平台","📤 奔雷手文泰","拍一條片|轉內文|抽圖|改文案|切換版本|發五平台|發 WhatsApp|上網站 Blog"],
+  ["#0f9d6a","AI 客戶開發","📧 金槍人","抓名單|AI 判斷|做兩個 Demo|寫 Email Script|審核|發送同追蹤|每日報告"],
+  ["#7c3aed","素材變內容","✍️ 石榴姐","收料|搵爆款|學你風格|改寫|寫文案|起標題|出圖|發社交媒體"],
+  ["#0891b2","每日自動搵料","🔍 金水","掃熱話|揀題目|搵素材|想標題|寫內文|出圖|審批|排程發佈"],
+  ["#f59e0b","活動流水線","🎪 三叔","開活動|出報名頁|寫文案|FB 廣告|Email 群發|群組通知|確認信|加日曆|提醒信|存檔覆盤"],
+  ["#e11d48","網站功能 · 建系統","🧱 阿成","會員系統|自動收款|點數|AI 出圖|內容中樞|錄音變文字|紀錄中心|一鍵發佈|活動報名|預約系統|技能模板|推薦分佣"],
+  ["#64748b","取代付費工具","🔧 火雞姐","列清單|計用量|揀替代|AI 重寫|匯出資料|備份|試行|取消訂閱"],
+  ["#ec4899","營運 YouTube Channel","🦁 阿漆","定題|寫稿|配音|出圖|出動畫|配樂＋字幕|剪接|上載"]
+];
+document.getElementById("lanes").innerHTML = LANES.map(([c,n,a,steps],i)=>{
+  const st = steps.split("|").map((s,j)=>`<span class="lstep">${s}</span>${j<steps.split("|").length-1?'<span class="larr">➜</span>':''}`).join("");
+  return `<div class="lanerow"><span class="lnum" style="background:${c}">${String(i+1).padStart(2,"0")}</span><span class="lname">${n}</span><span class="lagent">${a}</span><span class="lsteps">${st}</span></div>`;
+}).join("");
+
+const FEATS = [
+  ["#2563eb","🎯","客戶開發流水線",["名單自動入表","冇網站即幫佢起","邊個開信一眼睇到"]],
+  ["#7c3aed","📺","一條片出齊平台",["一次拍攝全程用","五平台＋WhatsApp 出齊","唔使逐個 copy paste"]],
+  ["#0f9d6a","♻️","素材變內容",["舊 PDF/PPT 翻新","用你嘅語氣寫","變一星期貼文"]],
+  ["#0891b2","🔥","每日自動搵料",["自動掃熱話","每日有題材","排程自動出"]],
+  ["#f59e0b","🎪","活動流水線",["九步備齊唔會漏","報名頁＋文案＋email","存檔覆盤自動做"]],
+  ["#e11d48","🧱","網站功能 · 建系統",["會員、付款、預約","度身訂造","快、平、唔使等 IT"]],
+  ["#64748b","🔧","取代付費工具",["盤點現有訂閱","AI 重寫自家版","慳返月費"]],
+  ["#ec4899","🎬","營運 YouTube",["口播一條龍出片","你睇過先出","每週穩定更新"]]
+];
+document.getElementById("feats").innerHTML = FEATS.map(([c,e,t,pts])=>{
+  return `<div class="fcard"><div class="fh"><span class="fi" style="background:${c}1a;color:${c}">${e}</span>${t}</div><ul>${pts.map(p=>`<li>${p}</li>`).join("")}</ul></div>`;
+}).join("");
+</script>
+</body>
+</html>

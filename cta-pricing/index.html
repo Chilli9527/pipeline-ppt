@@ -3,206 +3,111 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AI 流水線 · 收費方案</title>
+<title>AI Lion OPC DFY · 收費方案</title>
+<meta name="robots" content="noindex">
 <style>
 :root{--ink:#F4F7F2;--dim:#9AA6A0;--line:rgba(255,255,255,.13);--bg:#08090B;
       --green:#C6F432;--gold:#D9A96A;--card:rgba(255,255,255,.045)}
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);
-  font:16px/1.6 -apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
-  overflow:hidden;-webkit-font-smoothing:antialiased}
+html,body{margin:0;background:var(--bg);color:var(--ink);
+  font:16.5px/1.72 -apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  -webkit-font-smoothing:antialiased}
 body{background:
-  radial-gradient(900px 520px at 12% 8%,rgba(198,244,50,.085),transparent 70%),
-  radial-gradient(760px 520px at 88% 92%,rgba(217,169,106,.09),transparent 72%),
+  radial-gradient(900px 520px at 12% 6%,rgba(198,244,50,.085),transparent 70%),
+  radial-gradient(760px 520px at 88% 94%,rgba(217,169,106,.09),transparent 72%),
   #08090B}
-.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:56px 64px 88px}
-.brand{position:fixed;left:34px;top:26px;font-size:13px;letter-spacing:.22em;color:var(--dim);z-index:5}
-.brand b{color:var(--green);letter-spacing:.22em}
-.pager{position:fixed;right:34px;top:26px;font-size:13px;color:var(--dim);letter-spacing:.14em;z-index:5;
-  font-variant-numeric:tabular-nums}
-.pager i{color:var(--green);font-style:normal;font-weight:700}
-.hint{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);font-size:13px;color:var(--dim);
-  letter-spacing:.14em;z-index:5;display:flex;gap:14px;align-items:center;white-space:nowrap}
-.hint kbd{border:1px solid var(--line);border-radius:6px;padding:1px 7px;font:inherit;font-size:12px;color:#C6D0C9}
-.bar{position:fixed;left:0;bottom:0;height:2px;background:linear-gradient(90deg,var(--green),var(--gold));
-  transition:width .45s cubic-bezier(.2,.7,.2,1);z-index:6}
-
-.page{display:none;width:100%;max-width:1240px}
-.page.on{display:block}
-.kicker{font-size:13px;letter-spacing:.24em;color:var(--green);margin:0 0 18px;font-weight:700}
-h1{font-size:clamp(34px,5.4vw,76px);line-height:1.08;margin:0 0 22px;letter-spacing:-.02em;font-weight:800}
-h1 .y{color:var(--green)}
-h1 .g{color:var(--gold)}
-.lede{font-size:clamp(16px,1.5vw,21px);color:#C3CCC6;max-width:820px;margin:0 0 34px;line-height:1.62}
-.small{font-size:14px;color:var(--dim);margin:0}
-.price{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 8px}
-.price .big{font-size:clamp(46px,7vw,96px);font-weight:800;letter-spacing:-.03em;line-height:1}
-.price .unit{font-size:20px;color:var(--dim);letter-spacing:.04em}
-.price .old{font-size:20px;color:var(--dim);text-decoration:line-through;text-decoration-thickness:2px}
-.tag{display:inline-block;font-size:13px;font-weight:800;letter-spacing:.06em;color:#0C1208;
-  background:var(--green);border-radius:999px;padding:5px 13px}
-.tag.gold{background:var(--gold)}
-.grid{display:grid;gap:16px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:26px}
-.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;
-  opacity:0;transform:translateY(14px);transition:opacity .42s ease,transform .42s cubic-bezier(.2,.7,.2,1),border-color .3s}
-.card.lit{opacity:1;transform:none}
-.card.hi{border-color:rgba(198,244,50,.45);background:rgba(198,244,50,.07)}
-.card .n{font-size:12px;font-weight:800;color:var(--green);letter-spacing:.16em;margin:0 0 8px;display:block}
-.card h3{font-size:19px;margin:0 0 7px;font-weight:700;line-height:1.35}
-.card p{margin:0;font-size:15px;color:#B9C3BC;line-height:1.62}
-.card .big2{font-size:26px;font-weight:800;color:var(--green);letter-spacing:-.01em;margin:0 0 6px}
-ul.rows{list-style:none;margin:24px 0 0;padding:0;max-width:900px}
-ul.rows li{display:flex;gap:16px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line);
-  opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s}
-ul.rows li.lit{opacity:1;transform:none}
-ul.rows li:last-child{border-bottom:0}
-ul.rows .k{flex:0 0 116px;font-size:13px;color:var(--green);font-weight:700;letter-spacing:.1em;padding-top:3px}
-ul.rows .v{flex:1;font-size:17px;color:#DCE4DE}
-ul.rows .v em{font-style:normal;color:var(--gold);font-weight:700}
-.cta{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:36px}
-.cta .btn{background:var(--green);color:#0C1208;font-weight:800;font-size:18px;padding:14px 26px;border-radius:999px;
-  letter-spacing:.02em}
-.cta .note{font-size:15px;color:var(--dim)}
-.grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
-.grid.four .card{padding:16px 18px}
-.grid.four .card h3{font-size:16px}
-.footline{margin-top:46px;padding-top:20px;border-top:1px solid var(--line);display:flex;gap:28px;flex-wrap:wrap;font-size:15px;color:var(--dim)}
-.footline b{color:var(--ink);font-weight:700}
-.footline .y{color:var(--green)}
-.two{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
-@media (max-width:860px){
-  .stage{padding:64px 22px 86px;align-items:flex-start;overflow-y:auto}
-  body{overflow:auto}
-  .grid,.grid.three{grid-template-columns:1fr}
-  .grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .two{grid-template-columns:1fr;gap:22px}
-  h1{font-size:clamp(30px,8vw,44px)}
-  .price .big{font-size:clamp(40px,12vw,64px)}
-  ul.rows .k{flex-basis:92px}
-  .hint{font-size:11px;gap:8px}
+.wrap{max-width:1080px;margin:0 auto;padding:64px 28px 96px}
+.brand{font-size:13px;letter-spacing:.22em;color:var(--dim);margin:0 0 30px}
+.brand b{color:var(--green)}
+h1{font-size:clamp(34px,6vw,68px);line-height:1.06;margin:0 0 20px;letter-spacing:-.02em;font-weight:800}
+.lede{font-size:clamp(17px,2vw,22px);color:#C9D2CB;max-width:840px;margin:0 0 46px;line-height:1.62}
+h2{font-size:14px;letter-spacing:.24em;color:var(--green);margin:44px 0 16px;font-weight:700}
+.card{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:26px 28px}
+ul{margin:0;padding-left:22px}
+li{margin:10px 0}
+li:first-child{margin-top:0}
+li:last-child{margin-bottom:0}
+b.k{color:var(--ink)}
+.price{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 6px}
+.price .big{font-size:clamp(44px,7vw,88px);font-weight:800;letter-spacing:-.03em;line-height:1}
+.price .unit{font-size:18px;color:var(--dim)}
+.gold{color:var(--gold)}
+.subnote{font-size:15px;color:var(--dim);margin:6px 0 0}
+.hr{height:1px;background:var(--line);margin:38px 0}
+.cta{border:1px solid rgba(198,244,50,.4);background:rgba(198,244,50,.07);border-radius:16px;
+  padding:30px 28px;text-align:center}
+.cta .t{font-size:clamp(22px,3.4vw,34px);font-weight:800;letter-spacing:-.01em;margin:0}
+.cta .s{font-size:14px;color:var(--dim);margin:10px 0 0;letter-spacing:.04em}
+.dont{font-size:15.5px;color:#C9D2CB}
+@media (max-width:600px){
+  .wrap{padding:40px 18px 72px}
+  .card{padding:20px 18px;border-radius:13px}
+  h2{margin:34px 0 12px}
+  .hr{margin:28px 0}
+}
+@media print{
+  body{background:#fff;color:#111}
+  .brand,h2{color:#0a6b62}
+  .card,.cta{border-color:#ccc;background:#fff}
+  .lede,li,.subnote,.dont{color:#222}
+  .price .big,.gold{color:#111}
+  @page{size:A4;margin:16mm}
 }
 </style>
 </head>
 <body>
-<div class="brand"><b>AI 流水線</b> · 收費方案</div>
-<div class="pager"><i id="pn">01</i> / <span id="pt">11</span></div>
-<div class="stage" id="stage"></div>
-<div class="hint"><span>撳一下 / ↓ 下一步</span><kbd>↑</kbd><span>返回</span></div>
-<div class="bar" id="bar"></div>
-<script>
-const PAGES = [
- {k:"收費方案 · 2026-11-23", h:`AI 流水線<br><span class="y">一次過起好</span>，之後<span class="g">月月養</span>`, l:"我幫你將 3 個 AI Agents 同 AI 員工一次過裝入你間公司。起好之後，每月少少維護費包養。", type:"cover",
-  foot:'<span><b>全包</b> HK$16,800 · 8 條線</span><span><b>半包</b> HK$8,800 · 4 條線</span><span><b class="y">維護</b> HK$1,000 / 月</span>'},
+<div class="wrap">
 
- {k:"八條線菜單", h:`八條線，<span class="y">全開定揀</span>`, l:"每條線交付：已跑通嘅流水線 + 一頁使用說明 + 你自己個帳號權限。帳號齊嘅話，每條 2–4 個鐘交付。", type:"lines",
-  items:["一條片出齊平台","AI 客戶開發","素材變內容","取代付費工具","開活動","建系統","每日自動搵料","營運 YouTube"]},
+  <p class="brand">AI LION · <b>OPC DFY</b></p>
 
- {k:"全包 · 一次過起好", h:`8 條線全開，<span class="y">3 Agents ＋ 17 員工</span>`, price:"HK$16,800", unit:"一次過 · 分兩期", tag:"8 條線全開 · 3 個月內交齊", type:"price",
-  bullets:["第一期 HK$8,800 開工","第二期 HK$8,000 交付齊","分階段交付：核心先行","流水線＋說明＋權限"]},
+  <h1>AI Lion OPC DFY</h1>
+  <p class="lede">唔係教你用 AI，係幫你間公司裝一隊 AI 員工，全部裝入你自己帳號，你擁有。</p>
 
- {k:"全包 · 包咩", h:`一次過<span class="y">四樣</span>`, type:"cards", items:[
-   ["01","3 個 AI Agents＋17 個 AI 員工","調度台一板睇晒：邊個做緊咩、等你批、已完成。"],
-   ["02","8 條線全開","唔使揀，全開。分階段交付：頭兩條核心先行，3 個月內交齊。"],
-   ["03","質素關卡","每條線出街前布Sir 親自驗收，唔合格唔交付。"],
-   ["04","交付物","已跑通嘅流水線 + 一頁使用說明 + 客自己個帳號權限。"]]},
+  <h2>交付</h2>
+  <div class="card">
+    <ul>
+      <li><b class="k">17 個 AI 員工（Bot），任揀 10 個</b></li>
+      <li>4 個 core：內容一條龍（講完→出圖→文案→出帖）、技術、AI Lion 頻道、AI Shark 頻道</li>
+      <li>其餘 6 個按你業務配</li>
+      <li>每個員工一頁使用說明，每個封頂 3 輪修訂</li>
+      <li>12 星期交齊，分段驗收</li>
+    </ul>
+  </div>
 
- {k:"半包 · 揀 4 條", h:`預算緊啲？<span class="y">揀 4 條</span>`, price:"HK$8,800", unit:"一次過 · 分兩期", tag:"4 條線任揀 · 分兩期（4,400 ＋ 4,400）", type:"price",
-  bullets:["保險 agent 有推薦組合","頭兩條 2 星期交付","補差價可升全包","流水線＋說明＋權限"]},
+  <h2>價錢</h2>
+  <div class="card">
+    <div class="price"><span class="big">HK$8,800</span><span class="unit">首發 · 限 5 位</span></div>
+    <p class="subnote">原價 <span class="gold">HK$16,800</span>，5 位滿即回，唔做常設價</p>
+    <div class="hr"></div>
+    <div class="price"><span class="big">HK$1,000</span><span class="unit">／月 · 維護</span></div>
+    <ul>
+      <li>每月 10 個修改請求</li>
+      <li>48 小時回應</li>
+      <li>加急 HK$500</li>
+      <li>超額 HK$500／請求</li>
+    </ul>
+  </div>
 
- {k:"半包 · 推薦組合", h:`保險 agent，直接用<span class="y">呢 4 條</span>`, l:"唔想逐條揀？呢個組合為保險 agent 而設，開箱即用。", type:"cards", items:[
-   ["01","AI 客戶開發","搵 contact、睇網站、自動跟進，搵客唔使逐個手做。"],
-   ["02","每日自動搵料","每日自動搵話題，變成你嘅 Post 內容。"],
-   ["03","素材變內容","舊素材一鍵翻新：一段片變齊所有平台。"],
-   ["04","開活動","講座、Kick-off、活動宣傳一條龍。"]]},
+  <h2>付款</h2>
+  <div class="card">
+    <ul>
+      <li><b class="k">70% 開工前、30% 開工滿一個月</b></li>
+      <li>開工滿一個月未收清 30% → 交付暫停，帳號主控權不移交</li>
+    </ul>
+  </div>
 
- {k:"升級路徑", h:`半包用落想加？<span class="g">補差價升全包</span>`, type:"rows", items:[
-   ["補 HK$8,000","直接升全包：8 條線全開，唔使重頭再計"],
-   ["90 日內","升級價 90 日內有效，過咗要重新報價"],
-   ["已交嘅線","全部保留，唔使重新設定"]]},
+  <h2>唔包</h2>
+  <div class="card dont">
+    客製（另計）、第 11 個員工起、無限修改、工具 API 成本、客自己改壞嘅修復、compliance 審批、保證生意結果、教學課程（HK$6,000／年另計）
+  </div>
 
- {k:"維護 · 月費", h:`起好之後，<span class="y">每月 HK$1,000</span> 養晒`, price:"HK$1,000", unit:"/ 月", tag:"全包半包統一 · 年繳 HK$10,000", type:"price",
-  bullets:["每月 10 個修改請求","出事 48 小時內回復","超出 HK$500 / 項","加急 HK$500 / 次"]},
+  <div class="hr"></div>
 
- {k:"維護 · 邊界", h:`唔包咩，<span class="y">寫入條款</span>`, l:"按工作量計，唔按員工頭數計 — 一個請求一手，錄得清清楚楚。", type:"rows", items:[
-   ["支援範圍","每月 10 個修改請求封頂，超出 HK$500 / 項"],
-   ["新員工／新線","唔包 — 加線 HK$1,500 / 條另計"],
-   ["大改結構","屬新需求，另行報價"],
-   ["起計日","維護月費由第二期收妥後開始計"]]},
+  <div class="cta">
+    <p class="t">免費 30 分鐘 AI 診斷</p>
+    <p class="s">AI Lion ｜ lion88.ai</p>
+  </div>
 
- {k:"下一步", h:`揀<span class="y">全包定半包</span>，我幫你起`, l:"你只需要講：全包定半包、揀邊 4 條、想慳咩。其餘我處理。", type:"cta", items:[["01","你揀 package","全包 8 條，定半包揀 4 條（保險 agent 有現成組合）。"],["02","我開工","收第一期開工，分階段交付，每條 2–4 個鐘。"],["03","起好之後","每月 HK$1,000 維護，10 手封頂，48 小時回復。"]]}
-];
-
-const stage=document.getElementById('stage');
-let page=0, step=0;
-{const q=new URLSearchParams(location.search).get('p');
- if(q){const n=parseInt(q,10); if(n>=1&&n<=PAGES.length){page=n-1;step=0;}}}
-function itemsOf(p){return p.items?p.items.length:0}
-function maxStep(p){return (p.type==='price'||p.type==='cover')?0:itemsOf(p)}
-function totalSteps(){return PAGES.reduce((a,p)=>a+maxStep(p)+1,0)}
-
-function render(){
-  const showAll = new URLSearchParams(location.search).has('p');
-  const p=PAGES[page];
-  let h='<div class="page on">';
-  h+='<p class="kicker">'+p.k+'</p><h1>'+p.h+'</h1>';
-  if(p.l) h+='<p class="lede">'+p.l+'</p>';
-  if(p.type==='cover'&&p.foot) h+='<div class="footline">'+p.foot+'</div>';
-  if(p.type==='price'){
-    h+='<div class="price"><span class="big">'+p.price+'</span><span class="unit">'+p.unit+'</span></div>';
-    h+='<div style="margin-top:18px"><span class="tag'+(p.tag.indexOf('維護')===0?' gold':'')+'">'+p.tag+'</span></div>';
-    if(p.bullets){h+='<div class="grid four" style="margin-top:34px">';p.bullets.forEach(t=>{h+='<div class="card lit"><h3>'+t+'</h3></div>';});h+='</div>';}
-  }
-  if(p.type==='lines'){
-    h+='<div class="grid" style="grid-template-columns:repeat(4,minmax(0,1fr))">';
-    p.items.forEach((t,i)=>{h+='<div class="card'+((i<step||showAll)?' lit':'')+'"><h3 style="font-size:17px">'+t+'</h3></div>';});
-    h+='</div>';
-  }
-  if(p.type==='cards'){
-    h+='<div class="grid">';
-    p.items.forEach((it,i)=>{h+='<div class="card'+((i<step||showAll)?' lit':'')+(i===0?' hi':'')+'"><span class="n">'+it[0]+'</span><h3>'+it[1]+'</h3><p>'+it[2]+'</p></div>';});
-    h+='</div>';
-  }
-  if(p.type==='rows'){
-    h+='<ul class="rows">';
-    p.items.forEach((it,i)=>{h+='<li class="'+((i<step||showAll)?'lit':'')+'"><span class="k">'+it[0]+'</span><span class="v">'+it[1]+'</span></li>';});
-    h+='</ul>';
-  }
-  if(p.type==='cta'&&p.items){
-    h+='<div class="grid three" style="margin-top:40px">';
-    p.items.forEach((it,i)=>{h+='<div class="card'+(i<step||showAll?' lit':'')+'"><span class="n">'+it[0]+'</span><h3>'+it[1]+'</h3><p>'+it[2]+'</p></div>';});
-    h+='</div>';
-  }
-  if(p.type==='cta'){
-    h+='<div class="cta"><span class="btn">即刻聯絡我</span><span class="note">描述欄有資料 · AI Lion ｜ lion88.ai</span></div>';
-  }
-  h+='</div>';
-  stage.innerHTML=h;
-  document.getElementById('pn').textContent=String(page+1).padStart(2,'0');
-  document.getElementById('pt').textContent=String(PAGES.length).padStart(2,'0');
-  const done=PAGES.slice(0,page).reduce((a,x)=>a+maxStep(x)+1,0)+step+1;
-  document.getElementById('bar').style.width=(done/totalSteps()*100)+'%';
-}
-function go(d){
-  const p=PAGES[page];
-  if(d>0){
-    if(step<maxStep(p)){step++;render();return;}
-    if(page<PAGES.length-1){page++;step=0;render();}
-  }else{
-    if(step>0){step--;render();return;}
-    if(page>0){page--;step=maxStep(PAGES[page]);render();}
-  }
-}
-addEventListener('keydown',e=>{
-  if(['ArrowDown','ArrowRight',' ','PageDown','Enter'].includes(e.key)){e.preventDefault();go(1);}
-  if(['ArrowUp','ArrowLeft','Backspace','PageUp'].includes(e.key)){e.preventDefault();go(-1);}
-  if(e.key==='r'||e.key==='R'){page=0;step=0;render();}
-});
-addEventListener('click',e=>{ if(e.target.closest('a')) return; go(1); });
-let ty=0;
-addEventListener('touchstart',e=>{ty=e.touches[0].clientY;},{passive:true});
-addEventListener('touchend',e=>{const dy=e.changedTouches[0].clientY-ty; if(Math.abs(dy)>40){go(dy<0?1:-1);}},{passive:true});
-render();
-</script>
+</div>
 </body>
 </html>

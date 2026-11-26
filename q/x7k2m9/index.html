@@ -3,213 +3,111 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AI 流水線 · 收費方案</title>
+<title>AI Lion OPC DFY · 收費方案</title>
+<meta name="robots" content="noindex">
 <style>
 :root{--ink:#F4F7F2;--dim:#9AA6A0;--line:rgba(255,255,255,.13);--bg:#08090B;
       --green:#C6F432;--gold:#D9A96A;--card:rgba(255,255,255,.045)}
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);
-  font:16px/1.6 -apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
-  overflow:hidden;-webkit-font-smoothing:antialiased}
+html,body{margin:0;background:var(--bg);color:var(--ink);
+  font:16.5px/1.72 -apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  -webkit-font-smoothing:antialiased}
 body{background:
-  radial-gradient(900px 520px at 12% 8%,rgba(198,244,50,.085),transparent 70%),
-  radial-gradient(760px 520px at 88% 92%,rgba(217,169,106,.09),transparent 72%),
+  radial-gradient(900px 520px at 12% 6%,rgba(198,244,50,.085),transparent 70%),
+  radial-gradient(760px 520px at 88% 94%,rgba(217,169,106,.09),transparent 72%),
   #08090B}
-.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:56px 64px 88px}
-.brand{position:fixed;left:34px;top:26px;font-size:13px;letter-spacing:.22em;color:var(--dim);z-index:5}
-.brand b{color:var(--green);letter-spacing:.22em}
-.pager{position:fixed;right:34px;top:26px;font-size:13px;color:var(--dim);letter-spacing:.14em;z-index:5;
-  font-variant-numeric:tabular-nums}
-.pager i{color:var(--green);font-style:normal;font-weight:700}
-.hint{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);font-size:13px;color:var(--dim);
-  letter-spacing:.14em;z-index:5;display:flex;gap:14px;align-items:center;white-space:nowrap}
-.hint kbd{border:1px solid var(--line);border-radius:6px;padding:1px 7px;font:inherit;font-size:12px;color:#C6D0C9}
-.bar{position:fixed;left:0;bottom:0;height:2px;background:linear-gradient(90deg,var(--green),var(--gold));
-  transition:width .45s cubic-bezier(.2,.7,.2,1);z-index:6}
-
-.page{display:none;width:100%;max-width:1240px}
-.page.on{display:block}
-.kicker{font-size:13px;letter-spacing:.24em;color:var(--green);margin:0 0 18px;font-weight:700}
-h1{font-size:clamp(34px,5.4vw,76px);line-height:1.08;margin:0 0 22px;letter-spacing:-.02em;font-weight:800}
-h1 .y{color:var(--green)}
-h1 .g{color:var(--gold)}
-.lede{font-size:clamp(16px,1.5vw,21px);color:#C3CCC6;max-width:820px;margin:0 0 34px;line-height:1.62}
-.small{font-size:14px;color:var(--dim);margin:0}
-.price{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 8px}
-.price .big{font-size:clamp(46px,7vw,96px);font-weight:800;letter-spacing:-.03em;line-height:1}
-.price .unit{font-size:20px;color:var(--dim);letter-spacing:.04em}
-.price .old{font-size:20px;color:var(--dim);text-decoration:line-through;text-decoration-thickness:2px}
-.tag{display:inline-block;font-size:13px;font-weight:800;letter-spacing:.06em;color:#0C1208;
-  background:var(--green);border-radius:999px;padding:5px 13px}
-.tag.gold{background:var(--gold)}
-.grid{display:grid;gap:16px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:26px}
-.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;
-  opacity:0;transform:translateY(14px);transition:opacity .42s ease,transform .42s cubic-bezier(.2,.7,.2,1),border-color .3s}
-.card.lit{opacity:1;transform:none}
-.card.hi{border-color:rgba(198,244,50,.45);background:rgba(198,244,50,.07)}
-.card .n{font-size:12px;font-weight:800;color:var(--green);letter-spacing:.16em;margin:0 0 8px;display:block}
-.card h3{font-size:19px;margin:0 0 7px;font-weight:700;line-height:1.35}
-.card p{margin:0;font-size:15px;color:#B9C3BC;line-height:1.62}
-.card .big2{font-size:26px;font-weight:800;color:var(--green);letter-spacing:-.01em;margin:0 0 6px}
-ul.rows{list-style:none;margin:24px 0 0;padding:0;max-width:900px}
-ul.rows li{display:flex;gap:16px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line);
-  opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s}
-ul.rows li.lit{opacity:1;transform:none}
-ul.rows li:last-child{border-bottom:0}
-ul.rows .k{flex:0 0 116px;font-size:13px;color:var(--green);font-weight:700;letter-spacing:.1em;padding-top:3px}
-ul.rows .v{flex:1;font-size:17px;color:#DCE4DE}
-ul.rows .v em{font-style:normal;color:var(--gold);font-weight:700}
-.cta{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:36px}
-.cta .btn{background:var(--green);color:#0C1208;font-weight:800;font-size:18px;padding:14px 26px;border-radius:999px;
-  letter-spacing:.02em}
-.cta .note{font-size:15px;color:var(--dim)}
-.grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
-.grid.four .card{padding:16px 18px}
-.grid.four .card h3{font-size:16px}
-.footline{margin-top:46px;padding-top:20px;border-top:1px solid var(--line);display:flex;gap:28px;flex-wrap:wrap;font-size:15px;color:var(--dim)}
-.footline b{color:var(--ink);font-weight:700}
-.footline .y{color:var(--green)}
-.two{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
-@media (max-width:860px){
-  .stage{padding:64px 22px 86px;align-items:flex-start;overflow-y:auto}
-  body{overflow:auto}
-  .grid,.grid.three{grid-template-columns:1fr}
-  .grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .two{grid-template-columns:1fr;gap:22px}
-  h1{font-size:clamp(30px,8vw,44px)}
-  .price .big{font-size:clamp(40px,12vw,64px)}
-  ul.rows .k{flex-basis:92px}
-  .hint{font-size:11px;gap:8px}
+.wrap{max-width:1080px;margin:0 auto;padding:64px 28px 96px}
+.brand{font-size:13px;letter-spacing:.22em;color:var(--dim);margin:0 0 30px}
+.brand b{color:var(--green)}
+h1{font-size:clamp(34px,6vw,68px);line-height:1.06;margin:0 0 20px;letter-spacing:-.02em;font-weight:800}
+.lede{font-size:clamp(17px,2vw,22px);color:#C9D2CB;max-width:840px;margin:0 0 46px;line-height:1.62}
+h2{font-size:14px;letter-spacing:.24em;color:var(--green);margin:44px 0 16px;font-weight:700}
+.card{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:26px 28px}
+ul{margin:0;padding-left:22px}
+li{margin:10px 0}
+li:first-child{margin-top:0}
+li:last-child{margin-bottom:0}
+b.k{color:var(--ink)}
+.price{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 6px}
+.price .big{font-size:clamp(44px,7vw,88px);font-weight:800;letter-spacing:-.03em;line-height:1}
+.price .unit{font-size:18px;color:var(--dim)}
+.gold{color:var(--gold)}
+.subnote{font-size:15px;color:var(--dim);margin:6px 0 0}
+.hr{height:1px;background:var(--line);margin:38px 0}
+.cta{border:1px solid rgba(198,244,50,.4);background:rgba(198,244,50,.07);border-radius:16px;
+  padding:30px 28px;text-align:center}
+.cta .t{font-size:clamp(22px,3.4vw,34px);font-weight:800;letter-spacing:-.01em;margin:0}
+.cta .s{font-size:14px;color:var(--dim);margin:10px 0 0;letter-spacing:.04em}
+.dont{font-size:15.5px;color:#C9D2CB}
+@media (max-width:600px){
+  .wrap{padding:40px 18px 72px}
+  .card{padding:20px 18px;border-radius:13px}
+  h2{margin:34px 0 12px}
+  .hr{margin:28px 0}
+}
+@media print{
+  body{background:#fff;color:#111}
+  .brand,h2{color:#0a6b62}
+  .card,.cta{border-color:#ccc;background:#fff}
+  .lede,li,.subnote,.dont{color:#222}
+  .price .big,.gold{color:#111}
+  @page{size:A4;margin:16mm}
 }
 </style>
 </head>
 <body>
-<div class="brand"><b>AI 流水線</b> · 收費方案</div>
-<div class="pager"><i id="pn">01</i> / <span id="pt">11</span></div>
-<div class="stage" id="stage"></div>
-<div class="hint"><span>撳一下 / ↓ 下一步</span><kbd>↑</kbd><span>返回</span></div>
-<div class="bar" id="bar"></div>
-<script>
-const PAGES = [
- {k:"收費方案 · 2026-11-22", h:`AI 流水線<br><span class="y">兩個人嘅價錢</span>，開<span class="g">八條線</span>`, l:"Plan A 每月起兩條，舊線我養；Plan B 想快啲全面接手。你先揀線，我幫你起。", type:"cover",
-  foot:'<span><b>Plan A</b> HK$3,000 / 月</span><span><b>Plan B</b> HK$5,000 / 月</span><span><b class="y">創始位</b> HK$2,000（限 5 位）</span>'},
+<div class="wrap">
 
- {k:"第一步", h:`你先<span class="y">揀線</span>`, l:"八條線任你揀。每條線交付：已跑通嘅流水線 + 一頁使用說明 + 你自己個帳號權限。帳號齊嘅話，每條 2–4 個鐘交付。", type:"lines",
-  items:["一條片出齊平台","AI 客戶開發","素材變內容","取代付費工具","開活動","建系統","每日自動搵料","營運 YouTube"]},
+  <p class="brand">AI LION · <b>OPC DFY</b></p>
 
- {k:"Plan A", h:`每月起兩條，<span class="y">舊線我養</span>`, price:"HK$3,000", unit:"/ 月", tag:"創始位 HK$2,000（限 5 位）", type:"price",
-  bullets:["每月起新線 2 條","舊線全維護·48 小時回復","布Sir 15 分鐘驗收","流水線＋說明＋權限"]},
+  <h1>AI Lion OPC DFY</h1>
+  <p class="lede">唔係教你用 AI，係幫你間公司裝一隊 AI 員工，全部裝入你自己帳號，你擁有。</p>
 
- {k:"Plan A · 包咩", h:`月費包含<span class="y">四樣</span>`, type:"cards", items:[
-   ["01","每月起新線 2 條","由八條線菜單揀；帳號齊嘅話每條 2–4 個鐘交付。"],
-   ["02","舊線全維護","已起嘅線我負責養：出事 48 小時內回復；每條線每月修復封頂 3 次；加急 HK$500 / 次。"],
-   ["03","質素關卡","每條新線出街前布Sir 親自驗收（15 分鐘 checklist），唔合格唔交付。"],
-   ["04","交付物","已跑通嘅流水線 + 一頁使用說明 + 客自己個帳號權限。"]]},
+  <h2>交付</h2>
+  <div class="card">
+    <ul>
+      <li><b class="k">17 個 AI 員工（Bot），任揀 10 個</b></li>
+      <li>4 個 core：內容一條龍（講完→出圖→文案→出帖）、技術、AI Lion 頻道、AI Shark 頻道</li>
+      <li>其餘 6 個按你業務配</li>
+      <li>每個員工一頁使用說明，每個封頂 3 輪修訂</li>
+      <li>12 星期交齊，分段驗收</li>
+    </ul>
+  </div>
 
- {k:"Plan A · 節奏", h:`一個月<span class="y">四步</span>`, type:"rows", items:[
-   ["Week 1","揀 2 條線 → 確認目標（呢條線幫你慳咩）→ 開工"],
-   ["Week 1–2","起線：學生執行，布Sir 驗收"],
-   ["Week 2–3","舊線巡檢（被動，出事先動）"],
-   ["月底","15 分鐘成果快照：慳咗幾多鐘 / 幾多錢"]]},
+  <h2>價錢</h2>
+  <div class="card">
+    <div class="price"><span class="big">HK$8,800</span><span class="unit">首發 · 限 5 位</span></div>
+    <p class="subnote">原價 <span class="gold">HK$16,800</span>，5 位滿即回，唔做常設價</p>
+    <div class="hr"></div>
+    <div class="price"><span class="big">HK$1,000</span><span class="unit">／月 · 維護</span></div>
+    <ul>
+      <li>每月 10 個修改請求</li>
+      <li>48 小時回應</li>
+      <li>加急 HK$500</li>
+      <li>超額 HK$500／請求</li>
+    </ul>
+  </div>
 
- {k:"Plan A · 邊界", h:`唔包咩，<span class="y">寫入條款</span>`, type:"rows", items:[
-   ["支援範圍","無限 helpdesk 唔包 — 支援以「線唔郁」為限"],
-   ["額外新線","每月超過 2 條，按 HK$1,500 / 條另計"],
-   ["大改結構","屬新需求，另計"],
-   ["客自己改爛","修復照包，但會記錄"]]},
+  <h2>付款</h2>
+  <div class="card">
+    <ul>
+      <li><b class="k">70% 開工前、30% 開工滿一個月</b></li>
+      <li>開工滿一個月未收清 30% → 交付暫停，帳號主控權不移交</li>
+    </ul>
+  </div>
 
- {k:"創始位", h:`HK$2,000 嘅分別：<span class="y">平 1,000</span>，換三件`, l:"內容完全一樣。只係綁條件交換三件套。5 位滿之後，只收 HK$3,000。", type:"cards", items:[
-   ["01","每月 15 分鐘成果快照","慳咗幾多鐘、幾多錢，白紙黑字。"],
-   ["02","第 3 個月尾 50 字以上真實見證","你講嘅話，我可以用。"],
-   ["03","介紹權 2 個","介紹兩位同樣想慳時間嘅老闆。"]]},
+  <h2>唔包</h2>
+  <div class="card dont">
+    客製（另計）、第 11 個員工起、無限修改、工具 API 成本、客自己改壞嘅修復、compliance 審批、保證生意結果、教學課程（HK$6,000／年另計）
+  </div>
 
- {k:"Plan B", h:`想快啲全面接手，<span class="g">坐快線</span>`, price:"HK$5,000", unit:"/ 月", tag:"Plan A 全部 ＋ 以下四樣", type:"price",
-  bullets:["每月起新線 4 條","每月 30 分鐘 1-on-1","優先排期","線組合建議"]},
+  <div class="hr"></div>
 
- {k:"Plan B · 加碼", h:`多<span class="g">四樣</span>`, type:"cards", items:[
-   ["01","每月起 4 條線","唔係 2 條。3 個月就有 12 條線行緊。"],
-   ["02","每月 30 分鐘 1-on-1","唔止快照：面對面睇數據，決定下個月起邊條。"],
-   ["03","優先排期","新線起得快過 Plan A 客。"],
-   ["04","線組合建議","布Sir 按你生意，主動建議起線次序：先搵客，後自動化。"]]},
+  <div class="cta">
+    <p class="t">免費 30 分鐘 AI 診斷</p>
+    <p class="s">AI Lion ｜ lion88.ai</p>
+  </div>
 
- {k:"Plan B · 對象", h:`Plan B 係畀<span class="g">兩種人</span>`, type:"cards", items:[
-   ["01","生意已經好忙","想一次過幾條線一齊行，唔想逐條等。"],
-   ["02","見過 Plan A 成果","想加碼嘅升級客：A → B 有升級路徑。"]]},
-
- {k:"下一步", h:`揀 <span class="y">2 條線</span>，我幫你起`, l:"你只需要講：邊兩條線、想慳咩。其餘我處理。", type:"cta", items:[["01","你講兩條線","邊兩條、想慳咩，講清楚就得。"],["02","我開工","學生執行，布Sir 驗收，每條 2–4 個鐘。"],["03","Week 2 交付","流水線 + 一頁說明 + 你個帳號權限。"]]}
-];
-
-const stage=document.getElementById('stage');
-let page=0, step=0;
-{const q=new URLSearchParams(location.search).get('p');
- if(q){const n=parseInt(q,10); if(n>=1&&n<=PAGES.length){page=n-1;step=0;}}}
-function itemsOf(p){return p.items?p.items.length:0}
-function maxStep(p){return (p.type==='price'||p.type==='cover')?0:itemsOf(p)}
-function totalSteps(){return PAGES.reduce((a,p)=>a+maxStep(p)+1,0)}
-
-function render(){
-  const showAll = new URLSearchParams(location.search).has('p');
-  const p=PAGES[page];
-  let h='<div class="page on">';
-  h+='<p class="kicker">'+p.k+'</p><h1>'+p.h+'</h1>';
-  if(p.l) h+='<p class="lede">'+p.l+'</p>';
-  if(p.type==='cover'&&p.foot) h+='<div class="footline">'+p.foot+'</div>';
-  if(p.type==='price'){
-    h+='<div class="price"><span class="big">'+p.price+'</span><span class="unit">'+p.unit+'</span></div>';
-    h+='<div style="margin-top:18px"><span class="tag'+(p.tag.indexOf('Plan A 全部')===0?' gold':'')+'">'+p.tag+'</span></div>';
-    if(p.bullets){h+='<div class="grid four" style="margin-top:34px">';p.bullets.forEach(t=>{h+='<div class="card lit"><h3>'+t+'</h3></div>';});h+='</div>';}
-  }
-  if(p.type==='lines'){
-    h+='<div class="grid" style="grid-template-columns:repeat(4,minmax(0,1fr))">';
-    p.items.forEach((t,i)=>{h+='<div class="card'+((i<step||showAll)?' lit':'')+'"><h3 style="font-size:17px">'+t+'</h3></div>';});
-    h+='</div>';
-  }
-  if(p.type==='cards'){
-    h+='<div class="grid">';
-    p.items.forEach((it,i)=>{h+='<div class="card'+((i<step||showAll)?' lit':'')+(i===0?' hi':'')+'"><span class="n">'+it[0]+'</span><h3>'+it[1]+'</h3><p>'+it[2]+'</p></div>';});
-    h+='</div>';
-  }
-  if(p.type==='rows'){
-    h+='<ul class="rows">';
-    p.items.forEach((it,i)=>{h+='<li class="'+((i<step||showAll)?'lit':'')+'"><span class="k">'+it[0]+'</span><span class="v">'+it[1]+'</span></li>';});
-    h+='</ul>';
-  }
-  if(p.type==='cta'&&p.items){
-    h+='<div class="grid three" style="margin-top:40px">';
-    p.items.forEach((it,i)=>{h+='<div class="card'+(i<step||showAll?' lit':'')+'"><span class="n">'+it[0]+'</span><h3>'+it[1]+'</h3><p>'+it[2]+'</p></div>';});
-    h+='</div>';
-  }
-  if(p.type==='cta'){
-    h+='<div class="cta"><span class="btn">即刻聯絡我</span><span class="note">描述欄有資料 · AI Lion ｜ lion88.ai</span></div>';
-  }
-  h+='</div>';
-  stage.innerHTML=h;
-  document.getElementById('pn').textContent=String(page+1).padStart(2,'0');
-  document.getElementById('pt').textContent=String(PAGES.length).padStart(2,'0');
-  const done=PAGES.slice(0,page).reduce((a,x)=>a+maxStep(x)+1,0)+step+1;
-  document.getElementById('bar').style.width=(done/totalSteps()*100)+'%';
-}
-function go(d){
-  const p=PAGES[page];
-  if(d>0){
-    if(step<maxStep(p)){step++;render();return;}
-    if(page<PAGES.length-1){page++;step=0;render();}
-  }else{
-    if(step>0){step--;render();return;}
-    if(page>0){page--;step=maxStep(PAGES[page]);render();}
-  }
-}
-addEventListener('keydown',e=>{
-  if(['ArrowDown','ArrowRight',' ','PageDown','Enter'].includes(e.key)){e.preventDefault();go(1);}
-  if(['ArrowUp','ArrowLeft','Backspace','PageUp'].includes(e.key)){e.preventDefault();go(-1);}
-  if(e.key==='r'||e.key==='R'){page=0;step=0;render();}
-});
-addEventListener('click',e=>{ if(e.target.closest('a')) return; go(1); });
-let ty=0;
-addEventListener('touchstart',e=>{ty=e.touches[0].clientY;},{passive:true});
-addEventListener('touchend',e=>{const dy=e.changedTouches[0].clientY-ty; if(Math.abs(dy)>40){go(dy<0?1:-1);}},{passive:true});
-render();
-</script>
+</div>
 </body>
 </html>
